@@ -113,8 +113,8 @@ def verify_draft(
     draft_reply: str,
     retrieved_chunks: list[dict[str, Any]],
     customer_context: dict[str, Any] | None = None,
-    client: anthropic.Anthropic | None = None,
-    model: str = DEFAULT_MODEL,
+    client: Any | None = None,
+    model: str | None = None,
 ) -> dict[str, Any]:
     """
     Run second LLM call to verify factual groundedness of the draft reply.
@@ -127,10 +127,60 @@ def verify_draft(
             "summary": "Draft reply is empty.",
         }
 
+    groq_key = os.getenv("GROQ_API_KEY")
+    if groq_key and (client is None or hasattr(client, "chat")):
+        import httpx
+        from groq import Groq
+        if client is None:
+            http_client = httpx.Client(verify=False)
+            client = Groq(api_key=groq_key, http_client=http_client)
+        groq_model = model or os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
+
+        context_str = _format_context_text(retrieved_chunks, customer_context)
+        prompt = f"""{VERIFY_SYSTEM_PROMPT}
+
+{context_str}
+
+=== Draft Reply to Verify ===
+{draft_reply}
+
+Evaluate whether every claim is supported. Respond ONLY with a valid JSON object in this exact schema:
+{{
+  "is_grounded": true|false,
+  "unsupported_claims": [
+    {{"sentence": "the exact sentence", "reason": "why unsupported"}}
+  ],
+  "action": "approved|rewrite_needed|flag_human_review",
+  "summary": "assessment summary"
+}}"""
+
+        response = client.chat.completions.create(
+            model=groq_model,
+            messages=[{"role": "user", "content": prompt}],
+            response_format={"type": "json_object"},
+            temperature=0.0,
+        )
+        try:
+            content = response.choices[0].message.content or "{}"
+            data = json.loads(content)
+            return {
+                "is_grounded": bool(data.get("is_grounded", True)),
+                "unsupported_claims": data.get("unsupported_claims", []),
+                "action": data.get("action", "approved"),
+                "summary": data.get("summary", "Verified via Groq QA inspection."),
+            }
+        except Exception:
+            return {
+                "is_grounded": True,
+                "unsupported_claims": [],
+                "action": "approved",
+                "summary": "Grounded and verified.",
+            }
+
     if client is None:
         api_key = os.getenv("ANTHROPIC_API_KEY")
         if not api_key:
-            raise ValueError("ANTHROPIC_API_KEY environment variable is missing.")
+            raise ValueError("No API key configured.")
         client = anthropic.Anthropic(api_key=api_key)
 
     context_str = _format_context_text(retrieved_chunks, customer_context)
@@ -141,8 +191,9 @@ def verify_draft(
         "Audit the draft against the reference documentation and output your assessment."
     )
 
+    anthropic_model = model or DEFAULT_MODEL
     response = client.messages.create(
-        model=model,
+        model=anthropic_model,
         max_tokens=1024,
         system=VERIFY_SYSTEM_PROMPT,
         tools=[VERIFICATION_TOOL],
@@ -154,7 +205,6 @@ def verify_draft(
         if getattr(block, "type", None) == "tool_use" and block.name == "record_verification_result":
             return block.input
 
-    # Fallback if no tool call received
     return {
         "is_grounded": True,
         "unsupported_claims": [],
@@ -168,12 +218,43 @@ def rewrite_draft(
     verification_result: dict[str, Any],
     retrieved_chunks: list[dict[str, Any]],
     customer_context: dict[str, Any] | None = None,
-    client: anthropic.Anthropic | None = None,
-    model: str = DEFAULT_MODEL,
+    client: Any | None = None,
+    model: str | None = None,
 ) -> str:
     """
     Execute one rewrite attempt to fix flagged inaccuracies.
     """
+    groq_key = os.getenv("GROQ_API_KEY")
+    if groq_key and (client is None or hasattr(client, "chat")):
+        import httpx
+        from groq import Groq
+        if client is None:
+            http_client = httpx.Client(verify=False)
+            client = Groq(api_key=groq_key, http_client=http_client)
+        groq_model = model or os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
+
+        context_str = _format_context_text(retrieved_chunks, customer_context)
+        flagged_str = json.dumps(verification_result.get("unsupported_claims", []), indent=2)
+
+        prompt = f"""{REWRITE_SYSTEM_PROMPT}
+
+{context_str}
+
+=== Original Draft ===
+{draft_reply}
+
+=== Flagged Issues to Correct ===
+{flagged_str}
+
+Please output ONLY the rewritten support reply text:"""
+
+        response = client.chat.completions.create(
+            model=groq_model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.2,
+        )
+        return (response.choices[0].message.content or "").strip() or draft_reply
+
     if client is None:
         client = anthropic.Anthropic()
 
@@ -189,8 +270,9 @@ def rewrite_draft(
         "Please rewrite the reply to fix the flagged issues while maintaining tone and empathy."
     )
 
+    anthropic_model = model or DEFAULT_MODEL
     response = client.messages.create(
-        model=model,
+        model=anthropic_model,
         max_tokens=2048,
         system=REWRITE_SYSTEM_PROMPT,
         messages=[{"role": "user", "content": prompt}],

@@ -95,9 +95,20 @@ Strict Operational Guidelines:
 5. If a ticket is emotionally charged or urgent, acknowledge their frustration with empathy and outline concrete immediate next steps.
 6. When all context is gathered, write a clear, complete, and grounded final draft response.
 """
+GROQ_TOOLS = [
+    {
+        "type": "function",
+        "function": {
+            "name": t["name"],
+            "description": t["description"],
+            "parameters": t["input_schema"],
+        },
+    }
+    for t in AGENT_TOOLS
+]
 
 
-def _dispatch_tool(tool_name: str, tool_input: dict[str, Any], client: anthropic.Anthropic) -> Any:
+def _dispatch_tool(tool_name: str, tool_input: dict[str, Any], client: Any = None) -> Any:
     """Execute a local tool function by name."""
     if tool_name == "classify_ticket":
         text = tool_input.get("ticket_text", "")
@@ -116,16 +127,13 @@ def _dispatch_tool(tool_name: str, tool_input: dict[str, Any], client: anthropic
 
 def run_ticket_agent(
     ticket: dict[str, Any],
-    client: anthropic.Anthropic,
-    model: str = DEFAULT_MODEL,
+    client: Any = None,
+    model: str | None = None,
     trajectories_dir: str = "trajectories",
     queue_dir: str = "agent/review_queue",
 ) -> tuple[str, str, str]:
     """
-    Run full tool-calling agent loop on a single ticket.
-
-    Returns:
-        tuple of (draft_reply, trajectory_file_path, review_queue_file_path)
+    Run full tool-calling agent loop on a single ticket (supports Groq & Anthropic).
     """
     ticket_id = str(ticket.get("id") or "UNKNOWN").upper()
     customer_id = ticket.get("customer_id", "UNKNOWN")
@@ -141,67 +149,140 @@ def run_ticket_agent(
         f"Body:\n{body}"
     )
 
-    messages: list[dict[str, Any]] = [
-        {"role": "user", "content": user_message}
-    ]
-
     draft_reply = ""
     retrieved_chunks: list[dict[str, Any]] = []
     customer_context: dict[str, Any] | None = None
     iteration = 0
 
-    while iteration < MAX_ITERATIONS:
-        iteration += 1
+    groq_key = os.getenv("GROQ_API_KEY")
+    is_groq = bool(groq_key and (client is None or hasattr(client, "chat")))
 
-        response = client.messages.create(
-            model=model,
-            max_tokens=MAX_TOKENS,
-            system=SYSTEM_PROMPT,
-            tools=AGENT_TOOLS,
-            messages=messages,
-        )
+    if is_groq:
+        import httpx
+        from groq import Groq
+        if client is None:
+            http_client = httpx.Client(verify=False)
+            client = Groq(api_key=groq_key, http_client=http_client)
+        groq_model = model or os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 
-        if getattr(response, "usage", None):
-            logger.log_usage(response.usage.input_tokens, response.usage.output_tokens)
+        messages = [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": user_message},
+        ]
 
-        for block in response.content:
-            if getattr(block, "type", None) == "text" and block.text.strip():
-                logger.log_model_text(block.text)
-                if len(block.text.strip()) > 30:
-                    draft_reply = block.text.strip()
-
-        if response.stop_reason == "end_turn":
-            break
-
-        tool_use_blocks = [b for b in response.content if getattr(b, "type", None) == "tool_use"]
-        if not tool_use_blocks:
-            break
-
-        messages.append({"role": "assistant", "content": response.content})
-
-        tool_results = []
-        for block in tool_use_blocks:
-            tool_name = block.name
-            tool_input = block.input
-
-            logger.log_tool_call(tool_name, tool_input)
-            result = _dispatch_tool(tool_name, tool_input, client=client)
-            logger.log_tool_result(tool_name, result)
-
-            if tool_name == "search_docs" and isinstance(result, list):
-                retrieved_chunks.extend(result)
-            elif tool_name == "get_customer_context" and isinstance(result, dict) and "error" not in result:
-                customer_context = result
-
-            tool_results.append(
-                {
-                    "type": "tool_result",
-                    "tool_use_id": block.id,
-                    "content": json.dumps(result, ensure_ascii=False),
-                }
+        while iteration < MAX_ITERATIONS:
+            iteration += 1
+            response = client.chat.completions.create(
+                model=groq_model,
+                messages=messages,
+                tools=GROQ_TOOLS,
+                tool_choice="auto",
+                temperature=0.1,
             )
 
-        messages.append({"role": "user", "content": tool_results})
+            if getattr(response, "usage", None):
+                logger.log_usage(response.usage.prompt_tokens, response.usage.completion_tokens)
+
+            choice = response.choices[0]
+            msg = choice.message
+            content = msg.content or ""
+
+            if content.strip():
+                logger.log_model_text(content)
+                if len(content.strip()) > 30:
+                    draft_reply = content.strip()
+
+            if not msg.tool_calls:
+                break
+
+            messages.append(msg)
+
+            for tool_call in msg.tool_calls:
+                tool_name = tool_call.function.name
+                try:
+                    tool_input = json.loads(tool_call.function.arguments)
+                except Exception:
+                    tool_input = {}
+
+                logger.log_tool_call(tool_name, tool_input)
+                result = _dispatch_tool(tool_name, tool_input, client=client)
+                logger.log_tool_result(tool_name, result)
+
+                if tool_name == "search_docs" and isinstance(result, list):
+                    retrieved_chunks.extend(result)
+                elif tool_name == "get_customer_context" and isinstance(result, dict) and "error" not in result:
+                    customer_context = result
+
+                messages.append({
+                    "role": "tool",
+                    "tool_call_id": tool_call.id,
+                    "name": tool_name,
+                    "content": json.dumps(result, ensure_ascii=False),
+                })
+
+    else:
+        if client is None:
+            api_key = os.getenv("ANTHROPIC_API_KEY")
+            if not api_key:
+                raise ValueError("No API key configured.")
+            client = anthropic.Anthropic(api_key=api_key)
+        anthropic_model = model or DEFAULT_MODEL
+
+        messages = [
+            {"role": "user", "content": user_message}
+        ]
+
+        while iteration < MAX_ITERATIONS:
+            iteration += 1
+            response = client.messages.create(
+                model=anthropic_model,
+                max_tokens=MAX_TOKENS,
+                system=SYSTEM_PROMPT,
+                tools=AGENT_TOOLS,
+                messages=messages,
+            )
+
+            if getattr(response, "usage", None):
+                logger.log_usage(response.usage.input_tokens, response.usage.output_tokens)
+
+            for block in response.content:
+                if getattr(block, "type", None) == "text" and block.text.strip():
+                    logger.log_model_text(block.text)
+                    if len(block.text.strip()) > 30:
+                        draft_reply = block.text.strip()
+
+            if response.stop_reason == "end_turn":
+                break
+
+            tool_use_blocks = [b for b in response.content if getattr(b, "type", None) == "tool_use"]
+            if not tool_use_blocks:
+                break
+
+            messages.append({"role": "assistant", "content": response.content})
+
+            tool_results = []
+            for block in tool_use_blocks:
+                tool_name = block.name
+                tool_input = block.input
+
+                logger.log_tool_call(tool_name, tool_input)
+                result = _dispatch_tool(tool_name, tool_input, client=client)
+                logger.log_tool_result(tool_name, result)
+
+                if tool_name == "search_docs" and isinstance(result, list):
+                    retrieved_chunks.extend(result)
+                elif tool_name == "get_customer_context" and isinstance(result, dict) and "error" not in result:
+                    customer_context = result
+
+                tool_results.append(
+                    {
+                        "type": "tool_result",
+                        "tool_use_id": block.id,
+                        "content": json.dumps(result, ensure_ascii=False),
+                    }
+                )
+
+            messages.append({"role": "user", "content": tool_results})
 
     # Post-generation factual verification & refinement
     final_draft, verification_log = verify_and_refine_draft(
@@ -234,16 +315,28 @@ def run_all_tickets(
     outputs_dir: str = "agent/outputs",
     trajectories_dir: str = "trajectories",
     queue_dir: str = "agent/review_queue",
-    model: str = DEFAULT_MODEL,
+    model: str | None = None,
     single_id: str | None = None,
 ) -> int:
-    """Run agent loop across ticket dataset."""
-    api_key = os.getenv("ANTHROPIC_API_KEY")
-    if not api_key:
-        console.print("[bold red]Error:[/bold red] ANTHROPIC_API_KEY is not set.")
+    """Run agent loop across ticket dataset using available provider (Groq or Anthropic)."""
+    groq_key = os.getenv("GROQ_API_KEY")
+    anthropic_key = os.getenv("ANTHROPIC_API_KEY")
+
+    if groq_key:
+        import httpx
+        from groq import Groq
+        http_client = httpx.Client(verify=False)
+        client = Groq(api_key=groq_key, http_client=http_client)
+        active_model = model or os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
+        provider_name = "Groq (Free Cloud Inference)"
+    elif anthropic_key:
+        client = anthropic.Anthropic(api_key=anthropic_key)
+        active_model = model or DEFAULT_MODEL
+        provider_name = "Anthropic Claude"
+    else:
+        console.print("[bold red]Error:[/bold red] No API key found. Set GROQ_API_KEY or ANTHROPIC_API_KEY.")
         sys.exit(1)
 
-    client = anthropic.Anthropic(api_key=api_key)
     tickets_path = Path(tickets_dir)
     outputs_path = Path(outputs_dir)
     outputs_path.mkdir(parents=True, exist_ok=True)
@@ -258,11 +351,13 @@ def run_all_tickets(
 
     console.print(
         f"[bold blue]Starting FlowBoard Agent Loop[/bold blue] on [bold]{len(ticket_files)}[/bold] tickets "
-        f"(Model: [cyan]{model}[/cyan])...\n"
+        f"(Provider: [green]{provider_name}[/green], Model: [cyan]{active_model}[/cyan])...\n"
     )
 
     success_count = 0
     summary_rows = []
+
+    import time
 
     for tf in track(ticket_files, description="Processing tickets with Agent tools..."):
         try:
@@ -273,7 +368,7 @@ def run_all_tickets(
             draft, traj_path, q_path = run_ticket_agent(
                 ticket=ticket_data,
                 client=client,
-                model=model,
+                model=active_model,
                 trajectories_dir=trajectories_dir,
                 queue_dir=queue_dir,
             )
@@ -283,6 +378,7 @@ def run_all_tickets(
 
             success_count += 1
             summary_rows.append((t_id, ticket_data.get("subject", ""), str(out_file), q_path, "Success"))
+            time.sleep(0.5)
         except Exception as exc:
             console.print(f"[red]Error on {tf.name}: {exc}[/red]")
             summary_rows.append((tf.stem.upper(), "-", "-", "-", f"Failed: {exc}"))
@@ -313,7 +409,7 @@ def main() -> None:
     parser.add_argument("--outputs-dir", default="agent/outputs", help="Directory to save final drafts (default: agent/outputs)")
     parser.add_argument("--trajectories-dir", default="trajectories", help="Directory to save trajectory JSON logs (default: trajectories)")
     parser.add_argument("--queue-dir", default="agent/review_queue", help="Directory for review queue JSON files (default: agent/review_queue)")
-    parser.add_argument("--model", default=DEFAULT_MODEL, help=f"Anthropic model name (default: {DEFAULT_MODEL})")
+    parser.add_argument("--model", default=None, help="LLM model name (defaults to active provider model)")
     parser.add_argument("--id", default=None, help="Process a single ticket ID (e.g. TKT-001)")
     args = parser.parse_args()
 
