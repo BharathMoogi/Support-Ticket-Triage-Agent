@@ -13,10 +13,10 @@
     },
     "rewrite_triggered": false
   },
-  "status": "pending_review",
+  "status": "approved",
   "queued_at": "2026-08-30T12:43:33.401640+00:00",
-  "reviewed_at": null,
-  "reviewer_decision": null,
+  "reviewed_at": "2026-08-30T15:09:06.519602+00:00",
+  "reviewer_decision": "approved",
   "edited_reply": null,
   "trajectory_path": "trajectories\\TKT-003.json"
 }

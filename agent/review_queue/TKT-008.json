@@ -13,10 +13,10 @@
     },
     "rewrite_triggered": false
   },
-  "status": "pending_review",
+  "status": "edited",
   "queued_at": "2026-08-30T12:47:30.044350+00:00",
-  "reviewed_at": null,
-  "reviewer_decision": null,
-  "edited_reply": null,
+  "reviewed_at": "2026-08-30T15:09:06.526135+00:00",
+  "reviewer_decision": "edited",
+  "edited_reply": "Subject: Re: Accidental duplicate seat charge — refund request (TKT-008)\n\nHi there,\n\nThanks for reaching out, and I'm sorry for the confusion the duplicate invite caused. I completely understand how easy it is to invite a contractor with the wrong email address, and I appreciate you removing the duplicate right away.\n\nThe good news: this is covered. Under our refund policy, **accidental add-on seat purchases can be refunded or credited within 7 business days**, and your request came in just 3 days after the charge — so you're well within the window. I'm happy to process a **$25 credit** for the duplicate seat on your Team plan.\n\nTo make sure I apply it to the correct invoice, could you please confirm:\n1. The **invoice number** (or the billing date) for the charge in question, and\n2. Whether you'd prefer the $25 as a **credit to your next invoice** or a **refund to your original payment method**.\n\nOnce I have that, I'll submit the credit on your end. If you'd like to handle it yourself, you can also go to **Settings > Billing > Invoices** to locate the charge. Refunds typically appear on your statement within **5–10 business days**.\n\nThanks for your patience, and let me know if there's anything else I can help with.\n\nBest regards,\nFlowBoard Support",
   "trajectory_path": "trajectories\\TKT-008.json"
 }

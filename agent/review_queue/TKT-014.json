@@ -28,10 +28,10 @@
       "summary": "The draft is grounded in the provided documentation. The statement regarding the refund timeline ('refunds typically appear on your statement within 5–10 business days') is directly supported by Chunk 2 (Exceptions & Process). The other statements are procedural commitments (investigating the duplicate charge, escalating the suspension, requesting specific transaction details) which do not contradict the documentation and are standard support actions. No fictional features or incorrect policy facts were introduced."
     }
   },
-  "status": "pending_review",
+  "status": "approved",
   "queued_at": "2026-08-30T12:57:52.022980+00:00",
-  "reviewed_at": null,
-  "reviewer_decision": null,
+  "reviewed_at": "2026-08-30T15:09:06.534897+00:00",
+  "reviewer_decision": "approved",
   "edited_reply": null,
   "trajectory_path": "trajectories\\TKT-014.json"
 }

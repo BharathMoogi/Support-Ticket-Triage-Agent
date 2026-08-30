@@ -28,10 +28,10 @@
       "summary": "The draft correctly cites the 30-day prorated refund window for annual renewals as per Chunk 1. The customer's renewal was 20 days ago, which falls within this window. The offer to cancel and process a refund is consistent with the policy. The mention of data export or workspace deletion is supported by the existence of Chunk 2 (Account Cancellation and Workspace Deletion), even though the chunk content is empty, the title confirms the feature exists."
     }
   },
-  "status": "pending_review",
+  "status": "approved",
   "queued_at": "2026-08-30T12:46:57.962019+00:00",
-  "reviewed_at": null,
-  "reviewer_decision": null,
+  "reviewed_at": "2026-08-30T15:09:06.524521+00:00",
+  "reviewer_decision": "approved",
   "edited_reply": null,
   "trajectory_path": "trajectories\\TKT-007.json"
 }

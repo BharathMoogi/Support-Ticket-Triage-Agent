@@ -56,10 +56,10 @@
       "summary": "The draft accurately reflects the troubleshooting steps found in the retrieved documentation chunks (specifically Chunks 2, 5, 8, and 11). The instructions for clearing the iOS cache (Settings > Storage > Clear Offline Cache), handling offline sync (pull down to sync), and fixing biometric login (Settings > Security > toggle) are all explicitly supported by the source text. The statement regarding platform availability is also grounded in Chunks 1, 4, 7, and 10. No unsupported claims were detected."
     }
   },
-  "status": "pending_review",
+  "status": "approved",
   "queued_at": "2026-08-30T12:53:31.930591+00:00",
-  "reviewed_at": null,
-  "reviewer_decision": null,
+  "reviewed_at": "2026-08-30T15:09:06.532272+00:00",
+  "reviewer_decision": "approved",
   "edited_reply": null,
   "trajectory_path": "trajectories\\TKT-012.json"
 }

@@ -28,10 +28,10 @@
       "summary": "The draft accurately reflects the documentation. The claim that upgrades take effect immediately and are prorated for the remainder of the billing cycle is supported by Chunk 1. The claim that features like unlimited boards, higher automation limits, and SSO unlock instantly is also supported by Chunk 1. No unsupported claims were found."
     }
   },
-  "status": "pending_review",
+  "status": "approved",
   "queued_at": "2026-08-30T12:45:19.011131+00:00",
-  "reviewed_at": null,
-  "reviewer_decision": null,
+  "reviewed_at": "2026-08-30T15:09:06.522096+00:00",
+  "reviewer_decision": "approved",
   "edited_reply": null,
   "trajectory_path": "trajectories\\TKT-005.json"
 }

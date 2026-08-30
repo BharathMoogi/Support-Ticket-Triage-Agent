@@ -28,10 +28,10 @@
       "summary": "The draft correctly cites the 14-day money-back guarantee for first-time annual Pro subscriptions, which is supported by Chunk 1 and Chunk 2. The customer's signup date (2026-08-20) and the context of a first-time purchase (0 past tickets) align with the policy eligibility. The statement about processing times is a standard, non-factual operational detail that does not contradict the documentation."
     }
   },
-  "status": "pending_review",
+  "status": "approved",
   "queued_at": "2026-08-30T12:46:06.743971+00:00",
-  "reviewed_at": null,
-  "reviewer_decision": null,
+  "reviewed_at": "2026-08-30T15:09:06.523091+00:00",
+  "reviewer_decision": "approved",
   "edited_reply": null,
   "trajectory_path": "trajectories\\TKT-006.json"
 }

@@ -24,10 +24,10 @@
       "summary": "The draft accurately reflects the retrieved documentation. It correctly identifies that SAML SSO is available on the Team plan (Chunk 2), lists Okta as a supported IdP (Chunk 3), and provides the correct configuration steps including the specific URLs, the location for entering IdP details (Workspace Settings > Security > Single Sign-On), and the 'Enforce SSO' toggle behavior (Chunk 1). No unsupported claims were found."
     }
   },
-  "status": "pending_review",
+  "status": "approved",
   "queued_at": "2026-08-30T12:59:37.602655+00:00",
-  "reviewed_at": null,
-  "reviewer_decision": null,
+  "reviewed_at": "2026-08-30T15:09:06.537179+00:00",
+  "reviewer_decision": "approved",
   "edited_reply": null,
   "trajectory_path": "trajectories\\TKT-016.json"
 }

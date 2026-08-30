@@ -13,10 +13,10 @@
     },
     "rewrite_triggered": false
   },
-  "status": "pending_review",
+  "status": "edited",
   "queued_at": "2026-08-30T12:42:53.010277+00:00",
-  "reviewed_at": null,
-  "reviewer_decision": null,
-  "edited_reply": null,
+  "reviewed_at": "2026-08-30T15:09:06.515689+00:00",
+  "reviewer_decision": "edited",
+  "edited_reply": "**Subject:** Re: How do I export my board data into Excel/CSV?\n\nHi there,\n\nThanks for reaching out — happy to help you get that Q1 Roadmap data into your executive report!\n\nHere's how to export your board to a spreadsheet:\n\n1. **Open your Q1 Roadmap board.**\n2. Click the **Board Menu (…)** in the top-right corner of the board.\n3. Select **Export Board**.\n4. Choose **CSV** as your format.\n\nThe CSV export will include all card titles, statuses, assignees, due dates, tags, and any custom fields you've set up — which should cover everything you need for your progress report. You can open the file directly in Excel or Google Sheets.\n\n> **Tip:** If you ever need a more detailed export (including card descriptions, comments, checklists, and attachment metadata), you can choose **JSON** instead.\n\nSince you're on the **Pro plan**, you also have access to a **Full Workspace Backup** option (Workspace Settings → Data Management → Request Full Workspace Archive) if you ever need to export multiple boards at once.\n\nLet us know if you run into any issues or if there's anything else we can help with for your report. Good luck with the executive presentation!\n\nBest regards,\nFlowBoard Support",
   "trajectory_path": "trajectories\\TKT-001.json"
 }

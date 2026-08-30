@@ -13,10 +13,10 @@
     },
     "rewrite_triggered": false
   },
-  "status": "pending_review",
+  "status": "edited",
   "queued_at": "2026-08-30T12:58:41.539252+00:00",
-  "reviewed_at": null,
-  "reviewer_decision": null,
-  "edited_reply": null,
+  "reviewed_at": "2026-08-30T15:09:06.536237+00:00",
+  "reviewer_decision": "edited",
+  "edited_reply": "Hi there,\n\nThanks for reaching out, and I appreciate you taking the time to describe what you're experiencing. I want to make sure I address each of your points clearly:\n\n**1. Holographic 3D VR projection / spatial headset**\nI want to be upfront: FlowBoard does not currently support 3D holographic projection, VR spatial headsets, or native spatial-gesture interfaces. FlowBoard is a web-based project management tool designed for standard desktop and mobile browsers. If you're seeing a \"holographic menu\" or spatial gesture prompts, that is not part of FlowBoard's interface — it may be coming from a third-party application or browser extension. I'd recommend checking your browser extensions or any other software running alongside FlowBoard to identify the source.\n\n**2. Canceling an Enterprise contract**\nI checked your account, and you are currently on our **Free plan** with no active paid subscription or Enterprise contract on file. There is nothing to cancel, and you will not be charged for any plan you have not purchased. If you decide to purchase a plan in the future, you can cancel at any time before renewal via **Workspace Settings → Billing → Cancel Subscription**, and your access will remain active until the end of that billing period.\n\n**3. Exporting cards to \"quantum neural link format\"**\nFlowBoard doesn't support a \"quantum neural link\" export format. The export options we do offer are:\n- **CSV** – best for spreadsheet analysis (card titles, status, assignee, due date, tags, custom fields).\n- **JSON** – full hierarchical export including descriptions, comments, checklists, and attachment metadata.\n\nTo export: open your board → click the **Board Menu (…)** in the top-right → select **Export Board** → choose CSV or JSON.\n\nIf any of these formats would work for your use case, I'm happy to walk you through the steps. And if there's anything else I can help clarify, just let me know.\n\nBest regards,\nFlowBoard Support Team",
   "trajectory_path": "trajectories\\TKT-015.json"
 }

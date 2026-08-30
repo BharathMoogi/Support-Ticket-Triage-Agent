@@ -28,10 +28,10 @@
       "summary": "The draft accurately reflects the customer's Free tier limits (100 automation runs, 3 boards, 5 members, 100MB storage) as per Chunk 8. It correctly states that the specific reset date is not in the documentation and advises checking billing history. The upgrade details (immediate effect, prorated billing, 1,000 runs/user/month pooled) are fully supported by Chunks 1, 4, 6, and 12. No unsupported claims were found."
     }
   },
-  "status": "pending_review",
+  "status": "approved",
   "queued_at": "2026-08-30T13:02:32.165362+00:00",
-  "reviewed_at": null,
-  "reviewer_decision": null,
+  "reviewed_at": "2026-08-30T15:09:06.540316+00:00",
+  "reviewer_decision": "approved",
   "edited_reply": null,
   "trajectory_path": "trajectories\\TKT-018.json"
 }

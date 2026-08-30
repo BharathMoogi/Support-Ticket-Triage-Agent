@@ -13,10 +13,10 @@
     },
     "rewrite_triggered": false
   },
-  "status": "pending_review",
+  "status": "edited",
   "queued_at": "2026-08-30T12:44:24.144261+00:00",
-  "reviewed_at": null,
-  "reviewer_decision": null,
-  "edited_reply": null,
+  "reviewed_at": "2026-08-30T15:09:06.520891+00:00",
+  "reviewer_decision": "edited",
+  "edited_reply": "Subject: Re: Not receiving email notifications when cards are updated\n\nHi there,\n\nThanks for flagging this — I'm sorry you've been missing card activity for the past few days. That's frustrating, especially when teammates are tagging you and expecting a response. Let's get your alert emails back on track.\n\nPlease work through the following checks, in order:\n\n1. **Check Spam / Quarantine**\n   Search your inbox (and spam/junk/quarantine folders) for messages from `notifications@flowboard.app`. If you find any, mark them as \"Not Spam\" and add that address to your contacts/allow-list so future alerts land in your primary inbox.\n\n2. **Verify your Notification Frequency setting**\n   Go to **Profile > Preferences > Notification Frequency**. If this is set to *Hourly* or *Daily Digest*, individual card comments are bundled and sent on a schedule rather than immediately — so alerts may appear to be \"missing\" until the digest fires. Switch to **Instant** if you want real-time email alerts.\n\n3. **Confirm you're a Watcher or assignee on the card**\n   Only cards where you are directly assigned or listed as a **Watcher** generate activity alerts. If a teammate is commenting on a card you're not watching, no notification will fire. Ask them to add you as a Watcher (or assign you) on the card.\n\n4. **Check for Muted Boards**\n   Open the board in question and look under **Board Menu (…) > Mute Board Activity**. If the board is muted, all email and in-app alerts for that board are suppressed. Unmute it to restore notifications.\n\n5. **Browser / OS-level checks (if you also rely on push)**\n   - Click the lock/tune icon next to the browser URL bar for `flowboard.app` and confirm **Notifications** permission is set to **Allow**.\n   - On macOS, verify **System Settings > Notifications > [Your Browser]** has notifications enabled and that Focus Mode / Do Not Disturb is off.\n\n**If alerts still don't arrive after these steps:**\nReply to this ticket with (a) the email address you expect alerts on, (b) the name of the board where you're missing notifications, and (c) a screenshot of your **Profile > Preferences > Notification Frequency** setting. I'll escalate to our notifications team to check the delivery logs on our side.\n\nThanks for your patience — let me know how it goes and I'll follow up promptly.\n\nBest regards,\nFlowBoard Support",
   "trajectory_path": "trajectories\\TKT-004.json"
 }

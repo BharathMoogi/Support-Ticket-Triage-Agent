@@ -28,10 +28,10 @@
       "summary": "The draft accurately references the 'Board Menu > Automations > Run History' path for logs (Chunk 1/4/8) and correctly identifies the Pro plan limit context (Chunk 2/5). The technical explanation of recursive loops and the request for specific configuration details are consistent with the 'Types of Automations' documentation (Chunk 7). No factual claims contradict the provided documentation."
     }
   },
-  "status": "pending_review",
+  "status": "approved",
   "queued_at": "2026-08-30T12:51:13.064540+00:00",
-  "reviewed_at": null,
-  "reviewer_decision": null,
+  "reviewed_at": "2026-08-30T15:09:06.530433+00:00",
+  "reviewer_decision": "approved",
   "edited_reply": null,
   "trajectory_path": "trajectories\\TKT-011.json"
 }

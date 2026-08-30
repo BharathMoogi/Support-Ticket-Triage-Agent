@@ -24,10 +24,10 @@
       "summary": "The draft accurately reflects the documentation. The 30-day recovery grace period, the requirement for the Workspace Owner to initiate/confirm the request, and the scope of restoration (boards, cards, attachments) are all supported by Chunk 1 and Chunk 2. The tone is appropriate and no fictional features or policies are introduced."
     }
   },
-  "status": "pending_review",
+  "status": "approved",
   "queued_at": "2026-08-30T13:00:29.758821+00:00",
-  "reviewed_at": null,
-  "reviewer_decision": null,
+  "reviewed_at": "2026-08-30T15:09:06.538961+00:00",
+  "reviewer_decision": "approved",
   "edited_reply": null,
   "trajectory_path": "trajectories\\TKT-017.json"
 }
