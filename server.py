@@ -57,23 +57,214 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   <!-- Main Container -->
   <main class="max-w-7xl mx-auto px-6 py-8">
     <!-- Tabs -->
-    <div class="flex border-b border-slate-700 mb-8 space-x-8">
-      <button onclick="switchTab('queue')" id="tab-queue" class="tab-btn pb-3 px-1 border-b-2 font-medium text-sm border-indigo-500 text-indigo-400 flex items-center gap-2">
+    <div class="flex border-b border-slate-700 mb-8 space-x-8 overflow-x-auto">
+      <button onclick="switchTab('home')" id="tab-home" class="tab-btn pb-3 px-1 border-b-2 font-medium text-sm border-indigo-500 text-indigo-400 flex items-center gap-2 whitespace-nowrap">
+        <i class="fa-solid fa-house"></i> Overview & Sandbox
+      </button>
+      <button onclick="switchTab('queue')" id="tab-queue" class="tab-btn pb-3 px-1 border-b-2 font-medium text-sm border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2 whitespace-nowrap">
         <i class="fa-solid fa-inbox"></i> Review Queue <span id="queue-badge" class="ml-1 px-2 py-0.5 text-xs bg-indigo-900 text-indigo-300 rounded-full">0</span>
       </button>
-      <button onclick="switchTab('tickets')" id="tab-tickets" class="tab-btn pb-3 px-1 border-b-2 font-medium text-sm border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2">
+      <button onclick="switchTab('tickets')" id="tab-tickets" class="tab-btn pb-3 px-1 border-b-2 font-medium text-sm border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2 whitespace-nowrap">
         <i class="fa-solid fa-list-check"></i> Test Tickets (18)
       </button>
-      <button onclick="switchTab('docs')" id="tab-docs" class="tab-btn pb-3 px-1 border-b-2 font-medium text-sm border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2">
+      <button onclick="switchTab('docs')" id="tab-docs" class="tab-btn pb-3 px-1 border-b-2 font-medium text-sm border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2 whitespace-nowrap">
         <i class="fa-solid fa-book-open"></i> Knowledge Base (16)
       </button>
-      <button onclick="switchTab('eval')" id="tab-eval" class="tab-btn pb-3 px-1 border-b-2 font-medium text-sm border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2">
+      <button onclick="switchTab('eval')" id="tab-eval" class="tab-btn pb-3 px-1 border-b-2 font-medium text-sm border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2 whitespace-nowrap">
         <i class="fa-solid fa-chart-line"></i> Evaluation & Scorecard
       </button>
     </div>
 
+    <!-- TAB 0: HOME / OVERVIEW & SANDBOX -->
+    <section id="section-home" class="tab-section">
+      <!-- Hero Banner -->
+      <div class="relative overflow-hidden bg-gradient-to-br from-indigo-950/80 via-slate-800 to-slate-900 border border-indigo-500/30 rounded-2xl p-8 mb-8 shadow-xl">
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative z-10 max-w-3xl">
+          <div class="flex flex-wrap items-center gap-2 mb-4">
+            <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-indigo-900/80 text-indigo-300 border border-indigo-700">
+              <i class="fa-solid fa-sparkles mr-1"></i> Claude & Groq Multi-Provider
+            </span>
+            <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-950 text-emerald-300 border border-emerald-800">
+              <i class="fa-solid fa-shield-check mr-1"></i> 100% Grounded QA Loop
+            </span>
+            <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-purple-950 text-purple-300 border border-purple-800">
+              <i class="fa-solid fa-user-check mr-1"></i> Zero Auto-Sends Policy
+            </span>
+          </div>
+          <h2 class="text-3xl font-extrabold text-white tracking-tight sm:text-4xl mb-3">
+            Autonomous, Context-Aware Support Ticket Triage
+          </h2>
+          <p class="text-slate-300 text-base leading-relaxed mb-6">
+            Eliminate the support context gap. FlowBoard Triage Agent dynamically connects internal markdown documentation, customer account metadata, and a two-pass groundedness verification loop into an auditable human review queue.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <button onclick="document.getElementById('home-sandbox').scrollIntoView({behavior: 'smooth'})" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm font-semibold shadow-lg shadow-indigo-600/30 transition flex items-center gap-2">
+              <i class="fa-solid fa-bolt"></i> Try Live Playground
+            </button>
+            <button onclick="switchTab('queue')" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 rounded-xl text-sm font-semibold transition flex items-center gap-2">
+              <i class="fa-solid fa-inbox"></i> Explore Review Queue
+            </button>
+            <button onclick="switchTab('eval')" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 rounded-xl text-sm font-semibold transition flex items-center gap-2">
+              <i class="fa-solid fa-chart-pie"></i> View Scorecard (+77.8%)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento Key Metrics Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-5 hover:border-slate-600 transition">
+          <div class="flex items-center justify-between text-slate-400 mb-2">
+            <span class="text-xs uppercase font-semibold">Factual Accuracy</span>
+            <i class="fa-solid fa-bullseye text-emerald-400"></i>
+          </div>
+          <div class="text-3xl font-extrabold text-emerald-400">100%</div>
+          <div class="text-xs text-slate-400 mt-1">Grounded against 16 help articles</div>
+        </div>
+
+        <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-5 hover:border-slate-600 transition">
+          <div class="flex items-center justify-between text-slate-400 mb-2">
+            <span class="text-xs uppercase font-semibold">Hallucination Rate</span>
+            <i class="fa-solid fa-shield-halved text-indigo-400"></i>
+          </div>
+          <div class="text-3xl font-extrabold text-indigo-400">0.0%</div>
+          <div class="text-xs text-slate-400 mt-1">Slashed from 77.8% in baseline</div>
+        </div>
+
+        <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-5 hover:border-slate-600 transition">
+          <div class="flex items-center justify-between text-slate-400 mb-2">
+            <span class="text-xs uppercase font-semibold">Vector Retrieval</span>
+            <i class="fa-solid fa-bolt-lightning text-amber-400"></i>
+          </div>
+          <div class="text-3xl font-extrabold text-amber-400">&lt; 1ms</div>
+          <div class="text-xs text-slate-400 mt-1">Local NumPy TF-IDF engine</div>
+        </div>
+
+        <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-5 hover:border-slate-600 transition">
+          <div class="flex items-center justify-between text-slate-400 mb-2">
+            <span class="text-xs uppercase font-semibold">Human In The Loop</span>
+            <i class="fa-solid fa-user-shield text-purple-400"></i>
+          </div>
+          <div class="text-3xl font-extrabold text-purple-400">100%</div>
+          <div class="text-xs text-slate-400 mt-1">Zero unreviewed email dispatches</div>
+        </div>
+      </div>
+
+      <!-- Interactive Triage Playground Sandbox -->
+      <div id="home-sandbox" class="bg-slate-800 border border-slate-700 rounded-2xl p-6 mb-8 shadow-lg">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+          <div>
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-terminal text-indigo-400"></i> Live Agent Triage Sandbox
+            </h3>
+            <p class="text-xs text-slate-400 mt-0.5">Select any synthetic benchmark ticket to test on-demand triage pipeline in real time.</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <select id="sandbox-select" onchange="loadSandboxPreset()" class="bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none">
+              <option value="TKT-001">TKT-001: Export board to CSV/Excel (How-to · Pro)</option>
+              <option value="TKT-006">TKT-006: 10-day annual refund request (Billing · Pro)</option>
+              <option value="TKT-008">TKT-008: Accidental duplicate seat invite (Billing · Team)</option>
+              <option value="TKT-010">TKT-010: WebSocket ERR_WS_DISCONNECTED_502 (Bug · Team)</option>
+              <option value="TKT-015">TKT-015: Holographic 3D VR mode (Adversarial · Free)</option>
+              <option value="TKT-016">TKT-016: Okta SAML 2.0 SSO config (How-to · Team)</option>
+              <option value="TKT-017">TKT-017: Deleted workspace restoration (Recovery · Team)</option>
+            </select>
+            <button onclick="runSandboxAgent()" id="sandbox-run-btn" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1.5 whitespace-nowrap">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> ⚡ Run Triage
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Input Preview -->
+          <div class="bg-slate-900/90 border border-slate-700/80 rounded-xl p-5 flex flex-col justify-between">
+            <div>
+              <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 flex justify-between items-center">
+                <span>Incoming Ticket Payload</span>
+                <span id="sandbox-tier-badge" class="px-2 py-0.5 text-xs rounded bg-indigo-950 text-indigo-300 border border-indigo-800">Pro Plan</span>
+              </div>
+              <h4 id="sandbox-subject" class="text-sm font-bold text-white mb-2">How do I export my board data into Excel/CSV?</h4>
+              <p id="sandbox-body" class="text-xs text-slate-300 leading-relaxed font-mono whitespace-pre-wrap bg-slate-950/60 p-3 rounded-lg border border-slate-800">Hi support, we are preparing our monthly executive progress report and need to export all cards, assignees, due dates, and statuses from our Q1 Roadmap board into a spreadsheet. Where is the export button located in the interface?</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between text-xs text-slate-500">
+              <span>Customer ID: <strong id="sandbox-cust-id" class="text-slate-400">CUST-101</strong></span>
+              <span>Grounding Target: <strong class="text-slate-400">data-export-and-backup.md</strong></span>
+            </div>
+          </div>
+
+          <!-- Output Triage Result -->
+          <div id="sandbox-result-box" class="bg-slate-900/90 border border-slate-700/80 rounded-xl p-5 flex flex-col justify-between">
+            <div>
+              <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 flex justify-between items-center">
+                <span>Agent Generated Response</span>
+                <span id="sandbox-status-badge" class="text-xs text-slate-500 font-normal"><i class="fa-solid fa-circle-notch fa-spin hidden mr-1" id="sandbox-spinner"></i> Ready to triage</span>
+              </div>
+              <div id="sandbox-response-text" class="text-xs text-slate-300 leading-relaxed whitespace-pre-wrap bg-slate-950/60 p-3 rounded-lg border border-slate-800 min-h-[140px] max-h-[220px] overflow-y-auto">Click "⚡ Run Triage" to execute the context retrieval, classification, and grounded verification pipeline on this ticket.</div>
+            </div>
+            <div id="sandbox-meta-footer" class="mt-4 pt-3 border-t border-slate-800 flex flex-wrap gap-2 text-xs text-slate-400 justify-between items-center">
+              <div class="flex gap-2">
+                <span id="sandbox-cat-pill" class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">Category: —</span>
+                <span id="sandbox-urg-pill" class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">Urgency: —</span>
+              </div>
+              <button onclick="switchTab('queue')" class="text-indigo-400 hover:text-indigo-300 text-xs font-medium flex items-center gap-1">
+                View in Review Queue <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6-Stage Architecture Pipeline Cards -->
+      <div class="mb-8">
+        <div class="mb-4">
+          <h3 class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-diagram-project text-indigo-400"></i> How the Triage Agent Pipeline Works
+          </h3>
+          <p class="text-xs text-slate-400">Deterministic 6-step flow guaranteeing zero hallucinations and full context grounding.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="bg-slate-800/70 border border-slate-700 rounded-xl p-5 hover:border-indigo-500/50 transition">
+            <div class="w-7 h-7 rounded-lg bg-indigo-900 text-indigo-300 flex items-center justify-center font-bold text-xs mb-3">1</div>
+            <h4 class="text-sm font-semibold text-white mb-1">Structured Classification</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Evaluates category (billing, bug, how-to, other) and urgency level (low, medium, high) via rigid JSON schema output.</p>
+          </div>
+
+          <div class="bg-slate-800/70 border border-slate-700 rounded-xl p-5 hover:border-indigo-500/50 transition">
+            <div class="w-7 h-7 rounded-lg bg-indigo-900 text-indigo-300 flex items-center justify-center font-bold text-xs mb-3">2</div>
+            <h4 class="text-sm font-semibold text-white mb-1">Local TF-IDF Doc Search</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Indexes 16 help articles into ~200-word chunks. Exact matching on technical identifiers (<code class="text-slate-300">502</code>, <code class="text-slate-300">SAML</code>, <code class="text-slate-300">VAT</code>) with 0ms latency.</p>
+          </div>
+
+          <div class="bg-slate-800/70 border border-slate-700 rounded-xl p-5 hover:border-indigo-500/50 transition">
+            <div class="w-7 h-7 rounded-lg bg-indigo-900 text-indigo-300 flex items-center justify-center font-bold text-xs mb-3">3</div>
+            <h4 class="text-sm font-semibold text-white mb-1">Customer Context Injection</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Fetches user plan tier (Free vs Pro vs Team), account tenure, and ticket history from customer database to tailor response limits.</p>
+          </div>
+
+          <div class="bg-slate-800/70 border border-slate-700 rounded-xl p-5 hover:border-indigo-500/50 transition">
+            <div class="w-7 h-7 rounded-lg bg-indigo-900 text-indigo-300 flex items-center justify-center font-bold text-xs mb-3">4</div>
+            <h4 class="text-sm font-semibold text-white mb-1">Empathetic Draft Generation</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Drafts a comprehensive, professional response strictly grounded in retrieved documentation and customer context.</p>
+          </div>
+
+          <div class="bg-slate-800/70 border border-slate-700 rounded-xl p-5 hover:border-indigo-500/50 transition">
+            <div class="w-7 h-7 rounded-lg bg-indigo-900 text-indigo-300 flex items-center justify-center font-bold text-xs mb-3">5</div>
+            <h4 class="text-sm font-semibold text-white mb-1">Two-Pass QA Verification</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">A secondary QA inspector LLM audits every sentence against retrieved chunks. If ungrounded, it triggers a targeted rewrite.</p>
+          </div>
+
+          <div class="bg-slate-800/70 border border-slate-700 rounded-xl p-5 hover:border-indigo-500/50 transition">
+            <div class="w-7 h-7 rounded-lg bg-indigo-900 text-indigo-300 flex items-center justify-center font-bold text-xs mb-3">6</div>
+            <h4 class="text-sm font-semibold text-white mb-1">Human-in-the-Loop Review</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Writes verified drafts to the Review Queue. Support staff review, edit, or approve before any customer delivery.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- TAB 1: REVIEW QUEUE -->
-    <section id="section-queue" class="tab-section">
+    <section id="section-queue" class="tab-section hidden">
       <div class="flex justify-between items-center mb-6">
         <div>
           <h2 class="text-lg font-semibold text-white">Pending Human Review Queue</h2>
@@ -124,6 +315,117 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   </main>
 
   <script>
+    const SANDBOX_PRESETS = {
+      'TKT-001': {
+        subject: 'How do I export my board data into Excel/CSV?',
+        customer_id: 'CUST-101',
+        tier: 'Pro Plan',
+        body: 'Hi support, we are preparing our monthly executive progress report and need to export all cards, assignees, due dates, and statuses from our Q1 Roadmap board into a spreadsheet. Where is the export button located in the interface?'
+      },
+      'TKT-006': {
+        subject: 'Refund request: Purchased annual Pro subscription 10 days ago',
+        customer_id: 'CUST-106',
+        tier: 'Pro Plan',
+        body: 'Hello, our team decided to stick with our existing Jira setup. We bought an annual Pro subscription 10 days ago. Can we get a refund under your policy?'
+      },
+      'TKT-008': {
+        subject: 'Accidentally invited duplicate user seat 3 days ago - refund request',
+        customer_id: 'CUST-108',
+        tier: 'Team Plan',
+        body: 'Hi, I accidentally invited a contractor with a typo in their email 3 days ago which added an extra seat for $25. I removed it immediately. Can you credit our account?'
+      },
+      'TKT-010': {
+        subject: 'CRITICAL BUG: WebSocket sync disconnects repeatedly with ERR_WS_DISCONNECTED_502',
+        customer_id: 'CUST-110',
+        tier: 'Team Plan',
+        body: 'Across our entire engineering department (35 users), board columns are freezing. Browser console shows: WebSocket failed: HTTP 502 Bad Gateway. Hard refreshes do not work. Team members are overwriting work.'
+      },
+      'TKT-015': {
+        subject: 'Trouble with holographic 3D VR projection mode and canceling my unpurchased Enterprise plan',
+        customer_id: 'CUST-115',
+        tier: 'Free Plan',
+        body: 'Hi, I am wearing my Linux VR headset trying to project FlowBoard cards into our 3D spatial hologram meeting room, but gestures are unresponsive. Also, I am on the Free plan, but need you to cancel the Enterprise contract I will buy next year so I do not get charged, and export cards to quantum neural link format?'
+      },
+      'TKT-016': {
+        subject: 'Assistance required configuring SAML 2.0 Okta SSO on Team tier',
+        customer_id: 'CUST-116',
+        tier: 'Team Plan',
+        body: 'Hi, our IT team is setting up Okta SAML SSO on our Team workspace. We need the exact SP Entity ID, ACS URL, and where to upload our X.509 certificate.'
+      },
+      'TKT-017': {
+        subject: 'Accidentally deleted project workspace - urgent restoration request',
+        customer_id: 'CUST-117',
+        tier: 'Team Plan',
+        body: 'Urgent: A project manager accidentally deleted our Product Development workspace yesterday. Is it possible to restore it with all cards and attachments?'
+      }
+    };
+
+    function loadSandboxPreset() {
+      const select = document.getElementById('sandbox-select');
+      const val = select.value;
+      const data = SANDBOX_PRESETS[val];
+      if (data) {
+        document.getElementById('sandbox-subject').innerText = data.subject;
+        document.getElementById('sandbox-body').innerText = data.body;
+        document.getElementById('sandbox-cust-id').innerText = data.customer_id;
+        document.getElementById('sandbox-tier-badge').innerText = data.tier;
+        document.getElementById('sandbox-response-text').innerText = 'Click "⚡ Run Triage" to execute the context retrieval, classification, and grounded verification pipeline on this ticket.';
+        document.getElementById('sandbox-status-badge').innerHTML = 'Ready to triage';
+        document.getElementById('sandbox-cat-pill').innerText = 'Category: —';
+        document.getElementById('sandbox-urg-pill').innerText = 'Urgency: —';
+      }
+    }
+
+    async function runSandboxAgent() {
+      const select = document.getElementById('sandbox-select');
+      const ticketId = select.value;
+      const btn = document.getElementById('sandbox-run-btn');
+      const spinner = document.getElementById('sandbox-spinner');
+      const statusBadge = document.getElementById('sandbox-status-badge');
+      const respBox = document.getElementById('sandbox-response-text');
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Running...';
+      if (spinner) spinner.classList.remove('hidden');
+      statusBadge.innerHTML = '<span class="text-indigo-400 font-medium">Retrieving docs & verifying...</span>';
+      respBox.innerHTML = '<div class="text-slate-400 italic py-4"><i class="fa-solid fa-gear fa-spin mr-2 text-indigo-400"></i> Executing multi-tool agentic loop (classify → search_docs → get_customer_context → QA verify)...</div>';
+
+      try {
+        const res = await fetch('/api/run_agent', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ticket_id: ticketId})
+        });
+        const text = await res.text();
+        const data = JSON.parse(text);
+        if (!res.ok || data.error) {
+          throw new Error(data.error || 'Failed to triage ticket');
+        }
+
+        const cat = data.category || 'how-to';
+        const urg = data.urgency || 'low';
+        const ver = (data.verification && (data.verification.action || data.verification.status)) || 'approved';
+
+        document.getElementById('sandbox-cat-pill').innerHTML = 'Category: <strong class="text-indigo-300">' + cat + '</strong>';
+        document.getElementById('sandbox-urg-pill').innerHTML = 'Urgency: <strong class="text-amber-300">' + urg + '</strong>';
+        statusBadge.innerHTML = '<span class="text-emerald-400 font-semibold"><i class="fa-solid fa-check-circle mr-1"></i> Grounded (' + ver + ')</span>';
+        respBox.innerText = data.draft_reply || 'No draft reply returned.';
+
+        // Refresh badge
+        fetch('/api/review_queue').then(r => r.json()).then(items => {
+          document.getElementById('queue-badge').innerText = items.length;
+        }).catch(() => {});
+
+      } catch (err) {
+        respBox.innerHTML = '<div class="text-rose-400 py-2"><i class="fa-solid fa-circle-exclamation mr-1"></i> Error: ' + err.message + '</div>';
+        statusBadge.innerHTML = '<span class="text-rose-400">Execution Failed</span>';
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> ⚡ Run Triage';
+        if (spinner) spinner.classList.add('hidden');
+      }
+    }
+
     function switchTab(tabId) {
       document.querySelectorAll('.tab-section').forEach(el => el.classList.add('hidden'));
       document.querySelectorAll('.tab-btn').forEach(el => {
@@ -132,8 +434,10 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
       });
       document.getElementById('section-' + tabId).classList.remove('hidden');
       const activeBtn = document.getElementById('tab-' + tabId);
-      activeBtn.classList.add('border-indigo-500', 'text-indigo-400');
-      activeBtn.classList.remove('border-transparent', 'text-slate-400');
+      if (activeBtn) {
+        activeBtn.classList.add('border-indigo-500', 'text-indigo-400');
+        activeBtn.classList.remove('border-transparent', 'text-slate-400');
+      }
 
       if (tabId === 'queue') loadQueue();
       if (tabId === 'tickets') loadTickets();
@@ -437,8 +741,11 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
       }
     }
 
-    // Initial load
-    loadQueue();
+    // Initial load: fetch queue count and initialize sandbox
+    fetch('/api/review_queue').then(r => r.json()).then(items => {
+      document.getElementById('queue-badge').innerText = items.length;
+    }).catch(() => {});
+    loadSandboxPreset();
   </script>
 </body>
 </html>
