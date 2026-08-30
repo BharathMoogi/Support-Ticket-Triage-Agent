@@ -234,9 +234,11 @@ def get_or_build_index(docs_dir: str | Path = "docs") -> DocSearchIndex:
 
     if _GLOBAL_INDEX is None or _INDEX_DOCS_DIR != dir_str:
         chunks: list[DocChunk] = []
-        if docs_path.exists():
+        if docs_path.exists() and docs_path.is_dir():
             for file in sorted(docs_path.glob("*.md")):
-                chunks.extend(chunk_markdown_file(file))
+                # Skip anything that is not a regular file (safety guard)
+                if file.is_file():
+                    chunks.extend(chunk_markdown_file(file))
         _GLOBAL_INDEX = DocSearchIndex(chunks)
         _INDEX_DOCS_DIR = dir_str
 
