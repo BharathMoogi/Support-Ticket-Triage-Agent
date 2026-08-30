@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+import traceback
 from pathlib import Path
 
 root_dir = Path(__file__).resolve().parent.parent
@@ -99,7 +100,8 @@ def app(environ, start_response):
         return [resp]
 
     except Exception as e:
-        err = json.dumps({"error": str(e)}).encode("utf-8")
+        tb = traceback.format_exc()
+        err = json.dumps({"error": str(e), "traceback": tb}).encode("utf-8")
         start_response("400 Bad Request", [
             ("Content-Type", "application/json; charset=utf-8"),
             ("Content-Length", str(len(err)))

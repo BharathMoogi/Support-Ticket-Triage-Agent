@@ -12,25 +12,35 @@ import os
 from pathlib import Path
 from typing import Any
 
-DEFAULT_CSV_PATH = Path(os.getenv("CUSTOMER_CSV", "data/customer_context.csv"))
+_MODULE_DIR = Path(__file__).resolve().parent       # agent/
+_PROJECT_ROOT = _MODULE_DIR.parent                  # project root
+
+def _resolve_csv_path() -> Path:
+    """Resolve customer CSV path — absolute project root fallback, never '.'."""
+    env_val = os.getenv("CUSTOMER_CSV", "").strip()
+    if env_val and env_val not in (".", "./"):
+        p = Path(env_val)
+        if p.is_file():
+            return p
+    return _PROJECT_ROOT / "data" / "customer_context.csv"
 
 
 def get_customer_context(
     customer_id: str,
-    csv_path: str | Path = DEFAULT_CSV_PATH,
+    csv_path: str | Path | None = None,
 ) -> dict[str, Any] | None:
     """
     Look up customer profile metadata from the customer_context.csv file.
 
     Args:
         customer_id: Unique customer ID (e.g. "CUST-101").
-        csv_path: Path to the customer context CSV file.
+        csv_path: Path to the customer context CSV file (uses project-root default if None).
 
     Returns:
         Dict with keys: customer_id, plan, signup_date, past_ticket_count,
         or None if customer_id is not found.
     """
-    path = Path(csv_path)
+    path = Path(csv_path) if csv_path is not None else _resolve_csv_path()
     if not path.exists():
         return None
 

@@ -14,7 +14,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Literal
 
-DEFAULT_QUEUE_DIR = Path(os.getenv("AGENT_REVIEW_QUEUE_DIR", "agent/review_queue"))
+_MODULE_DIR = Path(__file__).resolve().parent       # agent/
+_PROJECT_ROOT = _MODULE_DIR.parent                  # project root
+DEFAULT_QUEUE_DIR = _PROJECT_ROOT / "agent" / "review_queue"
 
 ReviewStatus = Literal["pending_review", "approved", "edited", "rejected"]
 
