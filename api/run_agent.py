@@ -12,8 +12,7 @@ root_dir = Path(__file__).resolve().parent.parent
 if str(root_dir) not in sys.path:
     sys.path.insert(0, str(root_dir))
 
-import anthropic
-from agent.main import process_ticket
+from agent.main import run_ticket_agent
 
 
 def app(environ, start_response):
@@ -33,44 +32,40 @@ def app(environ, start_response):
         payload = json.loads(body_bytes.decode("utf-8")) if body_bytes else {}
         ticket_id = payload.get("ticket_id")
 
-        api_key = os.getenv("ANTHROPIC_API_KEY")
-        if not api_key:
-            raise ValueError(
-                "ANTHROPIC_API_KEY environment variable is not configured. "
-                "Please add ANTHROPIC_API_KEY in Vercel Settings -> Environment Variables, then redeploy."
-            )
-
-        client = anthropic.Anthropic(api_key=api_key)
-        tickets_dir = root_dir / "tickets"
-
         if not ticket_id:
-            raise ValueError("ticket_id is required in request payload (e.g. {'ticket_id': 'TICK-001'})")
+            raise ValueError("ticket_id is required (e.g. {'ticket_id': 'TKT-001'})")
 
         # Locate ticket file
-        candidate_files = [
+        tickets_dir = root_dir / "tickets"
+        ticket_file = None
+        for candidate in [
             tickets_dir / f"{ticket_id.lower()}.json",
             tickets_dir / f"{ticket_id}.json",
             tickets_dir / f"{ticket_id.upper()}.json",
-        ]
-        ticket_file = None
-        for f in candidate_files:
-            if f.exists():
-                ticket_file = f
+        ]:
+            if candidate.exists():
+                ticket_file = candidate
                 break
 
         if not ticket_file:
             raise FileNotFoundError(f"Ticket {ticket_id} not found in tickets directory.")
 
-        # Execute full triage pipeline with tool calls + verification
-        traj = process_ticket(ticket_file, client=client)
+        with ticket_file.open(encoding="utf-8") as f:
+            ticket_data = json.load(f)
+
+        # Run full triage pipeline (Groq or Anthropic auto-selected via .env)
+        draft, traj_path, queue_path = run_ticket_agent(
+            ticket=ticket_data,
+            trajectories_dir=str(root_dir / "trajectories"),
+            queue_dir=str(root_dir / "agent" / "review_queue"),
+        )
 
         resp = json.dumps({
             "status": "ok",
             "ticket_id": ticket_id,
-            "category": traj.get("category"),
-            "urgency": traj.get("urgency"),
-            "verification": traj.get("verification"),
-            "draft_reply": traj.get("draft_reply"),
+            "draft_reply": draft,
+            "trajectory_path": traj_path,
+            "queue_path": queue_path,
         }).encode("utf-8")
 
         start_response("200 OK", [

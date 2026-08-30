@@ -556,28 +556,47 @@ def app(environ: dict[str, Any], start_response: Any) -> list[bytes]:
             payload = json.loads(body_bytes.decode("utf-8")) if body_bytes else {}
             t_id = payload.get("ticket_id")
 
-            api_key = os.getenv("ANTHROPIC_API_KEY")
-            if not api_key:
-                raise ValueError("ANTHROPIC_API_KEY is not set. Please configure it in .env or Vercel Settings.")
+            if not t_id:
+                raise ValueError("ticket_id is required")
 
-            import anthropic
-            from agent.main import process_ticket
-            client = anthropic.Anthropic(api_key=api_key)
+            from agent.main import run_ticket_agent
             tickets_dir = BASE_DIR / "tickets"
-            ticket_file = tickets_dir / f"{t_id.lower()}.json"
-            if not ticket_file.exists():
-                ticket_file = tickets_dir / f"{t_id}.json"
-            if not ticket_file.exists():
+            ticket_file = None
+            for candidate in [
+                tickets_dir / f"{t_id.lower()}.json",
+                tickets_dir / f"{t_id}.json",
+                tickets_dir / f"{t_id.upper()}.json",
+            ]:
+                if candidate.exists():
+                    ticket_file = candidate
+                    break
+            if not ticket_file:
                 raise FileNotFoundError(f"Ticket {t_id} not found.")
 
-            traj = process_ticket(ticket_file, client=client)
+            with ticket_file.open(encoding="utf-8") as f:
+                ticket_data = json.load(f)
+
+            draft, traj_path, queue_path = run_ticket_agent(
+                ticket=ticket_data,
+                trajectories_dir=str(BASE_DIR / "trajectories"),
+                queue_dir=str(BASE_DIR / "agent" / "review_queue"),
+            )
+
+            # Read back the queue file to get category/urgency/verification
+            import re
+            queue_json_path = BASE_DIR / "agent" / "review_queue" / f"{t_id.upper()}.json"
+            queue_data = {}
+            if queue_json_path.exists():
+                with queue_json_path.open(encoding="utf-8") as f:
+                    queue_data = json.load(f)
+
             resp = json.dumps({
                 "status": "ok",
                 "ticket_id": t_id,
-                "category": traj.get("category"),
-                "urgency": traj.get("urgency"),
-                "verification": traj.get("verification"),
-                "draft_reply": traj.get("draft_reply")
+                "draft_reply": draft,
+                "category": queue_data.get("category"),
+                "urgency": queue_data.get("urgency"),
+                "verification": queue_data.get("verification_info", {}).get("verification"),
             }).encode("utf-8")
             start_response("200 OK", [
                 ("Content-Type", "application/json; charset=utf-8"),
