@@ -247,6 +247,36 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
       }
     }
 
+    async function runAgent(ticketId) {
+      const btn = document.getElementById('run-btn-' + ticketId);
+      const originalHtml = btn ? btn.innerHTML : '';
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Running...';
+      }
+      try {
+        const res = await fetch('/api/run_agent', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ticket_id: ticketId})
+        });
+        const text = await res.text();
+        const data = JSON.parse(text);
+        if (!res.ok || data.error) {
+          throw new Error(data.error || 'Failed to execute triage agent');
+        }
+        alert('✅ Agent triage completed for ' + ticketId + '!\nCategory: ' + data.category + ' (' + data.urgency + ' urgency)\nVerification: ' + (data.verification ? data.verification.status : 'verified') + '\n\nDraft added to Review Queue.');
+        switchTab('queue');
+      } catch (err) {
+        alert('❌ Run failed: ' + err.message);
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = originalHtml;
+        }
+      }
+    }
+
     async function loadTickets() {
       const container = document.getElementById('tickets-container');
       try {
@@ -270,8 +300,10 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
               <p class="text-xs text-slate-300 line-clamp-4 leading-relaxed">${t.body}</p>
             </div>
             <div class="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-400">
-              <span>FlowBoard Support</span>
-              <button onclick="alert('Ticket: ' + '${t.id}' + '\\n\\n' + '${t.subject}' + '\\n\\n' + '${t.body.replace(/'/g, "\\'")}')" class="text-indigo-400 hover:text-indigo-300 font-medium">View Full</button>
+              <button onclick="alert('Ticket: ' + '${t.id}' + '\\n\\n' + '${t.subject}' + '\\n\\n' + '${t.body.replace(/'/g, "\\'")}')" class="text-slate-400 hover:text-slate-200 font-medium">View Full</button>
+              <button onclick="runAgent('${t.id}')" id="run-btn-${t.id}" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1.5">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Run Agent
+              </button>
             </div>
           </div>
         `).join('');
@@ -504,6 +536,49 @@ def app(environ: dict[str, Any], start_response: Any) -> list[bytes]:
                     pass
 
             resp = json.dumps({"status": "ok"}).encode("utf-8")
+            start_response("200 OK", [
+                ("Content-Type", "application/json; charset=utf-8"),
+                ("Content-Length", str(len(resp)))
+            ])
+            return [resp]
+        except Exception as e:
+            err = json.dumps({"error": str(e)}).encode("utf-8")
+            start_response("400 Bad Request", [
+                ("Content-Type", "application/json; charset=utf-8"),
+                ("Content-Length", str(len(err)))
+            ])
+            return [err]
+
+    elif method == "POST" and ("/api/run_agent" in path or path.endswith("/api/run_agent")):
+        try:
+            content_length = int(environ.get("CONTENT_LENGTH", 0))
+            body_bytes = environ["wsgi.input"].read(content_length) if content_length > 0 else b"{}"
+            payload = json.loads(body_bytes.decode("utf-8")) if body_bytes else {}
+            t_id = payload.get("ticket_id")
+
+            api_key = os.getenv("ANTHROPIC_API_KEY")
+            if not api_key:
+                raise ValueError("ANTHROPIC_API_KEY is not set. Please configure it in .env or Vercel Settings.")
+
+            import anthropic
+            from agent.main import process_ticket
+            client = anthropic.Anthropic(api_key=api_key)
+            tickets_dir = BASE_DIR / "tickets"
+            ticket_file = tickets_dir / f"{t_id.lower()}.json"
+            if not ticket_file.exists():
+                ticket_file = tickets_dir / f"{t_id}.json"
+            if not ticket_file.exists():
+                raise FileNotFoundError(f"Ticket {t_id} not found.")
+
+            traj = process_ticket(ticket_file, client=client)
+            resp = json.dumps({
+                "status": "ok",
+                "ticket_id": t_id,
+                "category": traj.get("category"),
+                "urgency": traj.get("urgency"),
+                "verification": traj.get("verification"),
+                "draft_reply": traj.get("draft_reply")
+            }).encode("utf-8")
             start_response("200 OK", [
                 ("Content-Type", "application/json; charset=utf-8"),
                 ("Content-Length", str(len(resp)))
