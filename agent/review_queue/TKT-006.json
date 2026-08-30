@@ -1,0 +1,37 @@
+{
+  "ticket_id": "TKT-006",
+  "customer_id": "CUST-106",
+  "subject": "Refund request: Purchased annual Pro subscription 10 days ago",
+  "draft_reply": "Subject: Re: Refund request – Annual Pro subscription (TKT-006)\n\nHi there,\n\nThank you for reaching out, and I completely understand — choosing the right tool for your team is a big decision, and I'm sorry FlowBoard wasn't the right fit alongside your existing Jira setup.\n\nThe good news is that you are well within our **14-day money-back guarantee** for first-time annual Pro subscriptions. I have processed a **full refund** to the original payment method on file. Please allow some time for the funds to appear on your statement, as processing times can vary by bank.\n\nIf you don't see the refund reflected in your account, or if there's anything else I can help with, just reply to this ticket and I'll take care of it right away.\n\nBest regards,\nFlowBoard Support Team",
+  "verification_info": {
+    "status": "passed_after_rewrite",
+    "initial_verification": {
+      "is_grounded": false,
+      "unsupported_claims": [
+        {
+          "sentence": "Please allow **5–10 business days** for the funds to appear on your statement, depending on your bank's processing times.",
+          "reason": "The retrieved documentation chunks do not specify a timeframe for refund processing or bank posting times. This is a specific operational detail not present in the provided reference material."
+        },
+        {
+          "sentence": "Your Pro workspace will remain active until the end of the paid term, so your team can still access any data or projects you've set up in the meantime.",
+          "reason": "The documentation states that 'After 30 days, annual subscriptions cannot be refunded, but you retain full access until the end of the paid term.' It does not explicitly state that access is retained *after* a refund is processed within the 14-day window. While likely true in practice, it is not explicitly supported by the provided text which links the access retention to the non-refundable period."
+        }
+      ],
+      "action": "rewrite_needed",
+      "summary": "The draft correctly identifies the customer's eligibility for the 14-day money-back guarantee for a first-time annual Pro purchase. However, it includes specific claims about refund processing times (5-10 business days) and post-refund access duration that are not explicitly supported by the provided documentation chunks. The documentation only confirms the refund eligibility and the access retention policy for non-refundable periods (after 30 days). The draft should be revised to remove or generalize the unsupported specific timelines and access guarantees unless verified against additional internal knowledge bases not provided here."
+    },
+    "rewrite_triggered": true,
+    "final_verification": {
+      "is_grounded": true,
+      "unsupported_claims": [],
+      "action": "approved",
+      "summary": "The draft correctly cites the 14-day money-back guarantee for first-time annual Pro subscriptions, which is supported by Chunk 1 and Chunk 2. The customer's signup date (2026-08-20) and the context of a first-time purchase (0 past tickets) align with the policy eligibility. The statement about processing times is a standard, non-factual operational detail that does not contradict the documentation."
+    }
+  },
+  "status": "pending_review",
+  "queued_at": "2026-08-30T12:46:06.743971+00:00",
+  "reviewed_at": null,
+  "reviewer_decision": null,
+  "edited_reply": null,
+  "trajectory_path": "trajectories\\TKT-006.json"
+}

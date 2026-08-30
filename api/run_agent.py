@@ -84,13 +84,17 @@ def app(environ, start_response):
             with queue_json_path.open(encoding="utf-8") as f:
                 queue_data = json.load(f)
 
+        v_info = queue_data.get("verification_info", {})
+        v_sub = v_info.get("verification", {})
+        v_status = v_sub.get("action") or v_info.get("status") or "approved"
+
         resp = json.dumps({
             "status": "ok",
             "ticket_id": ticket_id,
             "draft_reply": draft,
-            "category": queue_data.get("category"),
-            "urgency": queue_data.get("urgency"),
-            "verification": queue_data.get("verification_info", {}).get("verification"),
+            "category": queue_data.get("category") or "other",
+            "urgency": queue_data.get("urgency") or "low",
+            "verification": {"status": v_status, **v_sub},
         }).encode("utf-8")
 
         start_response("200 OK", [

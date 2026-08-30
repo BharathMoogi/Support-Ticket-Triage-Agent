@@ -30,6 +30,8 @@ def write_to_review_queue(
     ticket_id: str,
     customer_id: str = "UNKNOWN",
     subject: str = "(No Subject)",
+    category: str = "other",
+    urgency: str = "low",
     draft_reply: str,
     verification_info: dict[str, Any] | None = None,
     trajectory_path: str = "",
@@ -42,6 +44,8 @@ def write_to_review_queue(
         ticket_id: Unique ticket ID (e.g. 'TKT-001').
         customer_id: Customer identifier.
         subject: Ticket subject line.
+        category: Ticket category ('billing', 'bug', 'how-to', 'other').
+        urgency: Ticket urgency ('low', 'medium', 'high').
         draft_reply: The verified draft text.
         verification_info: Summary of verification results.
         trajectory_path: Relative or absolute path to trajectory JSON.
@@ -59,6 +63,8 @@ def write_to_review_queue(
         "ticket_id": ticket_id.upper(),
         "customer_id": customer_id,
         "subject": subject,
+        "category": category,
+        "urgency": urgency,
         "draft_reply": draft_reply,
         "verification_info": verification_info or {},
         "status": "pending_review",

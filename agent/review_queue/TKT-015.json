@@ -1,0 +1,22 @@
+{
+  "ticket_id": "TKT-015",
+  "customer_id": "CUST-115",
+  "subject": "Trouble with holographic 3D VR projection mode and canceling my unpurchased Enterprise plan",
+  "draft_reply": "Here is the triage summary and draft reply for TKT-015.\n\n**Triage:** Category: Other | Urgency: Low\n**Customer Context:** CUST-115 is on the **Free** plan (signed up 2026-02-14, 0 prior tickets). No active paid subscription exists.\n\n**Key findings:**\n- The \"holographic 3D VR projection mode\" and \"quantum neural link format\" are **not FlowBoard features** — these requests are non-existent and must be politely clarified.\n- The customer is on the Free plan and has **no Enterprise contract to cancel** — there is nothing to cancel and no charge will occur.\n- Supported export formats are **CSV and JSON** (and full workspace archive on Pro/Team).\n\n---\n\n**Draft Reply:**\n\nHi there,\n\nThanks for reaching out, and I appreciate you taking the time to describe what you're experiencing. I want to make sure I address each of your points clearly:\n\n**1. Holographic 3D VR projection / spatial headset**\nI want to be upfront: FlowBoard does not currently support 3D holographic projection, VR spatial headsets, or native spatial-gesture interfaces. FlowBoard is a web-based project management tool designed for standard desktop and mobile browsers. If you're seeing a \"holographic menu\" or spatial gesture prompts, that is not part of FlowBoard's interface — it may be coming from a third-party application or browser extension. I'd recommend checking your browser extensions or any other software running alongside FlowBoard to identify the source.\n\n**2. Canceling an Enterprise contract**\nI checked your account, and you are currently on our **Free plan** with no active paid subscription or Enterprise contract on file. There is nothing to cancel, and you will not be charged for any plan you have not purchased. If you decide to purchase a plan in the future, you can cancel at any time before renewal via **Workspace Settings → Billing → Cancel Subscription**, and your access will remain active until the end of that billing period.\n\n**3. Exporting cards to \"quantum neural link format\"**\nFlowBoard doesn't support a \"quantum neural link\" export format. The export options we do offer are:\n- **CSV** – best for spreadsheet analysis (card titles, status, assignee, due date, tags, custom fields).\n- **JSON** – full hierarchical export including descriptions, comments, checklists, and attachment metadata.\n\nTo export: open your board → click the **Board Menu (…)** in the top-right → select **Export Board** → choose CSV or JSON.\n\nIf any of these formats would work for your use case, I'm happy to walk you through the steps. And if there's anything else I can help clarify, just let me know.\n\nBest regards,\nFlowBoard Support Team",
+  "verification_info": {
+    "status": "passed_first_pass",
+    "verification": {
+      "is_grounded": true,
+      "unsupported_claims": [],
+      "action": "approved",
+      "summary": "The draft accurately reflects the customer's Free plan status and correctly identifies that the requested 'holographic' and 'quantum' features are not supported by FlowBoard. The provided troubleshooting steps for exports (CSV/JSON) and the cancellation policy details match the retrieved documentation chunks exactly."
+    },
+    "rewrite_triggered": false
+  },
+  "status": "pending_review",
+  "queued_at": "2026-08-30T12:58:41.539252+00:00",
+  "reviewed_at": null,
+  "reviewer_decision": null,
+  "edited_reply": null,
+  "trajectory_path": "trajectories\\TKT-015.json"
+}

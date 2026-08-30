@@ -1,0 +1,65 @@
+{
+  "ticket_id": "TKT-012",
+  "customer_id": "CUST-112",
+  "subject": "iOS Mobile App v4.1.0 crashing on launch with EXC_BAD_ACCESS in libsqlite3",
+  "draft_reply": "Subject: Re: iOS App Crash on Launch – Troubleshooting Steps\n\nHi there,\n\nThank you for reaching out regarding the crash you are experiencing when launching the FlowBoard iOS app. I understand how frustrating it is to be unable to access your boards, and I want to help you get back up and running as quickly as possible.\n\nBased on our troubleshooting documentation, here are the specific steps we recommend to resolve mobile app issues, including cache-related errors:\n\n**1. Clear the Mobile App Cache**\nIf you are able to open the app briefly, please try clearing the offline cache to resolve any local data conflicts:\n*   Open the FlowBoard app.\n*   Navigate to **Settings > Storage**.\n*   Select **Clear Offline Cache**.\n*   Force-quit the app and relaunch it.\n\n**2. Check Offline Sync Status**\nIf you have created cards while offline, they are queued in local storage. Once you are back online:\n*   Ensure you are connected to WiFi or Cellular data.\n*   Open the board view and **pull down** to force a synchronization.\n\n**3. Verify Biometric Login (If App Opens)**\nIf the app opens but you encounter login issues:\n*   Go to app **Settings > Security**.\n*   Toggle **Biometric Unlock** off and then back on.\n*   Re-authenticate with your master password.\n\n**Regarding Web Access**\nOur documentation confirms that FlowBoard is available for iOS and Android. While the specific web URL is not detailed in the current troubleshooting guide, if the mobile app remains inaccessible after clearing the cache, please let us know. We can then investigate further to ensure you have access to your data through other supported channels.\n\nPlease let me know if clearing the cache resolves the issue or if you continue to experience the crash. I am here to assist you with any further steps.\n\nBest regards,\n\nFlowBoard Support Team",
+  "verification_info": {
+    "status": "passed_after_rewrite",
+    "initial_verification": {
+      "is_grounded": false,
+      "unsupported_claims": [
+        {
+          "sentence": "This appears to be a known regression in v4.1.0 where the local SQLite schema migration fails on certain iOS 17.4 devices, causing a segmentation fault before the app can fully initialize.",
+          "reason": "The retrieved documentation does not mention version 4.1.0, iOS 17.4, or any specific crash regression. It only lists general troubleshooting steps for biometric login, offline sync, and cache clearing."
+        },
+        {
+          "sentence": "Because the corrupted migration state persists in the app's sandbox, a simple reinstall does not clear it.",
+          "reason": "The documentation does not explain the persistence of corrupted migration states or why reinstalls fail in this specific context."
+        },
+        {
+          "sentence": "On your iPhone, go to **Settings → General → iPhone Storage → FlowBoard → Delete App**, then reinstall from the App Store.",
+          "reason": "While standard iOS advice, this specific step is not present in the provided FlowBoard documentation chunks. The docs only mention 'Clear Offline Cache' via app settings or Android device settings."
+        },
+        {
+          "sentence": "In that case, try: **Settings → General → Transfer or Reset iPhone → Reset All Settings** (this does **not** erase your data, only system settings), then relaunch the app.",
+          "reason": "This troubleshooting step is not found in the provided documentation chunks."
+        },
+        {
+          "sentence": "In the meantime, all your boards, cards, and data are fully accessible at **app.flowboard.app** in any browser.",
+          "reason": "The specific URL 'app.flowboard.app' is not mentioned in the retrieved documentation. Chunk 12 mentions '*.flowboard.app' for firewall whitelisting, but does not confirm the web app URL or that 'no functionality is lost'."
+        },
+        {
+          "sentence": "I've escalated this to our mobile engineering team as a **high-priority P1 bug** (ticket TKT-012).",
+          "reason": "The documentation does not contain information about internal escalation processes, P1 bug classifications, or specific ticket numbers like TKT-012."
+        },
+        {
+          "sentence": "The crash signature matches a migration edge-case we're actively patching.",
+          "reason": "There is no documentation supporting the existence of an active patch for this specific crash signature."
+        },
+        {
+          "sentence": "We expect a hotfix (v4.1.1) to be submitted to the App Store within the next 24–48 hours.",
+          "reason": "The documentation does not contain release schedules, version numbers like v4.1.1, or estimated fix times."
+        },
+        {
+          "sentence": "Your Pro-plan boards and all card content are stored server-side and are **not** affected by this local crash.",
+          "reason": "While Chunk 2 mentions 'Offline Sync Pending' and local SQLite storage, it does not explicitly state that all Pro-plan data is stored server-side or that it is unaffected by local crashes in this specific manner."
+        }
+      ],
+      "action": "rewrite_needed",
+      "summary": "The draft reply contains numerous unsupported claims regarding specific version numbers, crash causes, internal escalation statuses, fix timelines, and specific URLs. The provided documentation only covers general troubleshooting steps for biometric login, offline sync, and cache clearing. The draft must be rewritten to rely only on the documented troubleshooting steps (e.g., clearing offline cache) and avoid making up specific technical details or promises about hotfixes that are not in the reference material."
+    },
+    "rewrite_triggered": true,
+    "final_verification": {
+      "is_grounded": true,
+      "unsupported_claims": [],
+      "action": "approved",
+      "summary": "The draft accurately reflects the troubleshooting steps found in the retrieved documentation chunks (specifically Chunks 2, 5, 8, and 11). The instructions for clearing the iOS cache (Settings > Storage > Clear Offline Cache), handling offline sync (pull down to sync), and fixing biometric login (Settings > Security > toggle) are all explicitly supported by the source text. The statement regarding platform availability is also grounded in Chunks 1, 4, 7, and 10. No unsupported claims were detected."
+    }
+  },
+  "status": "pending_review",
+  "queued_at": "2026-08-30T12:53:31.930591+00:00",
+  "reviewed_at": null,
+  "reviewer_decision": null,
+  "edited_reply": null,
+  "trajectory_path": "trajectories\\TKT-012.json"
+}

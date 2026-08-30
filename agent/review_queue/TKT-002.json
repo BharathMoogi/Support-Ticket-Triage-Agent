@@ -1,0 +1,22 @@
+{
+  "ticket_id": "TKT-002",
+  "customer_id": "CUST-102",
+  "subject": "Need our company VAT number added to previous invoices",
+  "draft_reply": "Here's a draft reply for TKT-002:\n\n---\n\n**Subject:** Re: Adding your VAT number to previous invoices\n\nHi there,\n\nThanks for reaching out — I completely understand how important it is for your accounting team to have accurate, reconcilable invoices, and I'm happy to help get your VAT ID (FR89234567890) onto your January and February receipts.\n\nThe good news is that FlowBoard can update **past** invoices automatically once you add your tax details. Here's how:\n\n1. Navigate to **Settings → Billing → Billing Details**.\n2. Enter your **VAT / Tax ID** (FR89234567890) and your legal company address in the corresponding fields.\n3. Click **Save & Update Invoices**.\n\nOnce you save, all previously generated PDF receipts — including your January and February invoices — will be automatically regenerated with your VAT ID in the header. You can then re-download the updated PDFs anytime from **Workspace Settings → Billing → Invoice History** by clicking **Download PDF** next to the relevant billing period.\n\nA couple of quick notes:\n- The update applies to all past invoices, so you won't need to request anything separately for each month.\n- If for any reason the PDFs don't reflect the change within a few minutes, let me know and I'll follow up directly.\n\nPlease let me know once you've had a chance to update the details, or if you run into any trouble along the way — I'm happy to walk you through it.\n\nBest regards,\nFlowBoard Support\n\n---\n\n**Triage summary:**\n- **Category:** Billing\n- **Urgency:** Medium\n- **Customer:** CUST-102 (Pro plan, signed up 2025-11-04, first ticket)\n- **Resolution path:** Self-service via Settings → Billing → Billing Details; no agent-side action required unless the customer reports the update didn't take effect.",
+  "verification_info": {
+    "status": "passed_first_pass",
+    "verification": {
+      "is_grounded": true,
+      "unsupported_claims": [],
+      "action": "approved",
+      "summary": "The draft accurately reflects the documentation. The steps to add a VAT ID (Settings > Billing > Billing Details, enter ID/address, click Save & Update Invoices) match Chunk 1. The claim that past invoices are automatically updated matches Chunk 1. The instructions for downloading updated invoices (Workspace Settings > Billing > Invoice History, click Download PDF) match Chunk 2. No unsupported features or incorrect policies were found."
+    },
+    "rewrite_triggered": false
+  },
+  "status": "pending_review",
+  "queued_at": "2026-08-30T12:42:57.104148+00:00",
+  "reviewed_at": null,
+  "reviewer_decision": null,
+  "edited_reply": null,
+  "trajectory_path": "trajectories\\TKT-002.json"
+}

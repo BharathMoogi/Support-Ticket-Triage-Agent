@@ -161,6 +161,8 @@ def run_ticket_agent(
     draft_reply = ""
     retrieved_chunks: list[dict[str, Any]] = []
     customer_context: dict[str, Any] | None = None
+    ticket_category: str | None = None
+    ticket_urgency: str | None = None
     iteration = 0
 
     groq_key = os.getenv("GROQ_API_KEY")
@@ -220,6 +222,9 @@ def run_ticket_agent(
                     retrieved_chunks.extend(result)
                 elif tool_name == "get_customer_context" and isinstance(result, dict) and "error" not in result:
                     customer_context = result
+                elif tool_name == "classify_ticket" and isinstance(result, dict):
+                    ticket_category = result.get("category") or ticket_category
+                    ticket_urgency = result.get("urgency") or ticket_urgency
 
                 messages.append({
                     "role": "tool",
@@ -281,6 +286,9 @@ def run_ticket_agent(
                     retrieved_chunks.extend(result)
                 elif tool_name == "get_customer_context" and isinstance(result, dict) and "error" not in result:
                     customer_context = result
+                elif tool_name == "classify_ticket" and isinstance(result, dict):
+                    ticket_category = result.get("category") or ticket_category
+                    ticket_urgency = result.get("urgency") or ticket_urgency
 
                 tool_results.append(
                     {
@@ -309,6 +317,8 @@ def run_ticket_agent(
         ticket_id=ticket_id,
         customer_id=customer_id,
         subject=subject,
+        category=ticket_category or "other",
+        urgency=ticket_urgency or "low",
         draft_reply=final_draft,
         verification_info=verification_log,
         trajectory_path=trajectory_path,

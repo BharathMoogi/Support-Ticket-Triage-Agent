@@ -17,14 +17,7 @@ build/
 venv/
 env/
 
-# Runtime outputs (keep directory structure, ignore individual artifacts)
-trajectories/*.json
-!trajectories/.gitkeep
-review_queue/*.json
-review_queue/*.jsonl
-!review_queue/.gitkeep
-agent/review_queue/*.json
-!agent/review_queue/.gitkeep
+# Runtime outputs
 agent/outputs/*.txt
 !agent/outputs/.gitkeep
 baseline/outputs/*.txt

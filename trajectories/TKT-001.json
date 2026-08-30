@@ -1,0 +1,110 @@
+{
+  "ticket_id": "TKT-001",
+  "started_at": "2026-08-30T12:42:49.616235+00:00",
+  "finished_at": "2026-08-30T12:42:53.009126+00:00",
+  "total_usage": {
+    "input_tokens": 2290,
+    "output_tokens": 507
+  },
+  "steps": [
+    {
+      "type": "tool_call",
+      "tool_name": "classify_ticket",
+      "tool_input": {
+        "ticket_text": "Subject: How do I export my board data into Excel/CSV?\n\nBody:\nHi support, we are preparing our monthly executive progress report and need to export all cards, assignees, due dates, and statuses from our Q1 Roadmap board into a spreadsheet. Where is the export button located in the interface?"
+      },
+      "step": 1,
+      "timestamp": "2026-08-30T12:42:50.843064+00:00"
+    },
+    {
+      "type": "tool_result",
+      "tool_name": "classify_ticket",
+      "tool_result": {
+        "category": "how-to",
+        "urgency": "low"
+      },
+      "step": 2,
+      "timestamp": "2026-08-30T12:42:51.232743+00:00"
+    },
+    {
+      "type": "tool_call",
+      "tool_name": "search_docs",
+      "tool_input": {
+        "query": "export board data to Excel CSV spreadsheet"
+      },
+      "step": 3,
+      "timestamp": "2026-08-30T12:42:51.233591+00:00"
+    },
+    {
+      "type": "tool_result",
+      "tool_name": "search_docs",
+      "tool_result": [
+        {
+          "doc_name": "data-export-and-backup.md",
+          "chunk_id": "data-export-and-backup.md#chunk_1",
+          "heading": "Data Export and Backup Instructions > Board-Level Export (CSV & JSON)",
+          "score": 0.5526,
+          "content": "### Section: Board-Level Export (CSV & JSON)\n1. Open the board you wish to export.\n2. Click the **Board Menu (...)** in the top right corner.\n3. Select **Export Board**.\n4. Choose your format:\n   - **CSV**: Best for spreadsheet analysis in Excel or Google Sheets (exports card titles, status, assignee, due date, tags, custom fields).\n   - **JSON**: Full hierarchical export including card descriptions, comments, checklists, and attachment metadata."
+        },
+        {
+          "doc_name": "data-export-and-backup.md",
+          "chunk_id": "data-export-and-backup.md#chunk_0",
+          "heading": "Data Export and Backup Instructions > Data Export and Backup Instructions",
+          "score": 0.396,
+          "content": "# Data Export and Backup Instructions\n\nFlowBoard allows workspace administrators to export boards and account data at any time."
+        },
+        {
+          "doc_name": "data-export-and-backup.md",
+          "chunk_id": "data-export-and-backup.md#chunk_2",
+          "heading": "Data Export and Backup Instructions > Full Workspace Backup (Pro & Team Plans)",
+          "score": 0.1786,
+          "content": "### Section: Full Workspace Backup (Pro & Team Plans)\n1. Navigate to **Workspace Settings > Data Management**.\n2. Click **Request Full Workspace Archive**.\n3. Select whether to include file attachments (ZIP bundle).\n4. An export link will be sent to the workspace Owner's email within 30 minutes. Download links remain active for 7 days."
+        }
+      ],
+      "step": 4,
+      "timestamp": "2026-08-30T12:42:51.242436+00:00"
+    },
+    {
+      "type": "tool_call",
+      "tool_name": "get_customer_context",
+      "tool_input": {
+        "customer_id": "CUST-101"
+      },
+      "step": 5,
+      "timestamp": "2026-08-30T12:42:51.243385+00:00"
+    },
+    {
+      "type": "tool_result",
+      "tool_name": "get_customer_context",
+      "tool_result": {
+        "customer_id": "CUST-101",
+        "plan": "Pro",
+        "signup_date": "2025-09-12",
+        "past_ticket_count": 2
+      },
+      "step": 6,
+      "timestamp": "2026-08-30T12:42:51.244599+00:00"
+    },
+    {
+      "type": "model_text",
+      "text": "Here's a draft reply for TKT-001:\n\n---\n\n**Subject:** Re: How do I export my board data into Excel/CSV?\n\nHi there,\n\nThanks for reaching out — happy to help you get that Q1 Roadmap data into your executive report!\n\nHere's how to export your board to a spreadsheet:\n\n1. **Open your Q1 Roadmap board.**\n2. Click the **Board Menu (…)** in the top-right corner of the board.\n3. Select **Export Board**.\n4. Choose **CSV** as your format.\n\nThe CSV export will include all card titles, statuses, assignees, due dates, tags, and any custom fields you've set up — which should cover everything you need for your progress report. You can open the file directly in Excel or Google Sheets.\n\n> **Tip:** If you ever need a more detailed export (including card descriptions, comments, checklists, and attachment metadata), you can choose **JSON** instead.\n\nSince you're on the **Pro plan**, you also have access to a **Full Workspace Backup** option (Workspace Settings → Data Management → Request Full Workspace Archive) if you ever need to export multiple boards at once.\n\nLet us know if you run into any issues or if there's anything else we can help with for your report. Good luck with the executive presentation!\n\nBest regards,\nFlowBoard Support\n\n---\n\n**Triage Summary:**\n| Field | Value |\n|-------|-------|\n| Category | How-to |\n| Urgency | Low |\n| Customer Plan | Pro |\n| Resolution | Provided step-by-step CSV export instructions grounded in official docs |",
+      "step": 7,
+      "timestamp": "2026-08-30T12:42:52.415116+00:00"
+    },
+    {
+      "type": "verification",
+      "data": {
+        "status": "passed_first_pass",
+        "verification": {
+          "is_grounded": true,
+          "unsupported_claims": [],
+          "action": "approved",
+          "summary": "The draft accurately reflects the documentation. The CSV export steps and included fields match Chunk 1. The JSON tip matches Chunk 1. The Full Workspace Backup instructions and availability for Pro plans match Chunk 3. No unsupported claims were found."
+        },
+        "rewrite_triggered": false
+      },
+      "step": 8,
+      "timestamp": "2026-08-30T12:42:53.008353+00:00"
+    }
+  ]
+}

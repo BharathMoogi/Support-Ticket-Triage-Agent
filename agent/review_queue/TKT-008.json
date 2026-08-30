@@ -1,0 +1,22 @@
+{
+  "ticket_id": "TKT-008",
+  "customer_id": "CUST-108",
+  "subject": "Accidentally invited duplicate user seat 3 days ago - refund request",
+  "draft_reply": "Here's the triage summary and a grounded draft reply.\n\n**Triage:** Category = Billing · Urgency = Medium\n**Key facts:**\n- Customer is on the **Team** plan (CUST-108, signed up 2025-10-05, 1 prior ticket).\n- The accidental duplicate seat was added **3 days ago** and removed immediately.\n- Per the refund policy, **accidental add-on seat purchases can be refunded or credited within 7 business days** — this request is well within that window.\n- Note: the standard seat-removal rule says the empty license remains available until renewal, but the *accidental purchase* exception applies here, so the $25 charge is eligible for a credit/refund.\n\n---\n\n**Draft reply:**\n\nSubject: Re: Accidental duplicate seat charge — refund request (TKT-008)\n\nHi there,\n\nThanks for reaching out, and I'm sorry for the confusion the duplicate invite caused. I completely understand how easy it is to invite a contractor with the wrong email address, and I appreciate you removing the duplicate right away.\n\nThe good news: this is covered. Under our refund policy, **accidental add-on seat purchases can be refunded or credited within 7 business days**, and your request came in just 3 days after the charge — so you're well within the window. I'm happy to process a **$25 credit** for the duplicate seat on your Team plan.\n\nTo make sure I apply it to the correct invoice, could you please confirm:\n1. The **invoice number** (or the billing date) for the charge in question, and\n2. Whether you'd prefer the $25 as a **credit to your next invoice** or a **refund to your original payment method**.\n\nOnce I have that, I'll submit the credit on your end. If you'd like to handle it yourself, you can also go to **Settings > Billing > Invoices** to locate the charge. Refunds typically appear on your statement within **5–10 business days**.\n\nThanks for your patience, and let me know if there's anything else I can help with.\n\nBest regards,\nFlowBoard Support",
+  "verification_info": {
+    "status": "passed_first_pass",
+    "verification": {
+      "is_grounded": true,
+      "unsupported_claims": [],
+      "action": "approved",
+      "summary": "The draft accurately reflects the retrieved documentation. The 7-business-day window for accidental seat purchases, the 5-10 business day refund processing time, and the navigation path (Settings > Billing > Invoices) are all explicitly supported by the provided chunks. The specific details regarding the customer's account (Team plan, 3 days ago, $25 amount) are consistent with the provided context and triage summary."
+    },
+    "rewrite_triggered": false
+  },
+  "status": "pending_review",
+  "queued_at": "2026-08-30T12:47:30.044350+00:00",
+  "reviewed_at": null,
+  "reviewer_decision": null,
+  "edited_reply": null,
+  "trajectory_path": "trajectories\\TKT-008.json"
+}

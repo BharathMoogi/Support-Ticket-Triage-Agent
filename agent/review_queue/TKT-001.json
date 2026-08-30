@@ -1,0 +1,22 @@
+{
+  "ticket_id": "TKT-001",
+  "customer_id": "CUST-101",
+  "subject": "How do I export my board data into Excel/CSV?",
+  "draft_reply": "Here's a draft reply for TKT-001:\n\n---\n\n**Subject:** Re: How do I export my board data into Excel/CSV?\n\nHi there,\n\nThanks for reaching out — happy to help you get that Q1 Roadmap data into your executive report!\n\nHere's how to export your board to a spreadsheet:\n\n1. **Open your Q1 Roadmap board.**\n2. Click the **Board Menu (…)** in the top-right corner of the board.\n3. Select **Export Board**.\n4. Choose **CSV** as your format.\n\nThe CSV export will include all card titles, statuses, assignees, due dates, tags, and any custom fields you've set up — which should cover everything you need for your progress report. You can open the file directly in Excel or Google Sheets.\n\n> **Tip:** If you ever need a more detailed export (including card descriptions, comments, checklists, and attachment metadata), you can choose **JSON** instead.\n\nSince you're on the **Pro plan**, you also have access to a **Full Workspace Backup** option (Workspace Settings → Data Management → Request Full Workspace Archive) if you ever need to export multiple boards at once.\n\nLet us know if you run into any issues or if there's anything else we can help with for your report. Good luck with the executive presentation!\n\nBest regards,\nFlowBoard Support\n\n---\n\n**Triage Summary:**\n| Field | Value |\n|-------|-------|\n| Category | How-to |\n| Urgency | Low |\n| Customer Plan | Pro |\n| Resolution | Provided step-by-step CSV export instructions grounded in official docs |",
+  "verification_info": {
+    "status": "passed_first_pass",
+    "verification": {
+      "is_grounded": true,
+      "unsupported_claims": [],
+      "action": "approved",
+      "summary": "The draft accurately reflects the documentation. The CSV export steps and included fields match Chunk 1. The JSON tip matches Chunk 1. The Full Workspace Backup instructions and availability for Pro plans match Chunk 3. No unsupported claims were found."
+    },
+    "rewrite_triggered": false
+  },
+  "status": "pending_review",
+  "queued_at": "2026-08-30T12:42:53.010277+00:00",
+  "reviewed_at": null,
+  "reviewer_decision": null,
+  "edited_reply": null,
+  "trajectory_path": "trajectories\\TKT-001.json"
+}

@@ -1,0 +1,37 @@
+{
+  "ticket_id": "TKT-014",
+  "customer_id": "CUST-114",
+  "subject": "YOU DOUBLE-BILLED MY CREDIT CARD AND LOCKED MY ACCOUNT!! FIX THIS NOW!!",
+  "draft_reply": "Subject: Re: TKT-014 — Duplicate charge & account suspension (escalated, priority)\n\nHi there,\n\nI'm truly sorry for the stress this has caused you and your team — a double charge that triggered a fraud freeze on your corporate card, combined with a locked workspace, is completely unacceptable, and I understand why you're frustrated. I've flagged this ticket as **high priority** and I'm personally driving both issues to resolution. Here's exactly what I'm doing and what I need from you:\n\n**1. The duplicate $600 charge**\n- I've opened a billing investigation on your account to confirm the second $600 charge was a duplicate transaction.\n- If confirmed as a duplicate, we will issue a full refund of the extra $600. Per our refund process, refunds typically appear on your statement within **5–10 business days**.\n- To help me match the transactions precisely, could you please send:\n  - The **last 4 digits** of the corporate card used, and\n  - The **exact timestamps** (or the two transaction reference/authorization numbers) from your bank statement for both $600 charges.\n- In the meantime, please let your bank know the duplicate is under investigation with the merchant — this often helps them lift the fraud hold faster.\n\n**2. The \"ACCOUNT SUSPENDED\" login block**\n- I am escalating this to our support team to investigate the cause of the suspension and work to restore access for you and your staff as soon as possible.\n- I'll confirm the status of the account restoration in a follow-up within a few hours. If your team is blocked from critical work in the interim, please tell me and I'll prioritize the unblock accordingly.\n\n**Next steps & timeline**\n- I'll reply within a few hours with the status of both the refund and the account restoration.\n- I will not ask you to take any action beyond the two details above (card last-4 and transaction references).\n\nI want to be straightforward: this is on us to fix, and I'll keep you updated until both the refund is issued and your workspace is fully accessible again. Thank you for your patience while we resolve this.\n\nBest regards,\n[Agent Name]\nFlowBoard Support — Priority Billing & Account Recovery",
+  "verification_info": {
+    "status": "passed_after_rewrite",
+    "initial_verification": {
+      "is_grounded": false,
+      "unsupported_claims": [
+        {
+          "sentence": "A suspension banner typically appears when our security system places a temporary hold on an account (commonly tied to a flagged payment or unusual activity).",
+          "reason": "The retrieved documentation does not contain any information regarding account suspension triggers, security holds, or the relationship between payment flags and account status. This is a speculative explanation not found in the provided chunks."
+        },
+        {
+          "sentence": "I'm escalating this to our security/billing team to verify your account status and restore access for you and your staff as soon as possible.",
+          "reason": "While escalation is a standard support action, the specific claim that the agent can 'restore access' or that a 'security/billing team' will handle this specific suspension scenario is not supported by the provided documentation, which only covers cancellation and deletion procedures, not suspension resolution workflows."
+        }
+      ],
+      "action": "rewrite_needed",
+      "summary": "The draft correctly cites the 5-10 business day refund timeline from Chunk 2. However, it makes unsupported claims about the cause of the account suspension (linking it to payment flags/security holds) and the specific internal process for restoring access, which are not present in the retrieved documentation. The agent should avoid speculating on the technical cause of the suspension and instead focus on verifying the billing issue and following standard escalation protocols without inventing specific security team workflows."
+    },
+    "rewrite_triggered": true,
+    "final_verification": {
+      "is_grounded": true,
+      "unsupported_claims": [],
+      "action": "approved",
+      "summary": "The draft is grounded in the provided documentation. The statement regarding the refund timeline ('refunds typically appear on your statement within 5–10 business days') is directly supported by Chunk 2 (Exceptions & Process). The other statements are procedural commitments (investigating the duplicate charge, escalating the suspension, requesting specific transaction details) which do not contradict the documentation and are standard support actions. No fictional features or incorrect policy facts were introduced."
+    }
+  },
+  "status": "pending_review",
+  "queued_at": "2026-08-30T12:57:52.022980+00:00",
+  "reviewed_at": null,
+  "reviewer_decision": null,
+  "edited_reply": null,
+  "trajectory_path": "trajectories\\TKT-014.json"
+}

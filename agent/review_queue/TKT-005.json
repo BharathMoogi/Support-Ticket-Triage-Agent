@@ -1,0 +1,37 @@
+{
+  "ticket_id": "TKT-005",
+  "customer_id": "CUST-105",
+  "subject": "Upgrading from Free to Pro mid-month - how does prorating work?",
+  "draft_reply": "Subject: Re: Upgrading from Free to Pro mid-month — how does prorating work?\n\nHi there,\n\nThanks for reaching out, and congrats on growing your team! I'm happy to clear up how mid-month upgrades are billed.\n\nWhen you upgrade from Free to Pro, the change takes effect immediately at checkout. You will **not** be charged the full monthly rate for the first month. Instead, you'll be billed a **prorated amount for the remainder of your current billing cycle** based on the date you upgrade. So if you upgrade today, you'll only pay for the days left in this cycle, and your next full charge will occur at the start of your next billing period.\n\nA couple of helpful details:\n- **Features unlock instantly:** As soon as checkout completes, new Pro features such as unlimited boards, higher automation limits, and SSO become available right away.\n\nIf you'd like, I can walk you through the upgrade steps or help confirm your exact proration amount once you're ready to proceed. Just let me know!\n\nBest regards,\nFlowBoard Support",
+  "verification_info": {
+    "status": "passed_after_rewrite",
+    "initial_verification": {
+      "is_grounded": false,
+      "unsupported_claims": [
+        {
+          "sentence": "Pro is $12/user/month, so for your team of 4 that's $48/month on a full cycle.",
+          "reason": "The retrieved documentation chunks do not contain any pricing information (e.g., $12/user/month) or specific team size details for the customer. The customer context only lists the plan tier as 'Free' and does not specify the number of users or the price of the Pro plan."
+        },
+        {
+          "sentence": "your 3-board limit is removed (you get unlimited boards)",
+          "reason": "While Chunk 1 mentions 'unlimited boards' as a new feature, it does not explicitly state that the Free plan has a '3-board limit'. Chunk 2 mentions a limit of '3 or fewer active boards' for downgrading *to* Free, which implies the limit exists, but the specific phrasing 'your 3-board limit is removed' is a direct assertion of the Free plan's limit that is not explicitly defined in the provided text as a feature of the Free plan itself, though it is strongly implied. However, the primary unsupported claim is the pricing. Let's look closer. Chunk 2 says: 'Before downgrading to Free, ensure your workspace has 3 or fewer active boards'. This confirms the Free plan limit is 3 boards. So this part is grounded. The pricing is the main issue."
+        }
+      ],
+      "action": "rewrite_needed",
+      "summary": "The draft contains specific pricing information ($12/user/month) and a calculation for a team of 4 users that are not present in the retrieved documentation or customer context. The customer context does not specify the team size, and the documentation does not list Pro plan pricing. These facts must be removed or verified against a pricing sheet not provided here."
+    },
+    "rewrite_triggered": true,
+    "final_verification": {
+      "is_grounded": true,
+      "unsupported_claims": [],
+      "action": "approved",
+      "summary": "The draft accurately reflects the documentation. The claim that upgrades take effect immediately and are prorated for the remainder of the billing cycle is supported by Chunk 1. The claim that features like unlimited boards, higher automation limits, and SSO unlock instantly is also supported by Chunk 1. No unsupported claims were found."
+    }
+  },
+  "status": "pending_review",
+  "queued_at": "2026-08-30T12:45:19.011131+00:00",
+  "reviewed_at": null,
+  "reviewer_decision": null,
+  "edited_reply": null,
+  "trajectory_path": "trajectories\\TKT-005.json"
+}

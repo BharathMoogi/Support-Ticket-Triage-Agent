@@ -1,0 +1,37 @@
+{
+  "ticket_id": "TKT-011",
+  "customer_id": "CUST-111",
+  "subject": "Infinite automation execution loop consumed 8,000 runs in 5 minutes",
+  "draft_reply": "Subject: Re: [TKT-011] Infinite automation loop — QuotaExceeded (High Priority)\n\nHi there,\n\nThank you for the detailed report, and I'm sorry for the disruption this has caused. A recursive automation loop that burns through your entire monthly quota is clearly not the intended behavior, and I completely understand how frustrating it is to find your board locked with a `QuotaExceeded` error.\n\nI've classified this as a **high-priority bug** and escalated it to our engineering team. Here is the current status and what we need from you to help us resolve this:\n\n**Immediate Actions**\nOur engineering team has been notified of the runaway automation worker. They are currently investigating the active job to stop further runs and address the quota exhaustion. As this is an engineering-side intervention, we do not have a self-serve option to reset the counter or stop the worker from the user interface.\n\n**What we need from you (to help us reproduce and fix the root cause)**\n- The **board name/ID** and the **exact automation rule** as configured (trigger: \"Card moved to In Review\" → action: \"Add checklist QA\").\n- A screenshot or export of **Board Menu > Automations > Run History** around 14:15 UTC. This will allow us to inspect the triggers, execution timestamps, and any failure error messages.\n- Confirmation of whether the checklist being added itself contains any automation-triggering fields or sub-tasks (this is a common cause of recursive loops).\n\n**Root-cause note**\nA \"card moved\" trigger combined with an action that itself modifies the card (or a checklist item that re-triggers the rule) can create a feedback loop. We will review your rule configuration once the worker is stopped and, if needed, apply a guardrail so a single trigger cannot re-fire recursively.\n\n**Next Steps**\nWe are prioritizing this ticket. I will keep this ticket open and update you as soon as engineering provides confirmation that the worker has been stopped and the issue is resolved.\n\nIn the meantime, if any other boards in your workspace are showing `QuotaExceeded`, please let me know so we can include them in the same investigation.\n\nThanks for your patience — I’ll follow up shortly with an update from the engineering team.\n\nBest regards,\nFlowBoard Support",
+  "verification_info": {
+    "status": "passed_after_rewrite",
+    "initial_verification": {
+      "is_grounded": false,
+      "unsupported_claims": [
+        {
+          "sentence": "You should hear back from engineering within the next 1–2 hours with confirmation that the worker has been stopped and the counter restored.",
+          "reason": "The retrieved documentation does not specify any SLA or response time for engineering interventions or bug fixes. Promising a specific 1-2 hour timeline is an unsupported factual claim."
+        },
+        {
+          "sentence": "Once the loop is confirmed stopped, we will reset the run counter so your Pro quota is restored and the board unlocks.",
+          "reason": "The documentation confirms the Pro quota limit (1,000 runs/user/month) and how to view logs, but it does not document a support or engineering process for 'resetting the run counter' or manually unlocking a board after a quota breach. While likely a valid internal procedure, it is not grounded in the provided reference chunks."
+        }
+      ],
+      "action": "rewrite_needed",
+      "summary": "The draft correctly identifies the Pro plan limits and the location of automation logs based on the documentation. However, it makes specific promises regarding engineering response times (1-2 hours) and manual remediation steps (resetting counters) that are not present in the provided help-center documentation. These claims should be softened to 'we are escalating this for immediate review' rather than promising specific timelines or undocumented manual fixes."
+    },
+    "rewrite_triggered": true,
+    "final_verification": {
+      "is_grounded": true,
+      "unsupported_claims": [],
+      "action": "approved",
+      "summary": "The draft accurately references the 'Board Menu > Automations > Run History' path for logs (Chunk 1/4/8) and correctly identifies the Pro plan limit context (Chunk 2/5). The technical explanation of recursive loops and the request for specific configuration details are consistent with the 'Types of Automations' documentation (Chunk 7). No factual claims contradict the provided documentation."
+    }
+  },
+  "status": "pending_review",
+  "queued_at": "2026-08-30T12:51:13.064540+00:00",
+  "reviewed_at": null,
+  "reviewer_decision": null,
+  "edited_reply": null,
+  "trajectory_path": "trajectories\\TKT-011.json"
+}

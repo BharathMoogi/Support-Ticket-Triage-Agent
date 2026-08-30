@@ -1,0 +1,22 @@
+{
+  "ticket_id": "TKT-003",
+  "customer_id": "CUST-103",
+  "subject": "Inviting an external contractor as a read-only guest to a single board",
+  "draft_reply": "I have all the context needed. The customer is on the Pro plan, which supports free unlimited read-only guest viewers, and the docs confirm single-board guest sharing is available. Here's the draft reply:\n\n---\n\n**Subject:** Re: Inviting an external contractor as a read-only guest to a single board\n\nHi there,\n\nThanks for reaching out — this is a great use case, and the good news is that FlowBoard supports exactly what you're looking for.\n\n**How to share just the Marketing Assets board as a read-only guest:**\n\n1. Open the **Marketing Assets** board.\n2. Click **Share > Invite** in the top-right corner.\n3. Enter your freelance designer's email address.\n4. Choose the **Guest (Single Board)** access type.\n5. Set their permission to **Can View (Read-Only)**.\n6. Send the invite.\n\n**What this means for your workspace:**\n\n- **Scoped access:** Guests are restricted to *only* the board(s) you explicitly share with them. Your designer will not be able to see your other internal workspace boards, and they cannot create new boards or view other workspace members.\n- **No extra seat cost:** Since you're on the **Pro plan**, read-only guest viewers are **free and unlimited**. You'll only incur a guest license cost if you ever grant a guest *editing* permissions — which you don't need here.\n\nSo you can invite your contractor as a read-only single-board guest at no additional cost, with full isolation from the rest of your workspace.\n\nIf you'd like, I'm happy to walk you through the steps or help with anything else as you set up the collaboration. Just let me know!\n\nBest regards,\nFlowBoard Support\n\n---\n\n**Triage summary:**\n- **Category:** How-to\n- **Urgency:** Low\n- **Customer:** CUST-103 (Pro plan, signed up 2026-01-15, 1 prior ticket)\n- **Resolution:** Provided step-by-step instructions for single-board guest sharing, confirmed read-only guests are free/unlimited on Pro, and clarified the access scoping guarantees.",
+  "verification_info": {
+    "status": "passed_first_pass",
+    "verification": {
+      "is_grounded": true,
+      "unsupported_claims": [],
+      "action": "approved",
+      "summary": "The draft accurately reflects the retrieved documentation. The steps for inviting a guest (Share > Invite, Guest (Single Board), Can View) match Chunk 1. The pricing claim (free unlimited read-only viewers on Pro) matches Chunks 1 and 2. The permission scoping (restricted to shared boards, cannot create boards/view members) matches Chunk 2. No unsupported claims were found."
+    },
+    "rewrite_triggered": false
+  },
+  "status": "pending_review",
+  "queued_at": "2026-08-30T12:43:33.401640+00:00",
+  "reviewed_at": null,
+  "reviewer_decision": null,
+  "edited_reply": null,
+  "trajectory_path": "trajectories\\TKT-003.json"
+}

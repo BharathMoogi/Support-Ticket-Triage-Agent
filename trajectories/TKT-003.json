@@ -1,0 +1,110 @@
+{
+  "ticket_id": "TKT-003",
+  "started_at": "2026-08-30T12:42:57.606622+00:00",
+  "finished_at": "2026-08-30T12:43:33.400532+00:00",
+  "total_usage": {
+    "input_tokens": 3210,
+    "output_tokens": 622
+  },
+  "steps": [
+    {
+      "type": "tool_call",
+      "tool_name": "classify_ticket",
+      "tool_input": {
+        "ticket_text": "Subject: Inviting an external contractor as a read-only guest to a single board\n\nBody:\nWe hired a freelance designer who only needs visibility into our Marketing Assets board. We do not want them to see our other internal workspace boards or incur extra seat costs. How can we share just this one board with them as a viewer?"
+      },
+      "step": 1,
+      "timestamp": "2026-08-30T12:43:00.766243+00:00"
+    },
+    {
+      "type": "tool_result",
+      "tool_name": "classify_ticket",
+      "tool_result": {
+        "category": "how-to",
+        "urgency": "low"
+      },
+      "step": 2,
+      "timestamp": "2026-08-30T12:43:01.180891+00:00"
+    },
+    {
+      "type": "tool_call",
+      "tool_name": "search_docs",
+      "tool_input": {
+        "query": "share single board with external guest read-only viewer without extra seat cost"
+      },
+      "step": 3,
+      "timestamp": "2026-08-30T12:43:08.994268+00:00"
+    },
+    {
+      "type": "tool_result",
+      "tool_name": "search_docs",
+      "tool_result": [
+        {
+          "doc_name": "guest-access-and-sharing.md",
+          "chunk_id": "guest-access-and-sharing.md#chunk_1",
+          "heading": "Guest Access & External Sharing > Single-Board Guests",
+          "score": 0.4328,
+          "content": "### Section: Single-Board Guests\nInvite external clients, freelancers, or contractors to specific boards without granting access to the broader workspace.\n- **Inviting a Guest**: Open the board, click **Share > Invite**, enter the email, and choose **Guest (Single Board)**.\n- **Permissions**: Guests can be set to **Can Edit** or **Can View (Read-Only)**.\n- **Pricing**: Free and unlimited read-only viewers on Pro and Team plans. Editing guests consume a guest license."
+        },
+        {
+          "doc_name": "user-roles-and-permissions.md",
+          "chunk_id": "user-roles-and-permissions.md#chunk_4",
+          "heading": "User Roles & Workspace Permissions > 4. Guest / Viewer",
+          "score": 0.3463,
+          "content": "### Section: 4. Guest / Viewer\n- Restricted to explicitly shared boards only.\n- Cannot create new boards or view other workspace members.\n- Free unlimited read-only viewers on Pro and Team plans."
+        },
+        {
+          "doc_name": "guest-access-and-sharing.md",
+          "chunk_id": "guest-access-and-sharing.md#chunk_0",
+          "heading": "Guest Access & External Sharing > Guest Access & External Sharing",
+          "score": 0.3317,
+          "content": "# Guest Access & External Sharing"
+        }
+      ],
+      "step": 4,
+      "timestamp": "2026-08-30T12:43:08.995557+00:00"
+    },
+    {
+      "type": "tool_call",
+      "tool_name": "get_customer_context",
+      "tool_input": {
+        "customer_id": "CUST-103"
+      },
+      "step": 5,
+      "timestamp": "2026-08-30T12:43:08.996217+00:00"
+    },
+    {
+      "type": "tool_result",
+      "tool_name": "get_customer_context",
+      "tool_result": {
+        "customer_id": "CUST-103",
+        "plan": "Pro",
+        "signup_date": "2026-01-15",
+        "past_ticket_count": 1
+      },
+      "step": 6,
+      "timestamp": "2026-08-30T12:43:08.997072+00:00"
+    },
+    {
+      "type": "model_text",
+      "text": "I have all the context needed. The customer is on the Pro plan, which supports free unlimited read-only guest viewers, and the docs confirm single-board guest sharing is available. Here's the draft reply:\n\n---\n\n**Subject:** Re: Inviting an external contractor as a read-only guest to a single board\n\nHi there,\n\nThanks for reaching out — this is a great use case, and the good news is that FlowBoard supports exactly what you're looking for.\n\n**How to share just the Marketing Assets board as a read-only guest:**\n\n1. Open the **Marketing Assets** board.\n2. Click **Share > Invite** in the top-right corner.\n3. Enter your freelance designer's email address.\n4. Choose the **Guest (Single Board)** access type.\n5. Set their permission to **Can View (Read-Only)**.\n6. Send the invite.\n\n**What this means for your workspace:**\n\n- **Scoped access:** Guests are restricted to *only* the board(s) you explicitly share with them. Your designer will not be able to see your other internal workspace boards, and they cannot create new boards or view other workspace members.\n- **No extra seat cost:** Since you're on the **Pro plan**, read-only guest viewers are **free and unlimited**. You'll only incur a guest license cost if you ever grant a guest *editing* permissions — which you don't need here.\n\nSo you can invite your contractor as a read-only single-board guest at no additional cost, with full isolation from the rest of your workspace.\n\nIf you'd like, I'm happy to walk you through the steps or help with anything else as you set up the collaboration. Just let me know!\n\nBest regards,\nFlowBoard Support\n\n---\n\n**Triage summary:**\n- **Category:** How-to\n- **Urgency:** Low\n- **Customer:** CUST-103 (Pro plan, signed up 2026-01-15, 1 prior ticket)\n- **Resolution:** Provided step-by-step instructions for single-board guest sharing, confirmed read-only guests are free/unlimited on Pro, and clarified the access scoping guarantees.",
+      "step": 7,
+      "timestamp": "2026-08-30T12:43:21.503833+00:00"
+    },
+    {
+      "type": "verification",
+      "data": {
+        "status": "passed_first_pass",
+        "verification": {
+          "is_grounded": true,
+          "unsupported_claims": [],
+          "action": "approved",
+          "summary": "The draft accurately reflects the retrieved documentation. The steps for inviting a guest (Share > Invite, Guest (Single Board), Can View) match Chunk 1. The pricing claim (free unlimited read-only viewers on Pro) matches Chunks 1 and 2. The permission scoping (restricted to shared boards, cannot create boards/view members) matches Chunk 2. No unsupported claims were found."
+        },
+        "rewrite_triggered": false
+      },
+      "step": 8,
+      "timestamp": "2026-08-30T12:43:33.399700+00:00"
+    }
+  ]
+}

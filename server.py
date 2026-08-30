@@ -265,7 +265,10 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
         if (!res.ok || data.error) {
           throw new Error(data.error || 'Failed to execute triage agent');
         }
-        alert('✅ Agent triage completed for ' + ticketId + '!\nCategory: ' + data.category + ' (' + data.urgency + ' urgency)\nVerification: ' + (data.verification ? data.verification.status : 'verified') + '\n\nDraft added to Review Queue.');
+        const cat = data.category || 'how-to';
+        const urg = data.urgency || 'low';
+        const ver = (data.verification && (data.verification.action || data.verification.status)) || 'approved';
+        alert('✅ Agent triage completed for ' + ticketId + '!\nCategory: ' + cat + ' (' + urg + ' urgency)\nVerification: ' + ver + '\n\nDraft added to Review Queue.');
         switchTab('queue');
       } catch (err) {
         alert('❌ Run failed: ' + err.message);
@@ -422,15 +425,19 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 
 
 def get_review_queue_data() -> list[dict[str, Any]]:
-    queue_dir = BASE_DIR / "agent" / "review_queue"
-    items = []
-    if queue_dir.exists():
-        for f in sorted(queue_dir.glob("*.json")):
-            try:
-                items.append(json.loads(f.read_text(encoding="utf-8")))
-            except Exception:
-                pass
-    return items
+    queue_dirs = [BASE_DIR / "agent" / "review_queue", Path("/tmp/agent/review_queue")]
+    items_by_id = {}
+    for q_dir in queue_dirs:
+        if q_dir.exists():
+            for f in sorted(q_dir.glob("*.json")):
+                try:
+                    data = json.loads(f.read_text(encoding="utf-8"))
+                    t_id = data.get("ticket_id")
+                    if t_id:
+                        items_by_id[t_id] = data
+                except Exception:
+                    pass
+    return list(items_by_id.values())
 
 
 def get_tickets_data() -> list[dict[str, Any]]:
@@ -603,13 +610,17 @@ def app(environ: dict[str, Any], start_response: Any) -> list[bytes]:
                 with queue_json_path.open(encoding="utf-8") as f:
                     queue_data = json.load(f)
 
+            v_info = queue_data.get("verification_info", {})
+            v_sub = v_info.get("verification", {})
+            v_status = v_sub.get("action") or v_info.get("status") or "approved"
+
             resp = json.dumps({
                 "status": "ok",
                 "ticket_id": t_id,
                 "draft_reply": draft,
-                "category": queue_data.get("category"),
-                "urgency": queue_data.get("urgency"),
-                "verification": queue_data.get("verification_info", {}).get("verification"),
+                "category": queue_data.get("category") or "other",
+                "urgency": queue_data.get("urgency") or "low",
+                "verification": {"status": v_status, **v_sub},
             }).encode("utf-8")
             start_response("200 OK", [
                 ("Content-Type", "application/json; charset=utf-8"),

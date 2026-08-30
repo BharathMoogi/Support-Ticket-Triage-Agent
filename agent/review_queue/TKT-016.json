@@ -1,0 +1,33 @@
+{
+  "ticket_id": "TKT-016",
+  "customer_id": "CUST-116",
+  "subject": "Assistance required configuring SAML 2.0 Okta SSO on Team tier",
+  "draft_reply": "Subject: Re: Configuring Okta SAML SSO on your Team workspace\n\nHi there,\n\nThanks for reaching out. SAML 2.0 SSO is fully supported on your Team plan, and Okta is one of our supported identity providers, so you are ready to proceed with the configuration.\n\nHere are the exact values to enter in your **Okta Admin Console** when creating a new SAML 2.0 application:\n\n- **ACS URL (Assertion Consumer Service):** `https://auth.flowboard.app/saml/consume/[workspace_id]`\n  - Replace `[workspace_id]` with your actual FlowBoard workspace ID.\n- **Entity ID (Audience URI / SP Entity ID):** `https://auth.flowboard.app/saml/metadata`\n\n**Where to paste your X.509 certificate:**\nThe certificate goes on the **FlowBoard** side, not in Okta. In FlowBoard, go to **Workspace Settings > Security > Single Sign-On** and enter:\n- Your IdP Issuer URL\n- Your SSO Endpoint (from Okta)\n- Your **X.509 Certificate**\n\n(Alternatively, you can upload your Okta IdP Metadata XML, which auto-populates these fields.)\n\n**To enforce SSO for everyone:**\nOnce the connection is verified, toggle on **Enforce SSO** in the same Single Sign-On section. This mandates login via Okta for all non-guest users in your workspace.\n\nA quick note: the ACS URL is workspace-specific, so please confirm you're using your own workspace ID rather than the placeholder. If you'd like, share your workspace ID and I can confirm the exact URL for you.\n\nLet me know once you've entered the details and I'm happy to help you verify the connection before you enforce it.\n\nBest regards,\nFlowBoard Support",
+  "verification_info": {
+    "status": "passed_after_rewrite",
+    "initial_verification": {
+      "is_grounded": false,
+      "unsupported_claims": [
+        {
+          "sentence": "so you're all set to enforce SSO for your 80 employees.",
+          "reason": "The customer account context does not specify the number of employees (80). This is a hallucinated detail not present in the provided context or documentation."
+        }
+      ],
+      "action": "rewrite_needed",
+      "summary": "The draft correctly identifies the plan tier, supported IdP, and technical configuration steps based on the documentation. However, it includes a specific claim about the customer having '80 employees' which is not supported by the provided account context. This specific number must be removed or generalized to avoid inaccuracy."
+    },
+    "rewrite_triggered": true,
+    "final_verification": {
+      "is_grounded": true,
+      "unsupported_claims": [],
+      "action": "approved",
+      "summary": "The draft accurately reflects the retrieved documentation. It correctly identifies that SAML SSO is available on the Team plan (Chunk 2), lists Okta as a supported IdP (Chunk 3), and provides the correct configuration steps including the specific URLs, the location for entering IdP details (Workspace Settings > Security > Single Sign-On), and the 'Enforce SSO' toggle behavior (Chunk 1). No unsupported claims were found."
+    }
+  },
+  "status": "pending_review",
+  "queued_at": "2026-08-30T12:59:37.602655+00:00",
+  "reviewed_at": null,
+  "reviewer_decision": null,
+  "edited_reply": null,
+  "trajectory_path": "trajectories\\TKT-016.json"
+}

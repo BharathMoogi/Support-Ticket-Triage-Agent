@@ -1,0 +1,37 @@
+{
+  "ticket_id": "TKT-018",
+  "customer_id": "CUST-118",
+  "subject": "Reached 100 automation runs on Free tier - when does the monthly quota reset?",
+  "draft_reply": "**Subject:** Re: Reached 100 automation runs on Free tier – when does the monthly quota reset?\n\nHi there,\n\nThanks for reaching out, and congratulations on getting your team up and running on FlowBoard! I completely understand the frustration of hitting a limit mid-project.\n\n**Your current limits (Free tier)**\n\nAs a Free tier user, your workspace is currently limited to:\n- **Automation runs:** 100 runs/month\n- **Active boards:** Up to 3\n- **Team members:** Up to 5\n- **Storage:** 100 MB total\n\n**Regarding the quota reset**\n\nThe documentation confirms that the Free tier includes 100 automation runs per month. However, the specific date or mechanism for when this monthly counter resets is not detailed in the available support resources. To ensure you receive the most accurate information regarding your specific billing cycle and reset date, I recommend checking your account’s billing history or contacting our billing support team directly.\n\n**If you need more capacity sooner**\n\nIf your team’s testing requires more than 100 runs before the next reset, you can **upgrade to Pro**. This upgrade:\n- Takes effect **immediately** upon checkout.\n- Unlocks **1,000 automation runs per user per month** (pooled across your workspace).\n- Is billed as a **prorated amount** for the remainder of your current billing cycle, so you won't pay for time you've already used.\n\nIf you have any other questions or need help with the upgrade, just let me know — happy to help!\n\nBest regards,\nFlowBoard Support Team",
+  "verification_info": {
+    "status": "passed_after_rewrite",
+    "initial_verification": {
+      "is_grounded": false,
+      "unsupported_claims": [
+        {
+          "sentence": "Your automation run counter resets on the **30-day anniversary of your account's billing cycle start date** — not on the 1st of each calendar month.",
+          "reason": "The provided documentation chunks do not specify the exact mechanism or date for when the monthly automation quota resets. While Chunk 8 mentions billing is per active user per month, it does not define the reset date as the '30-day anniversary' or link it specifically to the signup date in this manner. This is a specific operational detail not found in the reference text."
+        },
+        {
+          "sentence": "Since your workspace was created on **February 10, 2026**, your monthly quota will reset on the **10th of each month** (e.g., March 10, April 10, and so on).",
+          "reason": "The documentation does not state that the quota reset date is tied to the signup date or that it occurs on the 10th of each month. This is an unverified assumption about the billing cycle logic."
+        }
+      ],
+      "action": "rewrite_needed",
+      "summary": "The draft correctly identifies the Free tier limits (100 runs, 3 boards, 5 members, 100MB storage) and the Pro upgrade benefits (immediate effect, prorated billing, 1,000 runs/user). However, it makes specific claims about the quota reset date (10th of the month based on signup date) that are not supported by the provided documentation chunks. The documentation confirms the limits but does not define the reset schedule. The agent should avoid specifying the exact reset date unless it is explicitly stated in the docs, or direct the user to check their billing dashboard for the specific cycle end date."
+    },
+    "rewrite_triggered": true,
+    "final_verification": {
+      "is_grounded": true,
+      "unsupported_claims": [],
+      "action": "approved",
+      "summary": "The draft accurately reflects the customer's Free tier limits (100 automation runs, 3 boards, 5 members, 100MB storage) as per Chunk 8. It correctly states that the specific reset date is not in the documentation and advises checking billing history. The upgrade details (immediate effect, prorated billing, 1,000 runs/user/month pooled) are fully supported by Chunks 1, 4, 6, and 12. No unsupported claims were found."
+    }
+  },
+  "status": "pending_review",
+  "queued_at": "2026-08-30T13:02:32.165362+00:00",
+  "reviewed_at": null,
+  "reviewer_decision": null,
+  "edited_reply": null,
+  "trajectory_path": "trajectories\\TKT-018.json"
+}

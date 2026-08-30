@@ -1,0 +1,37 @@
+{
+  "ticket_id": "TKT-007",
+  "customer_id": "CUST-107",
+  "subject": "Automatic annual renewal charged 20 days ago - requesting prorated refund",
+  "draft_reply": "Subject: Re: Annual renewal refund request (TKT-007)\n\nHi there,\n\nThank you for reaching out, and I'm sorry to hear about the recent downsizing on your team — I understand this can be a stressful time, and I appreciate you letting us know.\n\nThe good news is that you are within our refund window. Per FlowBoard's refund policy, annual renewal charges are eligible for a **prorated refund when requested within 30 days of the renewal date**. Since your renewal was charged 20 days ago, you qualify.\n\nHere is what I will do next:\n1. **Cancel your Team plan subscription** so no further renewals are charged.\n2. **Process a prorated refund** for the unused portion of your annual term. The refund will be issued to your original payment method.\n\nIf you'd like, I can also help with a data export or workspace deletion once you're ready. Just let me know.\n\nPlease confirm that you'd like me to proceed with the cancellation and refund, and I'll get that started right away.\n\nBest regards,\nFlowBoard Support Team",
+  "verification_info": {
+    "status": "passed_after_rewrite",
+    "initial_verification": {
+      "is_grounded": false,
+      "unsupported_claims": [
+        {
+          "sentence": "The refund will be issued to your original payment method (your corporate card) and typically appears within 5–10 business days, depending on your bank.",
+          "reason": "The retrieved documentation chunks do not specify the refund processing time (5-10 business days) or the specific payment method (corporate card). While 'original payment method' is standard, the specific timeframe and card type are not present in the provided reference material."
+        },
+        {
+          "sentence": "you'll retain full access to FlowBoard until the end of the paid term, so your team can export any data or files you need before the account closes.",
+          "reason": "Chunk 1 states that after 30 days, annual subscriptions cannot be refunded but access is retained until the end of the term. It does not explicitly state that access is retained *during* the refund period for renewals, nor does it mention data export capabilities or 'account closes' in this context. While likely true in practice, it is not strictly grounded in the provided text which only mentions access retention in the context of non-refundable periods."
+        }
+      ],
+      "action": "rewrite_needed",
+      "summary": "The core policy application (prorated refund within 30 days for annual renewals) is correctly grounded in Chunk 1. However, the draft includes specific operational details (refund processing time of 5-10 days, specific payment method 'corporate card', and data export/access retention details) that are not present in the retrieved documentation. These claims must be removed or verified against additional documentation before approval."
+    },
+    "rewrite_triggered": true,
+    "final_verification": {
+      "is_grounded": true,
+      "unsupported_claims": [],
+      "action": "approved",
+      "summary": "The draft correctly cites the 30-day prorated refund window for annual renewals as per Chunk 1. The customer's renewal was 20 days ago, which falls within this window. The offer to cancel and process a refund is consistent with the policy. The mention of data export or workspace deletion is supported by the existence of Chunk 2 (Account Cancellation and Workspace Deletion), even though the chunk content is empty, the title confirms the feature exists."
+    }
+  },
+  "status": "pending_review",
+  "queued_at": "2026-08-30T12:46:57.962019+00:00",
+  "reviewed_at": null,
+  "reviewer_decision": null,
+  "edited_reply": null,
+  "trajectory_path": "trajectories\\TKT-007.json"
+}

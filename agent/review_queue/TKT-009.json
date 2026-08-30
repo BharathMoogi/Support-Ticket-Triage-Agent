@@ -1,0 +1,22 @@
+{
+  "ticket_id": "TKT-009",
+  "customer_id": "CUST-109",
+  "subject": "Requesting refund for 2 months of unused Pro subscription",
+  "draft_reply": "Here's the triage summary and a grounded draft reply.\n\n**Triage:** Category = Billing, Urgency = Medium\n**Key facts:**\n- Customer signed up 2026-06-25 on a monthly Pro plan; 2 charges of $12 each ($24 total).\n- Refund policy: full refund only within **14 days** of the *initial* charge; **renewals of monthly plans are non-refundable** once the billing date has passed.\n- The first charge (initial subscription) is well past the 14-day window; the second charge is a renewal, which is non-refundable by policy.\n\n---\n\n**Draft reply:**\n\nHi there,\n\nThank you for reaching out, and I'm sorry to hear your project was canceled — I completely understand why you'd want your money back, especially since you never had a chance to use the service. I appreciate you letting us know.\n\nI've looked into your account and the two charges on your statement:\n\n1. **First charge (initial Pro subscription):** Our refund policy allows a full refund when requested within 14 days of the initial charge. Because that window has passed, this charge is unfortunately outside the standard refund eligibility.\n2. **Second charge (monthly renewal):** Renewals of monthly plans are non-refundable once the billing date has passed, so this charge is also not eligible for a refund under our policy.\n\nI know that's not the answer you were hoping for, and I want to be upfront about it rather than leave you guessing.\n\nThat said, here's what I can do right now to make sure you're not charged again:\n- **Cancel your subscription** so no further renewals occur. You can do this anytime via **Workspace Settings → Billing → Cancel Subscription**, and I'm happy to handle it on my end if you'd prefer — just confirm and I'll take care of it.\n- If you'd like, I can also **escalate your case to our billing team** for a one-time goodwill review given that you never used the service. I can't promise an outcome, but I'll flag the circumstances clearly.\n\nWould you like me to go ahead and cancel the subscription and/or submit the goodwill review? Just let me know and I'll get it moving right away.\n\nThanks for your patience, and I'm sorry for the inconvenience.\n\nBest regards,\nFlowBoard Support",
+  "verification_info": {
+    "status": "passed_first_pass",
+    "verification": {
+      "is_grounded": true,
+      "unsupported_claims": [],
+      "action": "approved",
+      "summary": "The draft accurately reflects the refund policy (14-day window for initial charge, non-refundable renewals) and the cancellation steps (Workspace Settings > Billing > Cancel Subscription) found in the documentation. The triage summary correctly identifies that the customer is outside the refund window for the initial charge and that the renewal is non-refundable. The offer to escalate for a goodwill review is a standard support action not contradicted by the provided documentation."
+    },
+    "rewrite_triggered": false
+  },
+  "status": "pending_review",
+  "queued_at": "2026-08-30T12:48:01.667948+00:00",
+  "reviewed_at": null,
+  "reviewer_decision": null,
+  "edited_reply": null,
+  "trajectory_path": "trajectories\\TKT-009.json"
+}
