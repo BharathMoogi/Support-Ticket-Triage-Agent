@@ -450,6 +450,15 @@ def get_request_path(environ: dict[str, Any]) -> str:
 
 def app(environ: dict[str, Any], start_response: Any) -> list[bytes]:
     """Standard WSGI entrypoint for Vercel and local web servers."""
+    if "debug" in environ.get("QUERY_STRING", ""):
+        # Diagnostic dump of all environment headers
+        debug_info = "\n".join(f"{k}: {v}" for k, v in sorted(environ.items()))
+        start_response("200 OK", [
+            ("Content-Type", "text/plain; charset=utf-8"),
+            ("Content-Length", str(len(debug_info)))
+        ])
+        return [debug_info.encode("utf-8")]
+
     path = get_request_path(environ)
     method = environ.get("REQUEST_METHOD", "GET").upper()
 
