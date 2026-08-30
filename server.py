@@ -406,48 +406,7 @@ def app(environ: dict[str, Any], start_response: Any) -> list[bytes]:
     if len(path) > 1 and path.endswith("/"):
         path = path[:-1]
 
-    if method == "GET":
-        if path in ("", "/", "/index.html"):
-            body = HTML_TEMPLATE.encode("utf-8")
-            start_response("200 OK", [
-                ("Content-Type", "text/html; charset=utf-8"),
-                ("Content-Length", str(len(body)))
-            ])
-            return [body]
-
-        elif path == "/api/review_queue":
-            body = json.dumps(get_review_queue_data()).encode("utf-8")
-            start_response("200 OK", [
-                ("Content-Type", "application/json; charset=utf-8"),
-                ("Content-Length", str(len(body)))
-            ])
-            return [body]
-
-        elif path == "/api/tickets":
-            body = json.dumps(get_tickets_data()).encode("utf-8")
-            start_response("200 OK", [
-                ("Content-Type", "application/json; charset=utf-8"),
-                ("Content-Length", str(len(body)))
-            ])
-            return [body]
-
-        elif path == "/api/docs":
-            body = json.dumps(get_docs_data()).encode("utf-8")
-            start_response("200 OK", [
-                ("Content-Type", "application/json; charset=utf-8"),
-                ("Content-Length", str(len(body)))
-            ])
-            return [body]
-
-        elif path == "/api/eval":
-            body = json.dumps(get_eval_data()).encode("utf-8")
-            start_response("200 OK", [
-                ("Content-Type", "application/json; charset=utf-8"),
-                ("Content-Length", str(len(body)))
-            ])
-            return [body]
-
-    elif method == "POST" and path == "/api/decide":
+    if method == "POST" and ("/api/decide" in path or path.endswith("/api/decide")):
         try:
             content_length = int(environ.get("CONTENT_LENGTH", 0))
             body_bytes = environ["wsgi.input"].read(content_length)
@@ -482,9 +441,51 @@ def app(environ: dict[str, Any], start_response: Any) -> list[bytes]:
             ])
             return [err]
 
-    # 404 Fallback
-    not_found = b"Not Found"
-    start_response("404 Not Found", [
+    elif method == "GET":
+        if "/api/review_queue" in path or path.endswith("/api/review_queue"):
+            body = json.dumps(get_review_queue_data()).encode("utf-8")
+            start_response("200 OK", [
+                ("Content-Type", "application/json; charset=utf-8"),
+                ("Content-Length", str(len(body)))
+            ])
+            return [body]
+
+        elif "/api/tickets" in path or path.endswith("/api/tickets"):
+            body = json.dumps(get_tickets_data()).encode("utf-8")
+            start_response("200 OK", [
+                ("Content-Type", "application/json; charset=utf-8"),
+                ("Content-Length", str(len(body)))
+            ])
+            return [body]
+
+        elif "/api/docs" in path or path.endswith("/api/docs"):
+            body = json.dumps(get_docs_data()).encode("utf-8")
+            start_response("200 OK", [
+                ("Content-Type", "application/json; charset=utf-8"),
+                ("Content-Length", str(len(body)))
+            ])
+            return [body]
+
+        elif "/api/eval" in path or path.endswith("/api/eval"):
+            body = json.dumps(get_eval_data()).encode("utf-8")
+            start_response("200 OK", [
+                ("Content-Type", "application/json; charset=utf-8"),
+                ("Content-Length", str(len(body)))
+            ])
+            return [body]
+
+        else:
+            # Serve main dashboard HTML for all non-API GET requests (handles root / and any custom routing paths)
+            body = HTML_TEMPLATE.encode("utf-8")
+            start_response("200 OK", [
+                ("Content-Type", "text/html; charset=utf-8"),
+                ("Content-Length", str(len(body)))
+            ])
+            return [body]
+
+    # Suffix Fallback
+    not_found = b"Method Not Allowed"
+    start_response("405 Method Not Allowed", [
         ("Content-Type", "text/plain; charset=utf-8"),
         ("Content-Length", str(len(not_found)))
     ])
