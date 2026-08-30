@@ -86,10 +86,18 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-Open `.env` in any editor and configure your Anthropic API key:
+Open `.env` in any editor and configure your preferred LLM provider:
+
+**Option A: Anthropic Claude (Benchmark Standard)**
 ```ini
 ANTHROPIC_API_KEY=sk-ant-api03-...
 ANTHROPIC_MODEL=claude-sonnet-4-5
+```
+
+**Option B: Groq Cloud (Free Tier)**
+```ini
+GROQ_API_KEY=gsk_...
+GROQ_MODEL=qwen/qwen3.8-27b
 ```
 
 ### 3. Run the Zero-Shot Baseline
@@ -126,17 +134,28 @@ Calculate cost comparison, load manual rubric entries, and print the improvement
 python eval/score.py
 ```
 
+### 7. Launch the Web Dashboard
+
+Start the built-in WSGI server to interact with tickets and review queue in a visual interface:
+```bash
+python server.py
+```
+*Open [http://localhost:8000](http://localhost:8000) or view the live cloud deployment on [Vercel](https://support-ticket-triage-agent-moogi-bharath-s-projects1.vercel.app).*
+
+> 📖 For a detailed walkthrough, see [**REPRODUCTION.md**](REPRODUCTION.md).
+
 ---
 
 ## ⏱️ Expected Runtime & API Cost
 
-Estimates for running the full 18-ticket synthetic evaluation benchmark with `claude-sonnet-4-5`:
+Estimates for running the full 18-ticket synthetic evaluation benchmark:
 
-| Pipeline Stage | Expected Runtime | Estimated Token Usage | Estimated API Cost (USD) |
-| :--- | :--- | :--- | :--- |
-| **Baseline Run** (`baseline/baseline.py`) | ~15 – 25 seconds | ~9,000 total tokens | **~$0.08 – $0.12** |
-| **Agent Run** (`agent/main.py`) | ~45 – 90 seconds | ~45,000 total tokens | **~$0.40 – $0.70** |
-| **Total Evaluation Suite** | **< 2 minutes** | **~54,000 tokens** | **< $1.00 total** |
+| Pipeline Stage | Expected Runtime | Estimated Token Usage | Estimated API Cost (Claude Sonnet 4.5) | Estimated API Cost (Groq Free Tier) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Baseline Run** (`baseline/baseline.py`) | ~20 – 40 seconds | ~9,500 total tokens | **~$0.1243** ($0.0069/tkt) | **$0.00 (Free)** |
+| **Agent Run** (`agent/main.py`) | ~60 – 90 seconds | ~42,000 total tokens | **~$0.4610** ($0.0256/tkt) | **$0.00 (Free)** |
+| **Scoring & Verification** (`eval/score.py`) | < 2 seconds | Local / Offline | **$0.00** | **$0.00** |
+| **Total Evaluation Suite** | **< 3 minutes** | **~51,500 tokens** | **< $0.60 total** | **$0.00 (Free)** |
 
 ---
 
