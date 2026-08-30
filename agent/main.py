@@ -116,7 +116,12 @@ def _dispatch_tool(tool_name: str, tool_input: dict[str, Any], client: Any = Non
     elif tool_name == "search_docs":
         query = tool_input.get("query", "")
         k = int(tool_input.get("k", 3))
-        return search_docs(query, k=k)
+        # Resolve docs dir: use DOCS_DIR env var if it points to a real directory,
+        # otherwise fall back to project-root "docs/" (works on Vercel /var/task/docs)
+        _env_docs = os.getenv("DOCS_DIR", "")
+        _candidate = Path(_env_docs) if _env_docs else Path(_PROJECT_ROOT / "docs")
+        docs_dir = str(_candidate) if _candidate.is_dir() else str(_PROJECT_ROOT / "docs")
+        return search_docs(query, k=k, docs_dir=docs_dir)
     elif tool_name == "get_customer_context":
         cid = tool_input.get("customer_id", "")
         ctx = get_customer_context(cid)
