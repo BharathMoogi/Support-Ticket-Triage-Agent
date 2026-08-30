@@ -437,9 +437,20 @@ def get_eval_data() -> dict[str, Any]:
 # Standard WSGI Application (Vercel & Standard Python Web Servers)
 # ---------------------------------------------------------------------------
 
+def get_request_path(environ: dict[str, Any]) -> str:
+    """Extract the original requested path, bypassing Vercel serverless rewrites."""
+    # Try Vercel-specific forwarded paths first
+    for key in ("HTTP_X_VERCEL_FORWARDED_PATH", "HTTP_X_FORWARDED_PATH", "RAW_URI", "REQUEST_URI", "PATH_INFO"):
+        val = environ.get(key)
+        if val:
+            # Strip query parameters
+            return val.split("?", 1)[0]
+    return "/"
+
+
 def app(environ: dict[str, Any], start_response: Any) -> list[bytes]:
     """Standard WSGI entrypoint for Vercel and local web servers."""
-    path = environ.get("PATH_INFO", "/")
+    path = get_request_path(environ)
     method = environ.get("REQUEST_METHOD", "GET").upper()
 
     # Normalize trailing slash
