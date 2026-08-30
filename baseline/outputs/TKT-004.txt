@@ -1,0 +1,41 @@
+Hi there,
+
+I’m sorry to hear you’ve run into this issue. It can be frustrating when communication loops are broken, especially when you rely on those real-time updates.
+
+Since this started a few days ago, it is likely related to a specific setting change, an email filter issue, or a temporary synchronization glitch. Here is a step-by-step troubleshooting guide to help you get those notifications back:
+
+### 1. Check Your Notification Settings in the App
+First, verify if your global or card-specific settings have inadvertently been changed.
+*   **Global Settings:** Go to your **Profile** > **Notifications**. Ensure that "Email notifications" are enabled and that specific triggers like "When I am mentioned" or "When a card is updated" are turned on.
+*   **List/Board Specific Settings:** Sometimes notifications can be muted for specific lists or boards. Hover over the list/board name and look for a bell icon. If it’s crossed out, you’ve muted it. Click it to re-enable.
+*   **Mentions Specifically:** Ensure that the setting for "When someone mentions me" is set to "Email" and not just "In-app" or "None."
+
+### 2. Check Your Email Filters and Junk Folder
+*   **Spam/Junk:** Check your Spam or Junk folder. If you found them there, mark them as "Not Spam" and add the notification sender (e.g., `no-reply@your-tool.com`) to your safe senders list.
+*   **Corporate Filters:** If you’re using a work email, ask your IT department if any new email filtering rules were implemented recently that might be blocking automated digests.
+*   **Subscription Management:** Some apps send notifications in a "digest" (summary) format. Check if you’ve accidentally switched from "Instant" to "Daily Digest." You can usually change this in your Notification Preferences.
+
+### 3. Verify User Account Status
+*   **Email Address Update:** Have you recently changed your email address in your profile settings? If so, ensure the *new* email is confirmed/verified. Notifications won’t go to an unverified address.
+*   **Account Deactivation/Reactivation:** Did you recently deactivate and reactivate your account? This can sometimes reset notification preferences.
+
+### 4. Clear Cache and Restart
+*   **Web Browser:** If you’re using the web interface, try clearing your browser cache or testing in an Incognito/Private window. Sometimes session tokens get stuck.
+*   **Mobile App:** If you use the mobile app, try logging out and back in, or even uninstalling and reinstalling the app to reset local settings.
+
+### 5. Test with a Card
+To confirm if the issue is resolved:
+1.  Have a colleague create a new card or comment on an existing card and **tag you** (@YourName).
+2.  Wait 2–5 minutes.
+3.  Check your inbox.
+
+### Still Not Working?
+If you’ve gone through all these steps and still receive no emails, it may be a backend issue on our end. In that case, please:
+1.  Note your **User ID** (found in Profile > Account Settings).
+2.  Provide an example email address you should have received the notification to.
+3.  Reach out to our **Support Team directly** with this information so our engineers can check our servers for any delivery errors.
+
+I hope one of these steps resolves it quickly! Let me know if you need help navigating any of these settings.
+
+Best regards,  
+Your Support Team

@@ -16,11 +16,10 @@ def _make_groq_client(api_key: str):
     from groq import Groq
     import httpx
 
-    # Vercel has valid SSL certs — only skip verification locally if explicitly opted in
+    # Vercel has valid Linux SSL root certs; local Windows needs verify=False to prevent certificate errors
     is_vercel = bool(os.getenv("VERCEL") or os.getenv("VERCEL_ENV") or os.getenv("VERCEL_REGION"))
-    disable_ssl = os.getenv("DISABLE_SSL_VERIFY", "").lower() in ("1", "true", "yes")
 
-    if not is_vercel and disable_ssl:
+    if not is_vercel:
         return Groq(api_key=api_key, http_client=httpx.Client(verify=False))
     return Groq(api_key=api_key)
 

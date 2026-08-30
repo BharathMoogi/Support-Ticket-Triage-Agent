@@ -1,0 +1,25 @@
+Hi there,
+
+Great news—this is a very common and supported use case! You can avoid extra seat costs while giving your freelancer exactly the access they need.
+
+Here’s how to invite an external guest to a **single board** as a **read-only viewer**:
+
+### Steps to Invite an External Viewer to One Board:
+1. **Go to the specific board** you want to share (e.g., “Marketing Assets”).
+2. Click on the **Share** button (usually in the top-right corner or in the sidebar, depending on your plan/interface).
+3. In the share dialog, choose **“Invite by email”** or paste the guest’s email address.
+4. Before sending, look for the **role/permission selector** and choose **“Viewer”** (not Editor or Member).
+5. **Important:** Make sure the option **“Give access to this board only”** or **“Limit access to this board”** is selected.  
+   - *Note:* The exact wording may vary by workspace type (e.g., Trello, Asana, Monday.com, etc.), but most platforms offer a way to restrict guest access to a single item/board.
+6. Send the invite. The guest will receive an email with a link to sign in (or create an account) and will only see that one board.
+
+### Key Benefits:
+- ✅ **Read-only**: They can view tasks, cards, comments (if allowed), and attachments but cannot edit or add content.
+- ✅ **Single-board scope**: They won’t see other boards or sensitive internal projects.
+- ✅ **No paid seat required**: Most platforms allow unlimited (or a generous number) of free guest/viewer accounts.
+
+### Pro Tips:
+- If your platform doesn’t allow board-level permission control for guests, check if you can create a **public share link** with viewer-only permissions instead.
+- For added security, enable **guest expiration** if available, so access automatically ends when the contract does.
+
+Let me know which platform you’re using (e.g., Trello, Asana, Monday, ClickUp, etc.) if you’d like walkthrough instructions tailored to your tool!

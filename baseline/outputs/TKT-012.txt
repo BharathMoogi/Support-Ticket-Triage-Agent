@@ -1,0 +1,39 @@
+Hello,
+
+Thank you for providing the specific crash details. An `EXC_BAD_ACCESS` (SIGSEGV) in `libsqlite3.dylib` during database migration is a known class of issues that can occur when a new app version attempts to modify the database schema differently than the version it is upgrading from, or if the SQLite file itself has become corrupted during a failed previous update attempt.
+
+Since reinstalling the app did not resolve the issue, the corruption or mismatch is likely tied to the local database file on your device.
+
+Could you please try the following **workarounds** in order?
+
+**1. Force the Database to Reset (Safe Workaround)**
+*Note: This will clear all locally cached data in FlowBoard. You will need to re-sync from our cloud servers once logged back in. Please back up any critical offline notes if applicable.*
+
+1.  Open the **Files** app on your iPhone.
+2.  Go to the **Browse** tab and look for **On My iPhone**.
+3.  Navigate to **FlowBoard** (or the folder corresponding to our app sandbox).
+4.  Look for the database file (often named something like `flowboard.sqlite`, `db.sqlite3`, or similar) and **delete it**.
+5.  Force close the FlowBoard app (swipe up and dismiss it).
+6.  Reopen the app. It should detect the missing/corrupt DB, initialize a fresh one, and sync your data from the cloud.
+
+**2. Clear App Data via Long Press (Alternative)**
+If you cannot locate the file in the Files app:
+1.  Long-press the FlowBoard app icon on your home screen.
+2.  Select **Remove App** → **Delete App**.
+3.  Wait 10 seconds.
+4.  Re-download and install v4.1.0 from the App Store.
+5.  *Important:* Immediately after installing, do **not** log in for 30 seconds. Sometimes, a forced fresh start after deletion is more effective than a simple uninstall.
+
+**3. Check for Multiple Active Sessions**
+Are you running another instance of FlowBoard (e.g., on iPad or another iPhone) with the same account simultaneously? Sometimes, concurrent writes during migration can cause locking issues. Please ensure no other devices are logged in with the same account while you reset the iOS app.
+
+**Next Steps**
+If the above steps do not resolve the crash, please reply with:
+1.  The exact **Build Number** of v4.1.0 shown in the app’s “About” page (or in the crash log).
+2.  A **full crash log** (not just the summary) exported from Xcode Organizer. You can copy the entire text of the `.ips` file.
+3.  Whether you were able to reproduce the crash by installing a **fresh new device** (or simulator) and logging in for the first time.
+
+We are currently reviewing this specific migration scenario with our engineering team and will follow up shortly with a broader fix if this is a widespread issue.
+
+Best regards,  
+FlowBoard Support Team

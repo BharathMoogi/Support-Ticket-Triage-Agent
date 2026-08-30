@@ -1,0 +1,26 @@
+Subject: Urgent: Action Taken on Your Account & Duplicate Charge
+
+Dear [Customer Name],
+
+I am sincerely apologetic for the significant frustration and disruption this has caused you. I completely understand why you are upset; having a corporate card flagged and a workspace suspended is a critical business interruption, and it is unacceptable that FlowBoard is the cause.
+
+I have escalated this as a **P1 (Priority 1) incident** and taken the following immediate steps:
+
+1.  **Workspace Unfreeze:** I have manually reviewed and cleared the suspension flag on your account. Your team should be able to log in immediately. Please have your staff try now and confirm if access has been restored.
+2.  **Duplicate Charge Investigation:** I have passed your transaction details (timestamp and amount) to our billing and fraud prevention team. Because the legitimate charge was processed but the duplicate was charged before the system could validate the first one, this appears to be a system race condition rather than intentional double-billing.
+3.  **Refund Initiation:** I have authorized a refund for the duplicate $600 charge. This will typically hit your company card within 3–5 business days, though some banks may post it sooner. I have also sent a confirmation email with the refund reference number directly to you and your finance team.
+
+**Regarding your bank freeze:**
+Since the duplicate charge was the trigger for your bank’s fraud alert, the banks should automatically clear the flag once they detect the reversal. However, I recommend calling your bank’s fraud department directly if the account remains frozen after 24 hours, providing them with the refund reference number I’m sending you below. This will help them expedite the unfreezing of your corporate account.
+
+I will personally monitor this case until I confirm the refund is posted and your team is back online. I value your business and am committed to making this right.
+
+If your team is still unable to log in within the next 15 minutes, please reply to this email immediately so I can assign an on-call engineer to check the login service specifically for your tenant.
+
+Sincerely,
+
+[Your Name]  
+Customer Support Lead  
+FlowBoard  
+
+**Ref: [Case Number] | Refund Reference: [REF-12345]**

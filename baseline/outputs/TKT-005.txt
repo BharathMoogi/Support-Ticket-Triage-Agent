@@ -1,0 +1,20 @@
+Hi there,
+
+Thanks for reaching out! I’m happy to clarify how our billing works for mid-cycle upgrades.
+
+When you upgrade from the Free plan to a paid plan (like Pro), **you will be charged a prorated amount for the first month**. This means you won’t be charged the full $12/user/mo if you’re only using the service for part of the billing cycle.
+
+Here’s how it works in your specific case:
+
+1. **Proration Calculation**: The cost for the first month is calculated based on the number of days remaining in your current billing cycle (from the day you upgrade to the next scheduled renewal date).
+2. **Total Cost**: That prorated amount is multiplied by your team size (4 users).
+3. **Subsequent Months**: Starting the following month, you’ll be billed the full standard rate of $12/user/month ($48 total for your team of 4) on your regular renewal date.
+
+**Example**:  
+If your billing cycle ends in 10 days, you’d be charged approximately (10 / 30) × $12 × 4 users ≈ **$16** for the first partial month, followed by the full $48 in the next full month.
+
+Would you like help with anything else, such as setting up the upgrade or managing user access? I’m here to help!
+
+Best regards,  
+[Your Name]  
+Customer Support Team

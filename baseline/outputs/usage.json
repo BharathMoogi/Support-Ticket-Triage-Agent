@@ -1,0 +1,74 @@
+{
+  "TKT-001": {
+    "input_tokens": 90,
+    "output_tokens": 618
+  },
+  "TKT-002": {
+    "input_tokens": 94,
+    "output_tokens": 404
+  },
+  "TKT-003": {
+    "input_tokens": 92,
+    "output_tokens": 448
+  },
+  "TKT-004": {
+    "input_tokens": 86,
+    "output_tokens": 748
+  },
+  "TKT-005": {
+    "input_tokens": 104,
+    "output_tokens": 301
+  },
+  "TKT-006": {
+    "input_tokens": 107,
+    "output_tokens": 176
+  },
+  "TKT-007": {
+    "input_tokens": 104,
+    "output_tokens": 376
+  },
+  "TKT-008": {
+    "input_tokens": 97,
+    "output_tokens": 370
+  },
+  "TKT-009": {
+    "input_tokens": 103,
+    "output_tokens": 190
+  },
+  "TKT-010": {
+    "input_tokens": 120,
+    "output_tokens": 384
+  },
+  "TKT-011": {
+    "input_tokens": 127,
+    "output_tokens": 686
+  },
+  "TKT-012": {
+    "input_tokens": 131,
+    "output_tokens": 659
+  },
+  "TKT-013": {
+    "input_tokens": 131,
+    "output_tokens": 396
+  },
+  "TKT-014": {
+    "input_tokens": 140,
+    "output_tokens": 470
+  },
+  "TKT-015": {
+    "input_tokens": 139,
+    "output_tokens": 499
+  },
+  "TKT-016": {
+    "input_tokens": 107,
+    "output_tokens": 687
+  },
+  "TKT-017": {
+    "input_tokens": 85,
+    "output_tokens": 310
+  },
+  "TKT-018": {
+    "input_tokens": 103,
+    "output_tokens": 174
+  }
+}

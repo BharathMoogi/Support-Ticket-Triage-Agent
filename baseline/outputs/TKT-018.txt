@@ -1,0 +1,12 @@
+Hi there,
+
+Thanks for reaching out! I’m glad you’re exploring FlowBoard and excited to see your team putting it to the test.
+
+To answer your question: On the Free tier, our usage limits are based on a **calendar month**. This means your 100 automation run quota will reset on the **1st day of every month** at midnight (UTC).
+
+So, you’ll be able to start running automations again on the first of the month! In the meantime, if you’re hitting this limit frequently and find that 100 runs isn’t quite enough for your workflow, you might want to consider our Starter plan, which offers more flexibility and volume.
+
+Let us know if you have any other questions or if there’s anything else we can help you with!
+
+Best regards,  
+The FlowBoard Support Team

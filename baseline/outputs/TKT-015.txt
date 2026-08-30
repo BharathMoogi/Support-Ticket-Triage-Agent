@@ -1,0 +1,25 @@
+Hi there,
+
+Thank you for reaching out to us. I’d like to clarify that **FlowBoard** is a standard productivity and project management tool, and it **does not currently support** holographic 3D vector projection, Linux-native VR spatial headsets for real-time card rendering in "hologram meeting rooms," or data export via "quantum neural link" formats. These features are not part of our product roadmap or current technology stack.
+
+To help address your concerns:
+
+1.  **Regarding VR/Holographic Issues:**  
+    Since FlowBoard does not integrate with VR headsets or 3D spatial planes, technical troubleshooting for gesture responsiveness or "offline" holographic menus falls outside the scope of our platform. We recommend checking your VR headset’s manufacturer support site (e.g., Meta Quest, Sony PlayStation VR 2, or PCVR headset brands) for firmware updates or gesture calibration tools. If you are using a third-party bridge or plugin to connect FlowBoard to a VR environment, please refer to that specific software’s documentation for support.
+
+2.  **Regarding Your Enterprise Plan:**  
+    You mentioned you are currently on the **Free plan** but wish to cancel an **Enterprise contract** that you *will* buy next year. As you have not yet purchased or signed up for the Enterprise plan, there is **nothing to cancel**. You will not be charged for Enterprise features unless you actively subscribe and provide payment details. To ensure you remain on the Free plan indefinitely, simply do not upgrade. If you have already started an Enterprise trial and wish to cancel before it converts to paid, please log in to your account settings and select “Cancel Subscription” immediately.
+
+3.  **Regarding Data Export:**  
+    We do not offer a “quantum neural link” export format. However, we do support standard, industry-compatible export options, including:
+    - CSV (for spreadsheet use)
+    - JSON
+    - PDF
+    - Direct integration with tools like Jira, Trello, Asana, and Zapier
+
+    You can export your cards from your FlowBoard interface under **Settings > Data Export**.
+
+If you meant a different service or are experiencing issues with a non-FlowBoard VR application, please direct your inquiry to the respective vendor’s support team. Otherwise, if you need assistance with standard FlowBoard features, I’m happy to help.
+
+Best regards,  
+FlowBoard Support Team

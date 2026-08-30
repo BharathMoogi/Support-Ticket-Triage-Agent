@@ -1,0 +1,28 @@
+Hello,
+
+Thank you for reaching out. I completely understand the need to have your VAT number (FR89234567890) correctly displayed for your accounting records.
+
+Here is the good news: **You can add your VAT number to your profile, and this will automatically apply to all future invoices and receipts.**
+
+However, please note that **past invoices (including those from January and February) are generally immutable documents** for legal and accounting integrity reasons. We cannot directly edit the PDFs of previously issued invoices to insert the VAT number retroactively, as this would alter the original audit trail.
+
+### Here’s what you can do:
+
+1.  **Update Your Profile (For Future Invoices):**
+    *   Log in to your account.
+    *   Go to **Settings** → **Billing** or **Company Information**.
+    *   Enter your VAT ID (**FR89234567890**) in the designated “VAT/Tax ID” field.
+    *   Save the changes. All new invoices generated from this point forward will include your VAT number.
+
+2.  **For Past Invoices (January & February):**
+    Please let us know if you require **official credit notes or corrected invoices** for those specific dates. If your accounting department accepts amended copies, we can often generate **duplicate invoices** or **credit notes** that include the VAT number for reimbursement or bookkeeping purposes. But please note, these are supplementary documents, not replacements of the original legal invoice.
+
+Could you please confirm:
+*   Would you like us to generate **corrected duplicate invoices** for January and February?
+*   Or does your accounting team accept **credit notes** issued retroactively with the VAT number, which can be attached to the originals for reconciliation?
+
+Once you confirm, I’ll process the appropriate documents immediately.
+
+Best regards,  
+[Your Name]  
+Customer Support Team

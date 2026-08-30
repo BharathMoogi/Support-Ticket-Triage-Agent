@@ -13,6 +13,12 @@ import json
 import os
 import sys
 from pathlib import Path
+from typing import Any
+
+# Ensure project root is on sys.path
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(_PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROJECT_ROOT))
 
 import anthropic
 from dotenv import load_dotenv
@@ -48,46 +54,62 @@ def load_tickets(tickets_dir: Path) -> list[dict]:
 
 
 def generate_baseline_reply(
-    client: anthropic.Anthropic,
+    client: Any,
     subject: str,
     body: str,
     model: str = DEFAULT_MODEL,
+    provider: str = "anthropic",
 ) -> tuple[str, int, int]:
-    """Send only subject + body to Anthropic API with no tools or context."""
+    """Send only subject + body to LLM API with no tools or context."""
     user_content = f"Subject: {subject}\n\n{body}"
 
-    response = client.messages.create(
-        model=model,
-        max_tokens=1500,
-        system=SYSTEM_PROMPT,
-        messages=[
-            {"role": "user", "content": user_content}
-        ],
-    )
+    if provider == "groq" or hasattr(client, "chat"):
+        response = client.chat.completions.create(
+            model=model,
+            max_tokens=1500,
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": user_content},
+            ],
+        )
+        in_tokens = getattr(response.usage, "prompt_tokens", 0) if getattr(response, "usage", None) else 0
+        out_tokens = getattr(response.usage, "completion_tokens", 0) if getattr(response, "usage", None) else 0
+        reply_text = response.choices[0].message.content or ""
+        return reply_text.strip(), in_tokens, out_tokens
+    else:
+        response = client.messages.create(
+            model=model,
+            max_tokens=1500,
+            system=SYSTEM_PROMPT,
+            messages=[
+                {"role": "user", "content": user_content}
+            ],
+        )
 
-    in_tokens = getattr(response.usage, "input_tokens", 0) if getattr(response, "usage", None) else 0
-    out_tokens = getattr(response.usage, "output_tokens", 0) if getattr(response, "usage", None) else 0
+        in_tokens = getattr(response.usage, "input_tokens", 0) if getattr(response, "usage", None) else 0
+        out_tokens = getattr(response.usage, "output_tokens", 0) if getattr(response, "usage", None) else 0
 
-    reply_text = ""
-    for block in response.content:
-        if getattr(block, "type", None) == "text":
-            reply_text += block.text
+        reply_text = ""
+        for block in response.content:
+            if getattr(block, "type", None) == "text":
+                reply_text += block.text
 
-    return reply_text.strip(), in_tokens, out_tokens
+        return reply_text.strip(), in_tokens, out_tokens
 
 
 def run_baseline(
     tickets_dir: str = "tickets",
     outputs_dir: str = "baseline/outputs",
-    model: str = DEFAULT_MODEL,
+    model: str | None = None,
 ) -> int:
     """Execute baseline generation for all tickets in tickets_dir."""
-    api_key = os.getenv("ANTHROPIC_API_KEY")
-    if not api_key:
-        console.print("[bold red]Error:[/bold red] ANTHROPIC_API_KEY is not set in environment or .env file.")
+    try:
+        from agent.llm_adapter import get_llm_client
+        provider, client, default_mod = get_llm_client()
+        active_model = model or default_mod
+    except Exception as e:
+        console.print(f"[bold red]Error initializing LLM client:[/bold red] {e}")
         sys.exit(1)
-
-    client = anthropic.Anthropic(api_key=api_key)
 
     tickets_path = Path(tickets_dir)
     outputs_path = Path(outputs_dir)
@@ -99,27 +121,31 @@ def run_baseline(
         return 0
 
     console.print(
-        f"[bold blue]Running No-Tools Baseline[/bold blue] on [bold]{len(tickets)}[/bold] tickets "
-        f"(Model: [cyan]{model}[/cyan])...\n"
+        f"[bold blue]Running No-Tools Baseline ({provider.upper()})[/bold blue] on [bold]{len(tickets)}[/bold] tickets "
+        f"(Model: [cyan]{active_model}[/cyan])...\n"
     )
 
     generated_count = 0
     results_summary = []
     usage_map: dict[str, dict[str, int]] = {}
 
+    import time
     for ticket in track(tickets, description="Generating baseline replies..."):
-        ticket_id = str(ticket.get("id") or Path(ticket["_file_path"]).stem.upper())
+        ticket_id = str(ticket.get("id") or Path(ticket["_file_path"]).stem.upper()).replace("_", "-")
         subject = ticket.get("subject", "(No Subject)")
         body = ticket.get("body", "")
 
         try:
-            reply, in_tok, out_tok = generate_baseline_reply(client, subject, body, model=model)
+            reply, in_tok, out_tok = generate_baseline_reply(
+                client, subject, body, model=active_model, provider=provider
+            )
             output_file = outputs_path / f"{ticket_id}.txt"
             output_file.write_text(reply, encoding="utf-8")
             usage_map[ticket_id] = {"input_tokens": in_tok, "output_tokens": out_tok}
 
             generated_count += 1
             results_summary.append((ticket_id, subject, str(output_file), "Success"))
+            time.sleep(0.5)  # rate limit spacing
         except Exception as exc:
             console.print(f"[red]Failed to generate reply for {ticket_id}: {exc}[/red]")
             results_summary.append((ticket_id, subject, "-", f"Error: {exc}"))
@@ -151,7 +177,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Generate zero-shot no-tools baseline replies for support tickets.")
     parser.add_argument("--tickets-dir", default="tickets", help="Directory containing ticket JSON files (default: tickets)")
     parser.add_argument("--outputs-dir", default="baseline/outputs", help="Directory to save output TXT files (default: baseline/outputs)")
-    parser.add_argument("--model", default=DEFAULT_MODEL, help=f"Anthropic model to use (default: {DEFAULT_MODEL})")
+    parser.add_argument("--model", default=None, help="Model to use")
     args = parser.parse_args()
 
     run_baseline(

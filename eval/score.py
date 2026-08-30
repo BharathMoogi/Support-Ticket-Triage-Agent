@@ -100,13 +100,16 @@ def load_manual_scores(csv_path: Path) -> dict[str, dict[str, str]]:
         for row in reader:
             t_id = row.get("ticket_id", "").strip().upper()
             if t_id:
-                scores[t_id] = {
+                val = {
                     "baseline_correct": row.get("baseline_correct[Y/N]", "").strip().upper(),
                     "agent_correct": row.get("agent_correct[Y/N]", "").strip().upper(),
                     "baseline_hallucination": row.get("baseline_hallucination[Y/N]", "").strip().upper(),
                     "agent_hallucination": row.get("agent_hallucination[Y/N]", "").strip().upper(),
                     "correct_classification": row.get("correct_classification[Y/N]", "").strip().upper(),
                 }
+                scores[t_id] = val
+                scores[t_id.replace("-", "_")] = val
+                scores[t_id.replace("_", "-")] = val
     return scores
 
 

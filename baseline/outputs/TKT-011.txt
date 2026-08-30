@@ -1,0 +1,45 @@
+Subject: RE: Infinite automation execution loop consumed 8,000 runs in 5 minutes
+
+Hi there,
+
+I am extremely sorry to hear about this incident. Running out of your monthly automation quota due to a recursive loop is a critical issue, and I understand how urgent it is to get your board unblocked.
+
+First, please know that **I cannot directly access your project, kill worker jobs, or manually reset your quota counters from this ticket.** Those are administrative actions that require access to our internal infrastructure and billing systems, which are handled exclusively by our Engineering and Billing teams.
+
+However, I can help you escalate this immediately and provide some immediate mitigation steps you can take while our team investigates.
+
+### Immediate Escalation
+I have marked this ticket as **P1 (Critical)** and flagged it for our Automation Engineering team. They will:
+1. Identify and terminate any lingering worker processes associated with your board.
+2. Investigate why the rule "Move card to In Review -> Add checklist QA" triggered a recursive loop (this often happens if adding the checklist itself moves the card, or if the card is in a state that repeatedly triggers the event due to a race condition).
+3. Review your account’s automation run metrics to determine if a quota reset or credit adjustment is appropriate given the anomalous behavior.
+
+I will send you a separate update as soon as engineering has acknowledged the ticket, typically within 1–2 hours.
+
+### Immediate Mitigation (Until Engineering Restores Access)
+You must prevent further unintended runs if any capacity remains or if the loop briefly pauses. Please do the following as a board admin:
+
+1. **Disable the Offending Rule:**
+   - Go to `Settings` > `Automation`.
+   - Locate the rule: `When card moved to In Review -> add checklist QA`.
+   - Toggle it to **Off**.
+   - *Note:* If the board is hard-locked and you cannot access Settings, try accessing the project via the API (if you have credentials) and send a `POST` request to disable the specific rule ID.
+
+2. **Check for Other Recursive Rules:**
+   - Ensure no other rules are moving cards in or out of the "In Review" status or modifying checklists on that status, as this could compound the issue.
+
+3. **Contact Your Account Manager (if you have one):**
+   - If you are on a Business or Professional plan, your Account Manager may have direct access to expedite a temporary quota increase or override while engineering investigates.
+
+### What to Prepare for the Engineering Team
+To help them diagnose the root cause faster, please have the following ready:
+- The **Project ID** and **Rule ID** for the offending automation.
+- The **exact timestamp** (14:15 UTC) when the loop started.
+- Any error messages or logs you captured (if available).
+- Confirmation of whether the loop was triggered by a manual move by a specific user or an external integration (e.g., Slack, Jira, etc.).
+
+We are treating this as a top priority and will update you as soon as your board is stable and the quota status is cleared. Thank you for your patience while we resolve this.
+
+Best regards,  
+[Your Name]  
+Support Agent, [Company Name]

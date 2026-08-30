@@ -1,0 +1,22 @@
+Subject: Re: Accidentally deleted project workspace - urgent restoration request
+
+Hello,
+
+Thank you for reaching out to us. I understand how stressful it is to lose access to your Project Development workspace, and I’m sorry to hear that this happened.
+
+I have reviewed our retention policies and can confirm that deleted workspaces are indeed retained for a 30-day grace period. Since the deletion occurred yesterday afternoon, your workspace is well within this recovery window, and we can proceed with restoring it.
+
+To ensure we restore the correct environment, please provide the following details:
+1. **The exact name of the workspace** (as it appeared before deletion).
+2. **The company name** associated with the workspace.
+3. **The email address of the administrator** who performed the deletion (or your own email if different).
+4. **The approximate timestamp** of the deletion (e.g., "Yesterday around 2:30 PM [Time Zone]").
+
+Once we have this information, our engineering team will prioritize the restoration of the workspace and all associated boards. Please note that while we restore the primary workspace and board structures, some very recent temporary changes made in the few hours prior to deletion may not be recoverable. We will make every effort to ensure that all project data, boards, comments, and attachments are fully restored.
+
+Please let me know if you have any urgent dependencies on this workspace so we can expedite the process accordingly.
+
+Best regards,
+
+[Your Name]
+Customer Support Team

@@ -1,0 +1,42 @@
+Hi there,
+
+Happy to help! I understand you’re on a deadline for your executive report, so let’s get that data ready for you quickly.
+
+Here are the two easiest ways to export your Q1 Roadmap board to Excel or CSV:
+
+### Method 1: Quick Export (Best for preserving board structure)
+This method exports your data in a format that respects your columns (statuses) and rows, which is often ideal for reports.
+
+1.  Open your **Q1 Roadmap** board.
+2.  Click the **More** icon (three dots `…`) in the top-right corner of the screen.
+3.  Select **Print or export**.
+4.  Choose **Download as CSV** or **Download as Excel**.
+    *   *Note:* This will include all cards, their current status (column), labels, and description fields.
+
+### Method 2: Card List View (Best for detailed field data like Assignees & Due Dates)
+If Method 1 doesn’t include the specific **Assignee** or **Due Date** columns you need in the way you want them, this is the most robust option:
+
+1.  From the board view, click the **List** tab (next to Board/Kanban) at the top.
+2.  Look for **Custom Fields** or **Columns** to ensure "Assignee" and "Due Date" are visible if needed (though they are usually included by default in exports).
+3.  Click the **Export** button (usually found in the top-right corner of the List view) or go to **More (…）** > **Print or export** > **Export list as CSV**.
+4.  In the export dialog, make sure to check:
+    *   ✅ **Due Date**
+    *   ✅ **Assignee**
+    *   ✅ **Status**
+    *   ✅ **Card Title**
+    *   ✅ **Labels** (if applicable)
+5.  Click **Export**.
+
+### Tips for Your Executive Report:
+*   **CSV vs. Excel:** CSV works universally but Excel (.xlsx) preserves formatting better if you plan to use formulas or charts.
+*   **Date Format:** Due dates typically export as YYYY-MM-DD. You may need to format the date column in Excel for a cleaner look (e.g., MM/DD/YYYY).
+*   **Assignee Names:** Assignees will export as their full name or email address, depending on your workspace settings. If you only see emails, know that they correspond to your team members directly.
+
+If you don’t see the **Print or export** option, please let me know:
+1.  What your administration role is (Admin, Member, etc.).
+2.  Whether you’re using the Desktop website or the Mobile browser.
+
+Let me know if you run into any snags—good luck with your report! 📊
+
+Best regards,  
+Your Support Team

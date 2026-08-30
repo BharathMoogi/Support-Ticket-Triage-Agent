@@ -1,0 +1,21 @@
+Hi there,
+
+Thank you for reaching out. I understand how manageable errors can be, and I appreciate you flagging this so quickly after removing the duplicate user.
+
+First, I want to clarify that for subscriptions billed monthly, seat charges are typically based on the number of active members during the billing cycle or at the time of renewal, rather than being charged pro-rated immediately for short-term usage. Since you removed the duplicate account **3 days ago**, whether you receive a credit depends on when your next billing date falls:
+
+1.  **If your billing date has not yet occurred:** The system should automatically detect that the seat was removed and only charge you for the valid, active seats at the next renewal. You likely won’t be charged for the removed seat at all.
+2.  **If your billing date has already occurred or is very close (within 1–2 days):** You may have been charged for the extra seat. In this case, we can issue a **one-time credit or refund** for the $25 duplicate seat charge, given that the error was immediate and corrective action (removal) was taken promptly.
+
+**To assist with this, please reply with the following:**
+*   Your workspace name or billing email address.
+*   Your current plan type (e.g., Pro, Business, Enterprise).
+*   Confirmation of the date you removed the duplicate user (for your reference, though we can verify this on our end).
+
+Once I have your details, I’ll review your billing history and, if applicable, apply the credit to your next invoice or initiate a refund to your original payment method.
+
+Thanks for your patience, and I’ll get back to you as soon as I’ve verified the details!
+
+Best regards,  
+[Your Name]  
+Customer Support Team

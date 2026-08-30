@@ -1,0 +1,50 @@
+Hi there,
+
+Thank you for upgrading to the Team plan! I’d be happy to help you get Okta SAML SSO set up for your team.
+
+However, because these values are **unique to your specific workspace**, I cannot provide a universal `ACS URL` or `Entity ID`. These are generated when you first initialize the SAML connection in our application.
+
+Here is exactly where to find them and how to complete the setup:
+
+### Step 1: Generate Values in Our App
+1. Log in to your workspace as an **Admin**.
+2. Navigate to **Settings** > **Security** (or **Authentication**, depending on your UI version).
+3. Click on **SSO / SAML Setup**.
+4. Select **Okta** (or **Manual SAML**) as your IdP.
+5. You will see two key values automatically generated:
+   - **ACS URL** (also called Assertion Consumer Service URL)
+   - **Entity ID** (also called SP Entity ID)
+
+> 🔑 **Copy these two values from this screen.** These are the only values you need to paste into Okta.
+
+### Step 2: Configure in Okta
+In your **Okta Admin Console**:
+1. Go to **Applications** > **Create App Integration** > **SAML 2.0**.
+2. Paste our **Entity ID** into the **Audience URI (SP Entity ID)** field.
+3. Paste our **ACS URL** into the **ACS URL** field.
+4. Set **NameID Format** to `Persistent` (most common) or `Email Address` if preferred.
+5. Save the app. Okta will generate its own **Identity Provider (IdP) data**, including:
+   - **SAML 2.0 Issuer**
+   - **SAML 2.0 Certificate (X.509)**
+   - **Single Sign-On URL (SSO URL)**
+
+### Step 3: Paste Okta’s Certificate into Our App
+1. Return to our **Settings > Security > SSO** page.
+2. You will see a field labeled **IdP Metadata**, **X.509 Certificate**, or **Certificate Public Key**.
+3. **Paste Okta’s X.509 Certificate here.**  
+   > 📌 *Tip: If our app asks for "Issuer" or "SSO URL," paste those from Okta’s IdP data as well.*
+4. Click **Save** or **Complete Setup**.
+
+### Step 4: Test
+1. After saving, our app will send a test assertion to Okta.
+2. Try logging out and logging back in using Okta.
+
+### Need Exact Values?
+If you’re already on the SSO setup page and want to confirm the format, you can:
+- **Screenshot the ACS URL and Entity ID** (blurring any sensitive workspace tokens if needed)
+- Or, **log out/in** to see if the SSO prompt appears after setup.
+
+Let me know once you’ve completed the steps, or if you hit a specific error (e.g., "Invalid ACS URL," "Certificate not accepted"), and I’ll help troubleshoot!
+
+Best regards,  
+Your Support Team

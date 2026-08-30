@@ -1,0 +1,23 @@
+Subject: Re: CRITICAL BUG: WebSocket sync disconnects repeatedly with ERR_WS_DISCONNECTED_502
+
+Thank you for bringing this to our immediate attention. We are aware of the issue and our infrastructure team is currently actively remedying a significant outage affecting our WebSocket sync service (`wss://sync.flowboard.app`). The HTTP 502 errors indicate that the load balancer is unable to reach the backend synchronization servers, which is why local workarounds like clearing cache or refreshing are not resolving the conflict issues you are experiencing.
+
+**Status:**
+*   **Current State:** Critical - Ongoing fix in progress.
+*   **Root Cause:** Multiple sync nodes crashed due to a recent deployment, causing the gateway to return 502s.
+*   **Estimated Resolution:** Our engineers are restarting the failed nodes and rolling back the problematic configuration. We expect stability within the next **30–60 minutes**.
+
+**Immediate Safety Steps for Your Team (To Prevent Data Overwrites):**
+1.  **Stop Active Editing:** Ask users to pause editing cards or moving tickets to reduce the risk of merge conflicts.
+2.  **Manual Coordination:** For critical moves, use chat (Slack/Teams) to announce changes before making them to ensure colleagues are aware.
+3.  **Do Not Clear Data:** Continuously clearing IndexedDB may cause local unsaved changes to be lost. It is safer to stop editing entirely until the connection is restored.
+
+We will post updates here and via our status page (`status.flowboard.app`) every 15 minutes. If the issue is not resolved within an hour, please let me know, and I will escalate this to our Senior Engineering Manager as business-critical.
+
+We sincerely apologize for the disruption to your workflow.
+
+Best regards,
+
+[Your Name]
+Support Engineering Team
+Flowboard
