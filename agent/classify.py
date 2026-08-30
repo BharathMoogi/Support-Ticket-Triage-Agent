@@ -78,12 +78,11 @@ def classify_ticket(
 
     groq_key = os.getenv("GROQ_API_KEY")
     if groq_key and (client is None or hasattr(client, "chat")):
-        import httpx
         from groq import Groq
         if client is None:
-            http_client = httpx.Client(verify=False)
-            client = Groq(api_key=groq_key, http_client=http_client)
-        groq_model = model or os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
+            from agent.llm_adapter import _make_groq_client
+            client = _make_groq_client(groq_key)
+        groq_model = model or os.getenv("GROQ_MODEL", "qwen/qwen3.8-27b")
 
         prompt = f"""You are an expert support ticket triage classifier.
 Analyze this ticket and classify it into category ('billing', 'bug', 'how-to', 'other') and urgency ('low', 'medium', 'high').

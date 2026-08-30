@@ -129,12 +129,11 @@ def verify_draft(
 
     groq_key = os.getenv("GROQ_API_KEY")
     if groq_key and (client is None or hasattr(client, "chat")):
-        import httpx
         from groq import Groq
         if client is None:
-            http_client = httpx.Client(verify=False)
-            client = Groq(api_key=groq_key, http_client=http_client)
-        groq_model = model or os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
+            from agent.llm_adapter import _make_groq_client
+            client = _make_groq_client(groq_key)
+        groq_model = model or os.getenv("GROQ_MODEL", "qwen/qwen3.8-27b")
 
         context_str = _format_context_text(retrieved_chunks, customer_context)
         prompt = f"""{VERIFY_SYSTEM_PROMPT}
@@ -226,12 +225,11 @@ def rewrite_draft(
     """
     groq_key = os.getenv("GROQ_API_KEY")
     if groq_key and (client is None or hasattr(client, "chat")):
-        import httpx
         from groq import Groq
         if client is None:
-            http_client = httpx.Client(verify=False)
-            client = Groq(api_key=groq_key, http_client=http_client)
-        groq_model = model or os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
+            from agent.llm_adapter import _make_groq_client
+            client = _make_groq_client(groq_key)
+        groq_model = model or os.getenv("GROQ_MODEL", "qwen/qwen3.8-27b")
 
         context_str = _format_context_text(retrieved_chunks, customer_context)
         flagged_str = json.dumps(verification_result.get("unsupported_claims", []), indent=2)
