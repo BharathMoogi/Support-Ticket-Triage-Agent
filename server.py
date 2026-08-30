@@ -579,15 +579,25 @@ def app(environ: dict[str, Any], start_response: Any) -> list[bytes]:
             with ticket_file.open(encoding="utf-8") as f:
                 ticket_data = json.load(f)
 
+            # Vercel /var/task/ is read-only — write to /tmp/
+            is_vercel = os.getenv("VERCEL") or os.getenv("VERCEL_ENV") or os.getenv("VERCEL_REGION")
+            if is_vercel:
+                tmp_base = Path("/tmp")
+            else:
+                tmp_base = BASE_DIR
+            traj_dir = str(tmp_base / "trajectories")
+            q_dir = str(tmp_base / "agent" / "review_queue")
+            Path(traj_dir).mkdir(parents=True, exist_ok=True)
+            Path(q_dir).mkdir(parents=True, exist_ok=True)
+
             draft, traj_path, queue_path = run_ticket_agent(
                 ticket=ticket_data,
-                trajectories_dir=str(BASE_DIR / "trajectories"),
-                queue_dir=str(BASE_DIR / "agent" / "review_queue"),
+                trajectories_dir=traj_dir,
+                queue_dir=q_dir,
             )
 
             # Read back the queue file to get category/urgency/verification
-            import re
-            queue_json_path = BASE_DIR / "agent" / "review_queue" / f"{t_id.upper()}.json"
+            queue_json_path = Path(q_dir) / f"{t_id.upper()}.json"
             queue_data = {}
             if queue_json_path.exists():
                 with queue_json_path.open(encoding="utf-8") as f:

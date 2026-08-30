@@ -56,19 +56,40 @@ def app(environ, start_response):
         with ticket_file.open(encoding="utf-8") as f:
             ticket_data = json.load(f)
 
-        # Run full triage pipeline (Groq or Anthropic auto-selected via .env)
+        # Vercel /var/task/ is read-only — write trajectories and queue to /tmp/
+        import tempfile
+        is_vercel = os.getenv("VERCEL") or os.getenv("VERCEL_ENV") or os.getenv("VERCEL_REGION")
+        if is_vercel:
+            tmp_base = Path("/tmp")
+        else:
+            tmp_base = root_dir
+
+        traj_dir = str(tmp_base / "trajectories")
+        queue_dir = str(tmp_base / "agent" / "review_queue")
+        Path(traj_dir).mkdir(parents=True, exist_ok=True)
+        Path(queue_dir).mkdir(parents=True, exist_ok=True)
+
+        # Run full triage pipeline (Groq or Anthropic auto-selected via env vars)
         draft, traj_path, queue_path = run_ticket_agent(
             ticket=ticket_data,
-            trajectories_dir=str(root_dir / "trajectories"),
-            queue_dir=str(root_dir / "agent" / "review_queue"),
+            trajectories_dir=traj_dir,
+            queue_dir=queue_dir,
         )
+
+        # Read back queue file for category/urgency/verification metadata
+        queue_json_path = Path(queue_dir) / f"{ticket_id.upper()}.json"
+        queue_data = {}
+        if queue_json_path.exists():
+            with queue_json_path.open(encoding="utf-8") as f:
+                queue_data = json.load(f)
 
         resp = json.dumps({
             "status": "ok",
             "ticket_id": ticket_id,
             "draft_reply": draft,
-            "trajectory_path": traj_path,
-            "queue_path": queue_path,
+            "category": queue_data.get("category"),
+            "urgency": queue_data.get("urgency"),
+            "verification": queue_data.get("verification_info", {}).get("verification"),
         }).encode("utf-8")
 
         start_response("200 OK", [
