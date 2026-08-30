@@ -1,8 +1,10 @@
 {
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/api/index"
-    }
+    { "source": "/api/review_queue", "destination": "/api/review_queue" },
+    { "source": "/api/tickets",      "destination": "/api/tickets" },
+    { "source": "/api/docs",         "destination": "/api/docs" },
+    { "source": "/api/eval",         "destination": "/api/eval" },
+    { "source": "/api/decide",       "destination": "/api/decide" },
+    { "source": "/(.*)",             "destination": "/api/index" }
   ]
 }
