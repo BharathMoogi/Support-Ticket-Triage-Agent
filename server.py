@@ -428,6 +428,11 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(json.dumps(data).encode("utf-8"))
 
 
+# Vercel Serverless Function entrypoints
+handler = DashboardRequestHandler
+app = DashboardRequestHandler
+
+
 def run_server(port: int = PORT) -> None:
     server = ThreadingHTTPServer(("0.0.0.0", port), DashboardRequestHandler)
     print(f"FlowBoard Triage Agent Dashboard running at http://localhost:{port}")
