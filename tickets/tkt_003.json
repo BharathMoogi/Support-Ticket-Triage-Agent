@@ -1,0 +1,6 @@
+{
+  "id": "TKT-003",
+  "customer_id": "CUST-103",
+  "subject": "Inviting an external contractor as a read-only guest to a single board",
+  "body": "We hired a freelance designer who only needs visibility into our Marketing Assets board. We do not want them to see our other internal workspace boards or incur extra seat costs. How can we share just this one board with them as a viewer?"
+}

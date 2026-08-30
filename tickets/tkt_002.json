@@ -1,0 +1,6 @@
+{
+  "id": "TKT-002",
+  "customer_id": "CUST-102",
+  "subject": "Need our company VAT number added to previous invoices",
+  "body": "Hello, our accounting department cannot reconcile our January and February PDF receipts because our company VAT ID (FR89234567890) is missing from the header. Where can we enter our tax ID so our past invoices update with this information?"
+}

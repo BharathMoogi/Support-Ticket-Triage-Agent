@@ -1,0 +1,6 @@
+{
+  "id": "TKT-006",
+  "customer_id": "CUST-106",
+  "subject": "Refund request: Purchased annual Pro subscription 10 days ago",
+  "body": "Hi, I purchased an annual Pro subscription for my team on August 20th. After evaluating FlowBoard alongside our existing Jira setup, our management decided not to proceed with the migration. Since we are within the 14-day window, could you please issue a full refund to our credit card?"
+}

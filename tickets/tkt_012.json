@@ -1,0 +1,6 @@
+{
+  "id": "TKT-012",
+  "customer_id": "CUST-112",
+  "subject": "iOS Mobile App v4.1.0 crashing on launch with EXC_BAD_ACCESS in libsqlite3",
+  "body": "Immediately after updating the FlowBoard iOS app to version 4.1.0 this morning on iOS 17.4, the app crashes within 1 second of opening. Looking at our device crash logs via Xcode Organizer, the crash trace points to EXC_BAD_ACCESS (SIGSEGV) during database migration in libsqlite3.dylib. Reinstalling does not fix the issue."
+}

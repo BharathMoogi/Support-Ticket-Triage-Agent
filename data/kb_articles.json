@@ -1,0 +1,58 @@
+[
+  {
+    "id": "KB-001",
+    "title": "How to reset your password",
+    "content": "If you have forgotten your password or are unable to log in, you can reset it by clicking 'Forgot password' on the login page. Enter your registered email address and we will send you a reset link. The link is valid for 24 hours. Check your spam folder if the email does not arrive within 5 minutes. If you still do not receive it, contact support.",
+    "url": "https://help.example.com/kb/reset-password",
+    "tags": ["account", "login", "password", "reset", "credentials"]
+  },
+  {
+    "id": "KB-002",
+    "title": "Understanding your invoice and billing cycle",
+    "content": "Your subscription is billed monthly on the anniversary of your sign-up date. Invoices are emailed within 24 hours of each charge. If you add additional seats mid-cycle, a pro-rated charge is applied immediately. You can download all past invoices from Settings > Billing > Invoice History. For VAT invoices, ensure your VAT number is added in Settings > Billing > Tax Information.",
+    "url": "https://help.example.com/kb/billing-invoices",
+    "tags": ["billing", "invoice", "payment", "charge", "subscription", "VAT"]
+  },
+  {
+    "id": "KB-003",
+    "title": "Inviting team members to your workspace",
+    "content": "To invite colleagues to your workspace, navigate to Settings > Team > Invite Members. Enter their email addresses (comma-separated for multiple invites) and choose their role (Admin, Member, or Viewer). They will receive an invitation email valid for 7 days. You must be on the Team plan or higher to add members.",
+    "url": "https://help.example.com/kb/invite-team-members",
+    "tags": ["team", "invite", "members", "collaboration", "workspace"]
+  },
+  {
+    "id": "KB-004",
+    "title": "Troubleshooting two-factor authentication (2FA)",
+    "content": "If your 2FA codes are not working, the most common cause is a time-sync issue on your device. Enable automatic date and time in your device settings. If you are using an authenticator app, ensure it is updated. If you are locked out entirely, contact support with your account email and we can temporarily disable 2FA after identity verification.",
+    "url": "https://help.example.com/kb/2fa-troubleshooting",
+    "tags": ["2fa", "two-factor", "authentication", "login", "account", "security"]
+  },
+  {
+    "id": "KB-005",
+    "title": "Exporting your data",
+    "content": "You can export all your data as a CSV or JSON file from Settings > Data > Export. Large exports (>10,000 records) are processed asynchronously and you will receive an email with a download link when ready. Exports are available for 48 hours. If you encounter an error during export, try reducing the date range or contact support.",
+    "url": "https://help.example.com/kb/data-export",
+    "tags": ["export", "CSV", "data", "download", "backup"]
+  },
+  {
+    "id": "KB-006",
+    "title": "Cancelling your subscription",
+    "content": "To cancel your subscription, go to Settings > Billing > Cancel Subscription. Your access continues until the end of the current billing period. We do not offer prorated refunds for mid-cycle cancellations, but exceptions may be made for technical issues. If you have already cancelled but were still charged, please contact support with your cancellation confirmation email.",
+    "url": "https://help.example.com/kb/cancel-subscription",
+    "tags": ["cancel", "subscription", "refund", "billing", "account"]
+  },
+  {
+    "id": "KB-007",
+    "title": "API rate limits and best practices",
+    "content": "Our API enforces rate limits per API key based on your plan tier. If you receive a 429 Too Many Requests response, implement exponential backoff with jitter in your client. Rate limit headers (X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset) are included in every response. For higher limits, upgrade your plan or contact enterprise sales.",
+    "url": "https://help.example.com/kb/api-rate-limits",
+    "tags": ["API", "rate limit", "429", "developer", "integration", "backoff"]
+  },
+  {
+    "id": "KB-008",
+    "title": "Account security best practices",
+    "content": "We recommend enabling two-factor authentication (2FA), using a unique strong password, and reviewing your login history regularly in Settings > Security > Login History. If you notice a suspicious login attempt, immediately change your password and contact support. We will never ask for your password via email or chat.",
+    "url": "https://help.example.com/kb/account-security",
+    "tags": ["security", "account", "2fa", "password", "suspicious", "login"]
+  }
+]

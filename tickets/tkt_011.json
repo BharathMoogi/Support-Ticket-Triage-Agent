@@ -1,0 +1,6 @@
+{
+  "id": "TKT-011",
+  "customer_id": "CUST-111",
+  "subject": "Infinite automation execution loop consumed 8,000 runs in 5 minutes",
+  "body": "We configured a rule: When card moved to In Review -> add checklist QA. At 14:15 UTC, moving a card triggered an infinite recursive loop that executed over 8,000 times until our monthly quota was exhausted. The board is now completely locked with an error QuotaExceeded. We need engineering to kill the active worker job and restore our automation run counter."
+}

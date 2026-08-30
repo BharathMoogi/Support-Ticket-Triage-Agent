@@ -1,0 +1,6 @@
+{
+  "id": "TKT-010",
+  "customer_id": "CUST-110",
+  "subject": "CRITICAL BUG: WebSocket sync disconnects repeatedly with ERR_WS_DISCONNECTED_502",
+  "body": "Across our entire engineering department (35 users), board columns are freezing and failing to sync. The browser console is flooded with WebSocket connection to wss://sync.flowboard.app/v2/boards failed: HTTP 502 Bad Gateway. Hard refreshes and clearing IndexedDB do not resolve the issue. Team members are overwriting each other work."
+}

@@ -1,0 +1,6 @@
+{
+  "id": "TKT-016",
+  "customer_id": "CUST-116",
+  "subject": "Assistance required configuring SAML 2.0 Okta SSO on Team tier",
+  "body": "We recently upgraded our workspace to the Team plan and want to enforce Okta SAML Single Sign-On for our 80 employees. Could you provide the exact ACS URL and Entity ID we should configure in our Okta Admin Console, and confirm where to paste our X.509 certificate?"
+}

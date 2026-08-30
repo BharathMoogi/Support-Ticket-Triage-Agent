@@ -1,0 +1,35 @@
+# Secrets
+.env
+.env.local
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Runtime outputs (keep directory structure, ignore individual artifacts)
+trajectories/*.json
+!trajectories/.gitkeep
+review_queue/*.json
+review_queue/*.jsonl
+!review_queue/.gitkeep
+agent/review_queue/*.json
+!agent/review_queue/.gitkeep
+agent/outputs/*.txt
+!agent/outputs/.gitkeep
+baseline/outputs/*.txt
+!baseline/outputs/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db

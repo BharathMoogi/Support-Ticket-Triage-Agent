@@ -1,0 +1,6 @@
+{
+  "id": "TKT-018",
+  "customer_id": "CUST-118",
+  "subject": "Reached 100 automation runs on Free tier - when does the monthly quota reset?",
+  "body": "Our small team is testing FlowBoard on the Free tier and we just hit our 100 monthly automation run limit. Does the counter reset on the 1st of every calendar month, or on the 30-day anniversary of when we registered our account?"
+}
