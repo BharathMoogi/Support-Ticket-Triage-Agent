@@ -148,7 +148,11 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
         if (!res.ok) {
           throw new Error('API returned status ' + res.status + ' (' + res.statusText + ')');
         }
-        const items = await res.json();
+        const text = await res.text();
+        if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html') || text.trim().startsWith('<h2')) {
+          throw new Error('Vercel Authentication is active and blocking API requests. Please set "Deployment Protection" to "Disabled" in your Vercel Project Settings.');
+        }
+        const items = JSON.parse(text);
         document.getElementById('queue-badge').innerText = items.length;
 
         if (!items.length) {
@@ -250,7 +254,11 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
         if (!res.ok) {
           throw new Error('API returned status ' + res.status);
         }
-        const tickets = await res.json();
+        const text = await res.text();
+        if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html') || text.trim().startsWith('<h2')) {
+          throw new Error('Vercel Authentication is active and blocking API requests.');
+        }
+        const tickets = JSON.parse(text);
         container.innerHTML = tickets.map(t => `
           <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:border-slate-600 transition flex flex-col justify-between">
             <div>
@@ -279,7 +287,11 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
         if (!res.ok) {
           throw new Error('API returned status ' + res.status);
         }
-        const docs = await res.json();
+        const text = await res.text();
+        if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html') || text.trim().startsWith('<h2')) {
+          throw new Error('Vercel Authentication is active and blocking API requests.');
+        }
+        const docs = JSON.parse(text);
         container.innerHTML = docs.map(d => `
           <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:border-slate-600 transition">
             <div class="flex items-center justify-between mb-2">
@@ -301,7 +313,11 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
         if (!res.ok) {
           throw new Error('API returned status ' + res.status);
         }
-        const data = await res.json();
+        const text = await res.text();
+        if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html') || text.trim().startsWith('<h2')) {
+          throw new Error('Vercel Authentication is active and blocking API requests.');
+        }
+        const data = JSON.parse(text);
 
         container.innerHTML = `
           <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
