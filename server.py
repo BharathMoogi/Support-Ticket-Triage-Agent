@@ -562,7 +562,10 @@ def app(environ: dict[str, Any], start_response: Any) -> list[bytes]:
             from agent.main import run_ticket_agent
             tickets_dir = BASE_DIR / "tickets"
             ticket_file = None
+            # Normalise: TKT-001 → tkt_001 (filenames use underscores)
+            normalised = t_id.lower().replace("-", "_")
             for candidate in [
+                tickets_dir / f"{normalised}.json",
                 tickets_dir / f"{t_id.lower()}.json",
                 tickets_dir / f"{t_id}.json",
                 tickets_dir / f"{t_id.upper()}.json",

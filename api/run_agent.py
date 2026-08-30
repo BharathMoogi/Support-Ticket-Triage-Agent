@@ -35,10 +35,13 @@ def app(environ, start_response):
         if not ticket_id:
             raise ValueError("ticket_id is required (e.g. {'ticket_id': 'TKT-001'})")
 
-        # Locate ticket file
+        # Locate ticket file — filenames use underscores (tkt_001.json), IDs use hyphens (TKT-001)
         tickets_dir = root_dir / "tickets"
         ticket_file = None
+        # Normalise: TKT-001 → tkt_001
+        normalised = ticket_id.lower().replace("-", "_")
         for candidate in [
+            tickets_dir / f"{normalised}.json",
             tickets_dir / f"{ticket_id.lower()}.json",
             tickets_dir / f"{ticket_id}.json",
             tickets_dir / f"{ticket_id.upper()}.json",
