@@ -1,6 +1,16 @@
 # 🎫 FlowBoard Support Ticket Triage Agent
 
-> **Hackathon Submission**: An intelligent, context-grounded support ticket triage agent built with the Anthropic Claude API, pure-Python TF-IDF vector retrieval, automated factual verification, and a human-in-the-loop approval queue.
+> **Hackathon Submission**: An intelligent, context-grounded support ticket triage agent built with the Anthropic Claude & Groq APIs, pure-Python TF-IDF vector retrieval, automated factual verification, and a human-in-the-loop approval queue.
+
+---
+
+## 🌐 Featured AI Projects & Live Deployments
+
+| Project | Live App / Demo URL | Description |
+| :--- | :--- | :--- |
+| **FlowBoard Triage Agent** | [FlowBoard Triage Agent — Dashboard](https://support-ticket-triage-agent-moogi-bharath-s-projects1.vercel.app/) | Context-aware support ticket triage agent with TF-IDF retrieval, two-pass verification, and human review queue. |
+| **Mini Content Engine** | [Mini Content Engine](https://mini-content-engine.vercel.app/) | AI-powered multichannel content generation and optimization engine for structured copy creation. |
+| **Candidate Screening System** | [AI-Powered Role-Based Candidate Screening](https://vercel.com/moogi-bharath-s-projects1/ai-powered-role-based-candidate-screening-system) | Intelligent resume evaluation, technical competence scoring, and automated candidate-role alignment. |
 
 ---
 

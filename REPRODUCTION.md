@@ -4,6 +4,14 @@ This guide provides step-by-step instructions to reproduce the entire **FlowBoar
 
 ---
 
+## 🌐 Featured AI Projects & Live Deployments
+
+- **FlowBoard Triage Agent — Dashboard**: [https://support-ticket-triage-agent-moogi-bharath-s-projects1.vercel.app/](https://support-ticket-triage-agent-moogi-bharath-s-projects1.vercel.app/)
+- **Mini Content Engine**: [https://mini-content-engine.vercel.app/](https://mini-content-engine.vercel.app/)
+- **AI-Powered Role-Based Candidate Screening System**: [https://vercel.com/moogi-bharath-s-projects1/ai-powered-role-based-candidate-screening-system](https://vercel.com/moogi-bharath-s-projects1/ai-powered-role-based-candidate-screening-system)
+
+---
+
 ## 📋 System Requirements
 
 - **Python**: 3.10, 3.11, or 3.12 (Python 3.11+ recommended)

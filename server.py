@@ -46,7 +46,13 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
           <p class="text-xs text-slate-400">Context-Aware AI Support Ticket Triage Dashboard</p>
         </div>
       </div>
-      <div class="flex items-center space-x-4">
+      <div class="flex items-center space-x-3">
+        <a href="https://mini-content-engine.vercel.app/" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium bg-slate-700/60 hover:bg-slate-700 text-slate-300 border border-slate-600 transition">
+          <i class="fa-solid fa-pen-nib text-indigo-400"></i> Mini Content Engine <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500"></i>
+        </a>
+        <a href="https://vercel.com/moogi-bharath-s-projects1/ai-powered-role-based-candidate-screening-system" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium bg-slate-700/60 hover:bg-slate-700 text-slate-300 border border-slate-600 transition">
+          <i class="fa-solid fa-user-tie text-purple-400"></i> Candidate Screening <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500"></i>
+        </a>
         <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-950 text-emerald-400 border border-emerald-800">
           <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span> Cloud Deployment Active
         </span>
@@ -259,6 +265,83 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
             <h4 class="text-sm font-semibold text-white mb-1">Human-in-the-Loop Review</h4>
             <p class="text-xs text-slate-400 leading-relaxed">Writes verified drafts to the Review Queue. Support staff review, edit, or approve before any customer delivery.</p>
           </div>
+        </div>
+      </div>
+
+      <!-- Featured AI Projects & Live Deployments Section -->
+      <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 mb-4 shadow-lg">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+          <div>
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-layer-group text-indigo-400"></i> Featured AI Projects & Live Deployments
+            </h3>
+            <p class="text-xs text-slate-400 mt-0.5">Explore our live production applications and agentic AI systems.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Project 1: FlowBoard Triage Agent -->
+          <a href="https://support-ticket-triage-agent-moogi-bharath-s-projects1.vercel.app/" target="_blank" rel="noopener noreferrer" class="group bg-slate-900/90 hover:bg-slate-900 border border-indigo-500/40 hover:border-indigo-400 rounded-xl p-5 transition flex flex-col justify-between shadow-sm">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="w-8 h-8 rounded-lg bg-indigo-600/30 border border-indigo-500/50 flex items-center justify-center text-indigo-400">
+                  <i class="fa-solid fa-ticket"></i>
+                </span>
+                <span class="px-2 py-0.5 text-[11px] rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800 font-medium">Live App</span>
+              </div>
+              <h4 class="text-sm font-bold text-white group-hover:text-indigo-300 transition mb-1.5 flex items-center gap-1.5">
+                FlowBoard Triage Agent <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-indigo-400 transition"></i>
+              </h4>
+              <p class="text-xs text-slate-400 leading-relaxed mb-3">
+                Context-aware support ticket triage system with local TF-IDF vector retrieval, two-pass QA verification, and human review queue.
+              </p>
+            </div>
+            <div class="text-[11px] font-mono text-indigo-400 truncate pt-2 border-t border-slate-800/80">
+              support-ticket-triage-agent...vercel.app
+            </div>
+          </a>
+
+          <!-- Project 2: Mini Content Engine -->
+          <a href="https://mini-content-engine.vercel.app/" target="_blank" rel="noopener noreferrer" class="group bg-slate-900/90 hover:bg-slate-900 border border-slate-700/80 hover:border-indigo-400 rounded-xl p-5 transition flex flex-col justify-between shadow-sm">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="w-8 h-8 rounded-lg bg-blue-600/30 border border-blue-500/50 flex items-center justify-center text-blue-400">
+                  <i class="fa-solid fa-pen-nib"></i>
+                </span>
+                <span class="px-2 py-0.5 text-[11px] rounded-full bg-blue-950 text-blue-400 border border-blue-800 font-medium">Live App</span>
+              </div>
+              <h4 class="text-sm font-bold text-white group-hover:text-blue-300 transition mb-1.5 flex items-center gap-1.5">
+                Mini Content Engine <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-blue-400 transition"></i>
+              </h4>
+              <p class="text-xs text-slate-400 leading-relaxed mb-3">
+                AI-powered content generation and optimization engine for dynamic multichannel marketing and structured copy generation.
+              </p>
+            </div>
+            <div class="text-[11px] font-mono text-blue-400 truncate pt-2 border-t border-slate-800/80">
+              mini-content-engine.vercel.app
+            </div>
+          </a>
+
+          <!-- Project 3: Candidate Screening System -->
+          <a href="https://vercel.com/moogi-bharath-s-projects1/ai-powered-role-based-candidate-screening-system" target="_blank" rel="noopener noreferrer" class="group bg-slate-900/90 hover:bg-slate-900 border border-slate-700/80 hover:border-purple-400 rounded-xl p-5 transition flex flex-col justify-between shadow-sm">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="w-8 h-8 rounded-lg bg-purple-600/30 border border-purple-500/50 flex items-center justify-center text-purple-400">
+                  <i class="fa-solid fa-user-tie"></i>
+                </span>
+                <span class="px-2 py-0.5 text-[11px] rounded-full bg-purple-950 text-purple-400 border border-purple-800 font-medium">Live App</span>
+              </div>
+              <h4 class="text-sm font-bold text-white group-hover:text-purple-300 transition mb-1.5 flex items-center gap-1.5">
+                Role-Based Candidate Screening <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-purple-400 transition"></i>
+              </h4>
+              <p class="text-xs text-slate-400 leading-relaxed mb-3">
+                Intelligent resume evaluation and role-matching system assessing technical competence, fit scores, and structured insights.
+              </p>
+            </div>
+            <div class="text-[11px] font-mono text-purple-400 truncate pt-2 border-t border-slate-800/80">
+              ai-powered-role-based-candidate...
+            </div>
+          </a>
         </div>
       </div>
     </section>
